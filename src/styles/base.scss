@@ -1,0 +1,35 @@
+@import './resetCSS';
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    background-color: $oc-gray-1;
+    font-size: 16px;
+    @include media('xl') {
+        font-size: 15px;
+    }
+    @include media('lg') {
+        font-size: 13px;
+    }
+    @include media('md') {
+        font-size: 12px;
+    }
+}
+
+body {
+    position: relative;
+    box-sizing: border-box;
+    #root {
+        position: relative;
+    }
+}
+
+textarea {
+    resize: both !important;
+}
