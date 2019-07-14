@@ -1,0 +1,38 @@
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    input {
+        @include cm-input;
+    }
+    .login-pw-box {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2em;
+        // 비밀번호찾기
+        a {
+            align-self: flex-end;
+            font-size: 0.8em;
+            margin-top: -0.6em;
+            margin-right: 0.6em;
+            font-weight: 300;
+            @include cm-a;
+            span {
+                top: 1.2em;
+            }
+        }
+    }
+    // 로그인
+    a.login-login-button {
+        @include cm-button;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+    // 회원가입 링크
+    .login-signup-link {
+        text-align: center;
+        font-weight: 300;
+        a {
+            @include cm-a;
+        }
+    }
+}

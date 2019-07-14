@@ -1,0 +1,17 @@
+.LoginLogo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 12em;
+    max-height: 16em;
+    background-color: $brand-primary;
+    color: white;
+    margin-bottom: 1em;
+    h1 {
+        font-size: 4em;
+        a {
+            cursor: pointer;
+        }
+    }
+}
