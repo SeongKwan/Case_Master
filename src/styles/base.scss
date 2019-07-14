@@ -1,5 +1,9 @@
 @import './resetCSS';
 
+// Google Font
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700,900&display=swap&subset=korean');
+
+
 *,
 *::after,
 *::before {
@@ -9,27 +13,34 @@
 }
 
 html {
-    background-color: $oc-gray-1;
-    font-size: 16px;
-    @include media('xl') {
-        font-size: 15px;
+    /**
+     * screen size : under 480px
+    **/
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    
+    @include media("xs") {
+        
     }
-    @include media('lg') {
-        font-size: 13px;
+    @include media("sm") {
+        
     }
-    @include media('md') {
-        font-size: 12px;
+    @include media("md") {
+        
+    }
+    @include media("lg") {
+
+    }
+    @include media("xl") {
+        font-size: 16px;
     }
 }
 
 body {
-    position: relative;
     box-sizing: border-box;
+
     #root {
         position: relative;
     }
-}
-
-textarea {
-    resize: both !important;
 }

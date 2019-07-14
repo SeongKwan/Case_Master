@@ -33,10 +33,58 @@
 }
 
 @mixin transEase {
-    transition: all .15s ease;
+    transition: all 0.2s ease;
 }
 @mixin transTime($time) {
     transition: all $time ease;
+}
+
+/**
+*** Button
+**/
+@mixin cm-button() {
+    display: inline-block;
+    cursor: pointer;
+    background-color: $brand-primary;
+    padding: 1em 2.5em;
+    color: white;
+    @include transEase;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+@mixin cm-input() {
+    padding: 0.8em 1em;
+    margin-bottom: 1em;
+    border: 1px solid $gray-2;
+    @include transEase;
+    &:focus {
+        border-color: $brand-primary;
+    }
+}
+
+@mixin cm-a() {
+    position: relative;
+    cursor: pointer;
+    @include transEase();
+    &:hover {
+        color: $brand-primary;
+    }
+    span {
+        position: absolute;
+        top: 1.4em;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: black;
+        opacity: 0;
+        @include transEase();
+    }
+    &:hover span {
+        opacity: 1;
+        background-color: $brand-primary;
+    }
 }
     
 // Map with much breakpoints
@@ -46,7 +94,7 @@ $breakpoints: (
     "md": 980px, 
     "lg": 1280px, 
     "xl": 1690px
-);
+) !default;;
 
 // Respond-To Mixin
 @mixin media($size) {
@@ -54,8 +102,9 @@ $breakpoints: (
         $value: map-get($breakpoints, $size);
         
         @media screen and (min-width: $value) {
-            @content
+            @content;
         }
+    } @else {
+        @warn "Unknown `#{$size}` in $breakpoints";
     }
-    @warn "Unknown `#{$size}` in $breakpoints";
 }
