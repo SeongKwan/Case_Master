@@ -1,0 +1,12 @@
+.Landing {
+    text-align: center;
+    font-size: 1rem;
+    h1 {
+        margin-top: $header-height;
+        font-size: 2.5em;
+    }
+    a {
+        margin-top: 8em;
+        @include cm-button;
+    }
+}
