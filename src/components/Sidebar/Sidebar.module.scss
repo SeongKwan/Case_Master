@@ -1,0 +1,58 @@
+.Sidebar {
+    position: absolute;
+    z-index: $sidebar-z-index;
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    padding-bottom: 2rem;
+    .close-icon {
+        cursor: pointer;
+        position: absolute;
+        top: 2rem;
+        padding-left: 2rem;
+        img {
+            width: 2em;
+        }
+    }
+    .sidebar-icon {
+        margin-right: 1rem;
+    }
+    .flex-box-top {
+        padding-top: 6rem;
+        background-color: $brand-primary;
+        .service-title,
+        .user {
+            padding: 0.5rem 2rem;
+            color: white;
+        }
+        .service-title {
+            font-size: 2.5em;
+            margin-bottom: 2rem;
+        }
+        .user {
+            padding: 1.5rem 2rem;
+            font-size: 1.2em;
+            margin-bottom: 1px;
+            .username {
+                letter-spacing: 2px;
+            }
+            .title {
+                font-size: 0.8em;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .flex-box-bottom {
+        li {
+            cursor: pointer;
+            font-size: 1.2em;
+            background-color: $gray-1;
+            padding: 1.5rem 2rem;
+            margin-bottom: 0.1rem;
+            @include transEase;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
