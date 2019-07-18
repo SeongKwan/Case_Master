@@ -1,0 +1,90 @@
+.CaseListItem {
+    margin-top: 4rem;
+    z-index: $basic-z-index;
+    &:first-child {
+        margin-top: 3rem;
+    }
+    & > div.list-item-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        @include transEase;
+        &:hover {
+            opacity: 0.8;
+        }
+        
+        .status-bar {
+            font-size: 0.8em;
+            position: absolute;
+            padding: 0.5rem;
+            top: -18px;
+            left: 5px;
+            display: flex;
+            justify-content: space-between;
+            background-color: $oc-gray-4;
+            z-index: $status-bar-z-index;
+            div {
+                padding: 0 0.5rem;
+                span {
+                    margin-right: 0.2rem;
+                }
+            }
+        }
+        .basic-info,
+        .symptom {
+            padding: 0.5rem 1rem;
+            font-weight: 300;
+        }
+        .basic-info {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 1.4em;
+            padding-left: 0;
+            padding-right: 0;
+            background-color: $oc-gray-9;
+            color: white;
+            .divider-vertical {
+                position: absolute;
+                left: 50%;
+                width: 1px;
+                height: 55%;
+                background-color: $oc-gray-7;
+
+            }
+        }
+        .symptom {
+            background-color: $brand-primary;
+            flex: 1.5;
+            position: relative;
+            .title {
+                position: absolute;
+                top: -18px;
+                right: 5px;
+                padding: 0.5rem;
+                color: white;
+                background-color: $oc-red-5;
+                font-size: 0.9em;
+                font-weight: 500;
+            }
+            .symptom-list {
+                color: white;
+                width: 100%;
+                padding: 0 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                    width: 50%;
+                    margin-bottom: 0.8rem;
+                }
+                li:nth-child(1),
+                li:nth-child(2) {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+    }
+}
