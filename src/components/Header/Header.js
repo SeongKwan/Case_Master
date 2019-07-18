@@ -9,16 +9,28 @@ import Back from '../../styles/img/back-white.png';
 
 const cx = classNames.bind(styles);
 
-@inject()
+@inject('sidebarStore')
 @observer
 class Header extends Component {
+    handleClickOnMenu = () => {
+        const { handleClickOnBack, back } = this.props;
+        // On Menu Icon State
+        if (!back) {
+            this.props.sidebarStore.toggleIsOpen();
+        } else {
+            handleClickOnBack();
+        }
+        return;
+    }
+
     render() {
-        const back = this.props.back;
+        const { back } = this.props;
         let switchIcon = !back ? Hamburger : Back;
         return (
             <header className={cx('Header')}>
                 <div className={cx('header-flex-box')}>
-                    <span><img src={switchIcon} alt="Header Menu Icon"/></span>
+                    <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>
+                    { !back && <Link to='/main' className={cx('logo')}>Case Master</Link> }
                     { !back && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> }
                 </div>
             </header>
