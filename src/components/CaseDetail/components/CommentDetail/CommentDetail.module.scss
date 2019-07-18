@@ -1,5 +1,26 @@
 .CommentDetail {
-    padding: 10rem 1rem 4rem;
+    padding: 8rem 1rem 4rem;
+    h6 {
+        font-size: 1.5em;
+        position: relative;
+        margin-top: 1rem;
+        margin-bottom: 4rem;
+        span {
+            position: relative;
+            background-color: white;
+            z-index: 1001;
+            padding: 0 0.8rem;
+            font-weight: 700;
+        }
+        .divider-horizontal {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: $gray-2;
+            z-index: 100;
+            top: 50%;
+        }
+    }
     .detail-item-box {
         font-size: 1.3em;
         padding: 2.5rem 1rem 1rem;

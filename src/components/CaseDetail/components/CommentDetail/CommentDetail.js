@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { withRouter } from 'react-router-dom';
 import styles from './CommentDetail.module.scss';
 import { observer, inject } from 'mobx-react';
 import Header from '../../../Header';
 
 const cx = classNames.bind(styles);
 
+@withRouter
 @inject()
 @observer
 class CommentDetail extends Component {
+    handleClickOnBack = () => {
+        this.props.history.goBack();
+    }
     render() {
         return (
             <>
-                <Header back={true} />
+                <Header back={true} handleClickOnBack={this.handleClickOnBack} />
                 <div className={cx('CommentDetail')}>
+                    <h6>
+                        <div className={cx('divider-horizontal')}></div>
+                        <span>진단-처방 상세화면</span>
+                    </h6>
                     <div className={cx('detail-item-box', 'diagnosis-name')}>
                         <h6 className={cx('main-title')}>진단명</h6>
                         <ul>
