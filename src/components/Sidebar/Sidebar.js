@@ -6,13 +6,20 @@ import Close from '../../styles/img/close-white.png';
 
 const cx = classNames.bind(styles);
 
-@inject()
+@inject('sidebarStore')
 @observer
 class Sidebar extends Component {
+    handleClickOnClose = () => {
+        this.props.sidebarStore.toggleIsOpen();
+    }
     render() {
+        const { isOpen } = this.props;
         return (
-            <aside className={cx('Sidebar')}>
-                <span className={cx('close-icon')}>
+            <aside id='Sidebar' className={cx('Sidebar', { isOpen: isOpen })}>
+                <span 
+                    className={cx('close-icon')}
+                    onClick={this.handleClickOnClose}
+                >
                     <img src={Close} alt="close-icon-sidebar"/>
                 </span>
                 <div className={cx('flex-box-top')}>
