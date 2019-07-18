@@ -11,6 +11,9 @@ import { inject, observer } from 'mobx-react';
 import Landing from './components/Landing';
 import Login from './components/Login';
 import Main from './components/Main';
+import Search from './components/Search';
+import CaseDetail from './components/CaseDetail';
+import CommentDetail from './components/CaseDetail/components/CommentDetail';
 import Page404 from './components/Page404';
 
 const cx = classNames.bind(styles);
@@ -24,10 +27,13 @@ class App extends Component {
     return (
       <div className={cx("App")}>
         <Switch>
+            <Route path="/caseDetail/:caseId/commentDetail/:commentId" component={CommentDetail} />
+            <Route path="/caseDetail/:caseId" component={CaseDetail} />
+            <Route path="/search" component={Search} />
             <Route path="/main" component={Main} />
             <Route path="/login" component={Login} />
-            <Route path="/" component={Landing} />
-            <Route  component={Page404} />
+            <Route exact path="/" component={Landing} />
+            <Route component={Page404} />
           </Switch>
       </div>
     );
