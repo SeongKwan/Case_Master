@@ -9,33 +9,31 @@ $brand-quaternary: #5d542d;
 /**
 *** Background color
 **/
-$main-background: $oc-gray-1;
-$sub-background: $oc-gray-3;
+
 
 /**
 *** Color of Gray
 **/
 $gray-1: $oc-gray-2;
 $gray-2: $oc-gray-4;
-$gray-3: $oc-gray-5;
-$gray-4: $oc-gray-7;
+$gray-3: $oc-gray-6;
+$gray-4: $oc-gray-8;
 
 /**
 *** Header
 **/
-$header-height: 8rem;
+$header-height: 6rem;
 
 /**
 *** Button
 **/
-$screen-width: 1366px;
-$screen-md-width: 768px;
-$container-width: 1277px;
+
 
 /**
 *** Z-index
 **/
-$drawer-z-index: 1003;
-$header-z-index: 1010;
-$topbar-z-index: 1020;
-$main-container-z-index: 1000;
+$sidebar-z-index: 10000;
+$cover-app-layer-z-index: 9999;
+$header-z-index: 9998;
+$status-bar-z-index: 1010;
+$basic-z-index: 1000;

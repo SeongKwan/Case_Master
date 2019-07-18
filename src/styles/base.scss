@@ -16,6 +16,7 @@ html {
     /**
      * screen size : under 480px
     **/
+    height: 100%;
     background-color: white;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
@@ -39,8 +40,6 @@ html {
 
 body {
     box-sizing: border-box;
-
-    #root {
-        position: relative;
-    }
+    height: 100%;
+    
 }
