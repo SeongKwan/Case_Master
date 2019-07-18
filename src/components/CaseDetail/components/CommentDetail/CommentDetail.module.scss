@@ -1,0 +1,71 @@
+.CommentDetail {
+    padding: 10rem 1rem 4rem;
+    .detail-item-box {
+        font-size: 1.3em;
+        padding: 2.5rem 1rem 1rem;
+        position: relative;
+        background-color: $brand-primary;
+        margin-bottom: 3rem;
+        p {
+            line-height: 1.5em;
+        }
+        li {
+            display: flex;
+            background-color: white;
+            padding: 0.75rem 0;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            .sub-title,
+            .name {
+                flex: 1;
+                min-width: 10rem;
+                padding-right: 2rem;
+                white-space: normal;
+                word-break: break-all;
+            }
+            div:not(:first-child) {
+                flex: 10;
+                white-space: normal;
+                word-break: break-all;
+            }
+            .herb-dose {
+                flex: 1 !important;
+                min-width: 5rem;
+                width: 5rem;
+                margin-right: 1rem;
+            }
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+        .main-title {
+            font-size: 1.5em;
+            position: absolute;
+            top: -18px;
+            left: 5px;
+            background-color: $gray-2;
+            padding: 0.5rem 1rem;
+            font-weight: 700;
+        }
+    }
+    .diagnosis-reference,
+    .drug-reference {
+        a {
+            cursor: pointer;
+            text-decoration: underline !important;
+        }
+    }
+    .like-box {
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        p {
+            font-size: 0.9em;
+        }
+        .like {
+            margin-top: 2rem;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+    }
+}

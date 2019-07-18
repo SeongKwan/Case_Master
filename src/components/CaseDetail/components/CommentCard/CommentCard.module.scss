@@ -1,0 +1,79 @@
+.CommentCard {
+    .comment-item {
+        background-color: $brand-primary;
+        position: relative;
+        font-size: 1.3em;
+        padding: 1.5rem 1rem 1rem;
+        margin-bottom: 7rem;
+        .like {
+            position: absolute;
+            top: -18px;
+            left: 5px;
+            background-color: $oc-yellow-6;
+            padding: 0.5rem 1rem;
+        }
+        .edit-delete {
+            position: absolute;
+            top: -18px;
+            display: flex;
+            right: 5px;
+            background-color: $gray-2;
+            font-weight: 300;
+            button {
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                @include transEase;
+                &:hover {
+                    opacity: 0.5;;
+                }
+            }
+        }
+        .more-view {
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: $oc-gray-4;
+            color: black;
+            padding: 0.8rem 0rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            @include transEase;
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+        .diagnosis,
+        .prescription {
+            display: flex;
+            font-weight: 300;
+            background-color: white;
+            padding: 0.75rem 0;
+            .title {
+                min-width: 10rem;
+                padding-right: 2rem;
+                white-space: normal;
+                word-break: break-all;
+            }
+        }
+        .diagnosis {
+            margin-bottom: 0.5rem;
+            li:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    .my_comment {
+        margin-top: 4rem;
+    }
+    .no_comment {
+        color: white;
+        font-weight: 300;
+        padding: 2rem 1rem;
+        p {
+            padding: 0.5rem;
+        }
+    }
+}
