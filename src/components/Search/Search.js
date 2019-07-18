@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { observer, inject } from 'mobx-react';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
 import SearchCaseList from './components/SearchCaseList';
 import SearchIcon from '../../styles/img/search.png';
+import Layout from '../Layout';
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +13,7 @@ const cx = classNames.bind(styles);
 class Search extends Component {
     render() {
         return (
-            <>
-                <div className={cx("cover-app-layer")}></div>
-                <Header />
-                {/* <Sidebar /> */}
+            <Layout>
                 <main className={cx('Search')}>
                     <div className={cx('search-bar')}>
                         <input className={cx('search-bar-input')} type="text"/>
@@ -32,7 +28,7 @@ class Search extends Component {
                     </div>
                     <SearchCaseList />
                 </main>
-            </>
+            </Layout>
         );
     }
 }

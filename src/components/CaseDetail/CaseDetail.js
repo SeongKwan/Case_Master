@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CaseDetail.module.scss';
 import { observer, inject } from 'mobx-react';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
 import BasicInfo from './components/BasicInfo';
-import Comment from './components/Comment';
+// import Comment from './components/Comment';
+import Layout from '../Layout';
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +13,7 @@ const cx = classNames.bind(styles);
 class CaseDetail extends Component {
     render() {
         return (
-            <>
-                <div className={cx("cover-app-layer")}></div>
-                <Header />
-                {/* <Sidebar /> */}
+            <Layout>
                 <main className={cx('CaseDetail')}>
                     <div className={cx('status-bar')}>
                         <div className={cx('case-id')}>
@@ -40,7 +36,7 @@ class CaseDetail extends Component {
                         {/* <Comment /> */}
                     </div>
                 </main>
-            </>
+            </Layout>
         );
     }
 }
