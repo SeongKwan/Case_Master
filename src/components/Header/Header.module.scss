@@ -1,0 +1,23 @@
+.Header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: $header-height;
+    background-color: $brand-primary;
+    color: white;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    z-index: $header-z-index;
+    .header-flex-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            cursor: pointer;
+            width: 2em;
+        }
+    }
+}
