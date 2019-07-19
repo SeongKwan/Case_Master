@@ -1,7 +1,9 @@
 import sidebarStore from './sidebarStore';
+import swiperStore from './swiperStore';
 
 const stores = {
-    sidebarStore
+    sidebarStore,
+    swiperStore
 }
 
 export default stores;
