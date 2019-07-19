@@ -10,6 +10,9 @@ class SwiperStore {
     @action clearActiveTab() {
         this.activeTab = 0;
     }
+    @action clear() {
+        this.clearActiveTab();
+    }
 }
 
 export default new SwiperStore();

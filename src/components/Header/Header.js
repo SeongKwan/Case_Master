@@ -30,7 +30,7 @@ class Header extends Component {
             <header className={cx('Header')}>
                 <div className={cx('header-flex-box')}>
                     <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>
-                    { !back && <Link to='/main' className={cx('logo')}>Case Master</Link> }
+                    { !back && <Link to='/main/updatedCase' className={cx('logo')}>Case Master</Link> }
                     { !back && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> }
                 </div>
             </header>

@@ -14,12 +14,14 @@ const cx = classNames.bind(styles);
 @inject('swiperStore')
 @observer
 class MainCaseList extends Component {
+    componentWillUnmount() {
+        this.props.swiperStore.clear();
+    }
     setCurrentSlideIndex = (event) => {
         const { dataset } = event.target;
         this.props.swiperStore.setCurrentSlide(dataset.id);
     }
     render() {
-
         const params1 = {
             slidesPerView: 3,
             paginationClickable: true,

@@ -7,6 +7,7 @@
         display: flex;
         background-color: $oc-gray-4;
         z-index: $status-bar-z-index;
+        margin-bottom: 2rem;
         div {
             display: flex;
             justify-content: center;
@@ -20,42 +21,32 @@
             }
         }
     }
-    ul.tab-header-list {
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-        position: relative;
-        .divider-horizontal {
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background-color: $gray-2;
-            z-index: 100;
-            top: 50%;
-        }
+    
+
+    li.tab-header-item {
         display: flex;
-        justify-content: space-around;
-        margin-bottom: 5rem;
-        
-        li.tab-header-item {
+        align-items: center;
+        justify-content: center;
+        background-color: $gray-2;
+        z-index: 1001;
+        cursor: pointer;
+        position: relative;
+        padding: 1rem 0rem;
+        @include transEase;
+        &:hover {
+            opacity: 0.8;
+        }
+        &.active {
             background-color: white;
-            z-index: 1001;
-            cursor: pointer;
-            position: relative;
-            padding: 0rem 0.8rem;
-            font-size: 1.3em;
-            @include transEase;
-            &:hover {
-                opacity: 0.8;
-            }
-            &.active span {
-                position: absolute;
-                top: 1.6rem;
-                left: 50%;
-                width: 80%;
-                height: 3px;
-                background-color: $brand-primary;
-                transform: translateX(-50%);
-            }
+        }
+        &.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $brand-primary;
         }
     }
 }
@@ -63,6 +54,7 @@
     position: fixed;
     right: 1rem;
     bottom: 2rem;
+    z-index: 9997;
     div {
         background-color: rgba(black, 0.5);
         color: white;
