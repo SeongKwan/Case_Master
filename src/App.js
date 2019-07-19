@@ -7,7 +7,6 @@ import {
   withRouter 
 } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-
 import Landing from './components/Landing';
 import Login from './components/Login';
 import Main from './components/Main';
@@ -30,7 +29,7 @@ class App extends Component {
             <Route path="/caseDetail/:caseId/commentDetail/:commentId" component={CommentDetail} />
             <Route path="/caseDetail/:caseId" component={CaseDetail} />
             <Route path="/search" component={Search} />
-            <Route path="/main" component={Main} />
+            <Route path="/main/:listType" component={Main} />
             <Route path="/login" component={Login} />
             <Route exact path="/" component={Landing} />
             <Route component={Page404} />

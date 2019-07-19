@@ -17,7 +17,7 @@ class LoginForm extends Component {
                     <input type="password" placeholder="비밀번호"/>
                     <a href="/login">비밀번호찾기<span>&nbsp;</span></a>
                 </div>
-                <Link className={cx('login-login-button')} to="/main">로그인</Link>
+                <Link className={cx('login-login-button')} to="/main/updatedCase">로그인</Link>
                 <div className={cx('login-signup-link')}>
                     <p>계정이 없으신가요? <a href="/login">회원가입<span>&nbsp;</span></a></p>
                 </div>
