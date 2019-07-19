@@ -33,11 +33,13 @@
         .service-title {
             font-size: 2.5em;
             margin-bottom: 2rem;
+            font-weight: 700;
         }
         .user {
             padding: 1.5rem 2rem;
             font-size: 1.2em;
             margin-bottom: 1px;
+            font-weight: 500;
             .username {
                 letter-spacing: 2px;
             }
@@ -54,9 +56,16 @@
             background-color: $gray-1;
             padding: 1.5rem 2rem;
             margin-bottom: 0.1rem;
+            display: flex;
+            align-items: center;
+            font-weight: 300;
             @include transEase;
             &:hover {
                 opacity: 0.8;
+            }
+            span {
+                display: flex;
+                align-items: center;
             }
         }
     }

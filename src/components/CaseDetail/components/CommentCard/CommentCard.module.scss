@@ -6,11 +6,21 @@
         padding: 1.5rem 1rem 1rem;
         margin-bottom: 7rem;
         .like {
+            display: flex;
+            align-items: center;
             position: absolute;
             top: -18px;
             left: 5px;
             background-color: $oc-yellow-6;
             padding: 0.5rem 1rem;
+            .icon,
+            .count {
+                display: flex;
+                align-items: center;
+            }
+            .icon {
+                margin-right: 0.2rem;
+            }
         }
         .edit-delete {
             position: absolute;

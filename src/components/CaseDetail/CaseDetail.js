@@ -3,8 +3,13 @@ import classNames from 'classnames/bind';
 import styles from './CaseDetail.module.scss';
 import { observer, inject } from 'mobx-react';
 import BasicInfo from './components/BasicInfo';
-// import Comment from './components/Comment';
+import Comment from './components/Comment';
 import Layout from '../Layout';
+import { TiEye } from "react-icons/ti";
+import { FiHash } from "react-icons/fi";
+import { FaNotesMedical } from "react-icons/fa";
+import { TiDocumentAdd } from "react-icons/ti";
+import { MdQuestionAnswer } from "react-icons/md";
 
 const cx = classNames.bind(styles);
 
@@ -17,13 +22,13 @@ class CaseDetail extends Component {
                 <main className={cx('CaseDetail')}>
                     <div className={cx('status-bar')}>
                         <div className={cx('case-id')}>
-                            <span>#</span>1234
+                            <span><FiHash /></span>1234
                         </div>
                         <div className={cx('view-count')}>
-                            <span>@</span>28
+                            <span><TiEye /></span>28
                         </div>
                         <div className={cx('comment-count')}>
-                            <span>%</span>7
+                            <span><FaNotesMedical /></span>7
                         </div>
                     </div>
                     <ul className={cx('tab-header-list')}>
@@ -33,9 +38,13 @@ class CaseDetail extends Component {
                     </ul>
                     <div className={cx('tab-content')}>
                         <BasicInfo />
-                        {/* <Comment /> */}
+                        <Comment />
                     </div>
                 </main>
+                <div className={cx('requestInfo-addComment')}>
+                    <div className={cx('requestInfo')}><MdQuestionAnswer /></div>
+                    <div className={cx('addComment')}><TiDocumentAdd /></div>
+                </div>
             </Layout>
         );
     }

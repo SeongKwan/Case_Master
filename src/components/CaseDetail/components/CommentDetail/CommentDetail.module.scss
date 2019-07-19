@@ -87,6 +87,14 @@
             margin-top: 2rem;
             font-size: 1.3em;
             font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .icon {
+                display: flex;
+                align-items: center;
+                margin-right: 0.4rem;
+            }
         }
     }
 }

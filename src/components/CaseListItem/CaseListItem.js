@@ -3,6 +3,9 @@ import classNames from 'classnames/bind';
 import styles from './CaseListItem.module.scss';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
+import { FiHash } from "react-icons/fi";
+import { TiEye } from "react-icons/ti";
+import { FaNotesMedical } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
@@ -20,13 +23,13 @@ class CaseListItem extends Component {
                 <div className={cx('list-item-container')}>
                     <div className={cx('status-bar')}>
                         <div className={cx('case-id')}>
-                            <span>#</span>1234
+                            <span><FiHash /></span>1234
                         </div>
                         <div className={cx('view-count')}>
-                            <span>@</span>28
+                            <span><TiEye /></span>28
                         </div>
                         <div className={cx('comment-count')}>
-                            <span>%</span>7
+                            <span><FaNotesMedical /></span>7
                         </div>
                     </div>
                     <div className={cx('basic-info')}>

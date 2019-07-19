@@ -8,9 +8,15 @@
         background-color: $oc-gray-4;
         z-index: $status-bar-z-index;
         div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 0 0.5rem;
             span {
+                display: flex;
+                align-items: center;
                 margin-right: 0.2rem;
+                font-size: 1.1em;
             }
         }
     }
@@ -51,5 +57,22 @@
                 transform: translateX(-50%);
             }
         }
+    }
+}
+.requestInfo-addComment {
+    position: fixed;
+    right: 1rem;
+    bottom: 2rem;
+    div {
+        background-color: rgba(black, 0.5);
+        color: white;
+        font-weight: 700;
+        font-size: 1.8em;
+        padding: 1rem;
+        border-radius: 100%;
+        text-align: center;
+    }
+    div:first-child {
+        margin-bottom: 1rem;
     }
 }

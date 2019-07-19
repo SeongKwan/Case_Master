@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import { withRouter } from 'react-router-dom';
 import styles from './CommentCard.module.scss';
 import { observer, inject } from 'mobx-react';
+import { FaThumbsUp } from "react-icons/fa";
+import { FaRegThumbsUp } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +25,7 @@ class CommentCard extends Component {
             <div className={cx('CommentCard')}>
                 <div className={cx('comment-item', {my_comment: myComment})}>
                     <div className={cx('like')}>
-                        <span className={cx('icon')}>b</span>
+                        <span className={cx('icon')}><FaRegThumbsUp /></span>
                         <span className={cx('count')}>12</span>
                     </div>
                     <div className={cx('edit-delete')}>

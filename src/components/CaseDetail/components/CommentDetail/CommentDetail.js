@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import styles from './CommentDetail.module.scss';
 import { observer, inject } from 'mobx-react';
 import Header from '../../../Header';
+import { FaThumbsUp } from "react-icons/fa";
+import { FaRegThumbsUp } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
@@ -11,6 +13,9 @@ const cx = classNames.bind(styles);
 @inject()
 @observer
 class CommentDetail extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
     handleClickOnBack = () => {
         this.props.history.goBack();
     }
@@ -126,7 +131,7 @@ class CommentDetail extends Component {
                     <div className={cx('detail-item-box', 'like-box')}>
                         <p>도움이 되셨다면 눌러주세요^^</p>
                         <div className={cx('like')}>
-                            <span className={cx('icon')}>b</span>
+                            <span className={cx('icon')}><FaRegThumbsUp /></span>
                             <span className={cx('count')}>11</span>
                         </div>
                     </div>
