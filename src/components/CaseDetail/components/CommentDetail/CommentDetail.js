@@ -3,27 +3,34 @@ import classNames from 'classnames/bind';
 import { withRouter } from 'react-router-dom';
 import styles from './CommentDetail.module.scss';
 import { observer, inject } from 'mobx-react';
-import Header from '../../../Header';
-import { FaThumbsUp } from "react-icons/fa";
+import Close from '../../../../styles/img/close.png';
+// import { FaThumbsUp } from "react-icons/fa";
 import { FaRegThumbsUp } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject()
+@inject('commonStore', 'customModalStore')
 @observer
 class CommentDetail extends Component {
-    componentDidMount() {
-        window.scrollTo(0, 0);
+    handleClickOnClose = () => {
+        const { customModalStore, commonStore } = this.props;
+        customModalStore.clear();
+        commonStore.clearCover();
     }
-    handleClickOnBack = () => {
-        this.props.history.goBack();
-    }
+    
     render() {
         return (
             <>
-                <Header back={true} handleClickOnBack={this.handleClickOnBack} />
                 <div className={cx('CommentDetail')}>
+                    <div className={cx('close-modal')}>
+                        <span 
+                            className={cx('close-icon')}
+                            onClick={this.handleClickOnClose}
+                        >
+                            <img src={Close} alt="close-icon-sidebar"/>
+                        </span>
+                    </div>
                     <h6>
                         <div className={cx('divider-horizontal')}></div>
                         <span>진단-처방 상세화면</span>

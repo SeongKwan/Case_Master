@@ -3,19 +3,20 @@ import classNames from 'classnames/bind';
 import { withRouter } from 'react-router-dom';
 import styles from './CommentCard.module.scss';
 import { observer, inject } from 'mobx-react';
-import { FaThumbsUp } from "react-icons/fa";
+// import { FaThumbsUp } from "react-icons/fa";
 import { FaRegThumbsUp } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject()
+@inject('customModalStore', 'commonStore')
 @observer
 class CommentCard extends Component {
     handleClick = () => {
-        const { location, history } = this.props;
-        const path = location.pathname;
-        history.push(`${path}/commentDetail/1111`);
+        const { customModalStore, commonStore } = this.props;
+        customModalStore.openModal();
+        commonStore.coverApp();
+        customModalStore.setContent('commentDetail');
     }
 
     render() {

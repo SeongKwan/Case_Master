@@ -6,6 +6,12 @@ class SidebarStore {
     @action toggleIsOpen() {
         this.isOpen = !this.isOpen;
     }
+    @action setIsOpen() {
+        this.isOpen = true;
+    }
+    @action setIsClose() {
+        this.isOpen = false;
+    }
 
     @action clearIsOpen() {
         this.isOpen = false;

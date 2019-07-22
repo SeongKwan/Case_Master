@@ -18,13 +18,13 @@ import Page404 from './components/Page404';
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject('sidebarStore')
+@inject('commonStore')
 @observer
 class App extends Component {
   render() {
-    const { isOpen } = this.props.sidebarStore
+    const { cover } = this.props.commonStore
     return (
-      <div className={cx("App", {sidebarOpen: isOpen })}>
+      <div className={cx("App", {onCoverLayer: cover })}>
         <Switch>
             <Route path="/caseDetail/:caseId/commentDetail/:commentId" component={CommentDetail} />
             <Route path="/caseDetail/:caseId" component={CaseDetail} />

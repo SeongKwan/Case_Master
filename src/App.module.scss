@@ -1,8 +1,9 @@
 .App {
   position: relative;
   font-size: 1rem;
-  &.sidebarOpen {
-    height: 100vh;
+  min-height: 100vh;
+  &.onCoverLayer {
+    // height: 100vh;
     overflow: hidden;
   }
 }

@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 @observer
 class Main extends Component {
     handleClickOnCoverLayer = () => {
-        this.props.sidebarStore.toggleIsOpen();
+        this.props.sidebarStore.setIsClose();
     }
     componentWillUnmount() {
         this.props.sidebarStore.clearIsOpen();

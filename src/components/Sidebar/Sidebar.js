@@ -5,7 +5,7 @@ import styles from './Sidebar.module.scss';
 import { observer, inject } from 'mobx-react';
 import Close from '../../styles/img/close-white.png';
 import { FaUserTie, FaSignOutAlt } from "react-icons/fa";
-import { MdSwapHoriz } from "react-icons/md";
+import { MdQuestionAnswer } from "react-icons/md";
 
 const cx = classNames.bind(styles);
 
@@ -47,7 +47,7 @@ class Sidebar extends Component {
                             <span className={cx('item-name')}>나의정보</span>
                         </li>
                         <li className={cx('my-page')}>
-                            <span className={cx('sidebar-icon')}><MdSwapHoriz /></span>
+                            <span className={cx('sidebar-icon')}><MdQuestionAnswer /></span>
                             <span className={cx('item-name')}>정보요청관리</span>
                         </li>
                         <li className={cx('my-page')} onClick={this.handleClickOnLogout}>

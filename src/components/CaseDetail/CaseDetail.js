@@ -18,6 +18,10 @@ const cx = classNames.bind(styles);
 @inject('swiperStore')
 @observer
 class CaseDetail extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+    
     componentWillUnmount() {
         this.props.swiperStore.clear();
     }
@@ -44,6 +48,7 @@ class CaseDetail extends Component {
                 },
                 slideChangeTransitionEnd: () => {
                     if (this.swiper1 !== undefined) {
+                        $( 'html, body' ).animate( { scrollTop : 0 }, 200 );
                     }
                 }
             }
@@ -65,11 +70,13 @@ class CaseDetail extends Component {
                         var n = this.swiper2.activeIndex;
                         changeSlide(n);
                         this.swiper1.slideTo(n, 500, false);
+                        $( 'html, body' ).animate( { scrollTop : 0 }, 200 );
                     }
                 }
             }
         };
         const { activeTab } = this.props.swiperStore;
+        console.log(this.props);
         return (
             <Layout>
                 <main className={cx('CaseDetail')}>
@@ -84,11 +91,6 @@ class CaseDetail extends Component {
                             <span><FaNotesMedical /></span>7
                         </div>
                     </div>
-                    {/* <ul className={cx('tab-header-list')}>
-                        <div className={cx('divider-horizontal')}></div>
-                        <li className={cx('tab-header-item', '')}>기본정보<span>&nbsp;</span></li>
-                        <li className={cx('tab-header-item', 'active')}>진단처방<span>&nbsp;</span></li>
-                    </ul> */}
                     <div className={cx('tab-content')}>
                         <Swiper {...params1} getSwiper={(swiper) => {this.swiper1 = swiper;}}>
                             <li 

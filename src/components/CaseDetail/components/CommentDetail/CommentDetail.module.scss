@@ -1,5 +1,14 @@
 .CommentDetail {
-    padding: 8rem 1rem 4rem;
+    padding: 3rem 1rem 1rem;
+    .close-modal {
+        cursor: pointer;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        img {
+            width: 16px;
+        }
+    }
     h6 {
         font-size: 1.5em;
         position: relative;

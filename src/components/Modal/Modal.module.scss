@@ -1,0 +1,15 @@
+.Modal {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    z-index: -1;
+    overflow-y: auto;
+    // transition: all 0.1s ease;
+    &.isOpenModal {
+        width: 80%;
+        height: 90%;
+        z-index: $modal-z-index;
+    }
+}

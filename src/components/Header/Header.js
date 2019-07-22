@@ -9,14 +9,15 @@ import Back from '../../styles/img/back-white.png';
 
 const cx = classNames.bind(styles);
 
-@inject('sidebarStore')
+@inject('sidebarStore', 'commonStore')
 @observer
 class Header extends Component {
     handleClickOnMenu = () => {
         const { handleClickOnBack, back } = this.props;
         // On Menu Icon State
         if (!back) {
-            this.props.sidebarStore.toggleIsOpen();
+            this.props.sidebarStore.setIsOpen();
+            this.props.commonStore.coverApp();
         } else {
             handleClickOnBack();
         }
