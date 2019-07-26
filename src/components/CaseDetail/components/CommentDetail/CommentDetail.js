@@ -20,6 +20,20 @@ class CommentDetail extends Component {
     }
     
     render() {
+        if (this.props.comment === undefined) {
+            return <div>Loading...</div>
+        }
+        const {
+            case_id,
+            user_id,
+            diagnosis,
+            prescription,
+            fans,
+            status,
+            note
+        } = this.props.comment;
+        let countLikes = fans.length;
+
         return (
             <>
                 <div className={cx('CommentDetail')}>
@@ -38,22 +52,24 @@ class CommentDetail extends Component {
                     <div className={cx('detail-item-box', 'diagnosis-name')}>
                         <h6 className={cx('main-title')}>진단명</h6>
                         <ul>
-                            <li>
-                                <div className={cx('content')}>간기능이상</div>
-                            </li>
-                            <li>
-                                <div className={cx('content')}>고혈압</div>
-                            </li>
-                            <li>
-                                <div className={cx('content')}>당뇨</div>
-                            </li>
+                            {
+                                diagnosis.map((diagnosis, i) => {
+                                    const { name } = diagnosis;
+                                    return <li key={i} className={cx('content')}>{name}</li>
+                                })
+                            }
                         </ul>
                     </div>
                     <div className={cx('detail-item-box', 'diagnosis-rationale')}>
                         <h6 className={cx('main-title')}>진단근거</h6>
                         <ul>
                             <li>
-                                <p className={cx('content')}>판단하는 근거는 .... Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab nostrum necessitatibus ex reprehenderit sint ea cupiditate quo a consequuntur suscipit quod doloribus perspiciatis, odio assumenda rerum iure perferendis consectetur inventore?</p>
+                                {
+                                    diagnosis.map((diagnosis, i) => {
+                                        const { rationale } = diagnosis;
+                                        return <p key={i} className={cx('content')}>{rationale}</p>
+                                    })
+                                }
                             </li>
                         </ul>
                     </div>
@@ -61,11 +77,12 @@ class CommentDetail extends Component {
                         <h6 className={cx('main-title')}>진단-참고문헌</h6>
                         <ul>
                             <li>
-                                <div className={cx('content')}>
-                                    <a href="https://naver.com" target="_blank" rel="noopener noreferrer">
-                                        https://naver.com
-                                    </a>
-                                </div>
+                                {
+                                    diagnosis.map((diagnosis, i) => {
+                                        const { reference } = diagnosis;
+                                        return <div key={i} className={cx('content')}>{reference}</div>
+                                    })
+                                }
                             </li>
                         </ul>
                     </div>
@@ -73,7 +90,7 @@ class CommentDetail extends Component {
                         <h6 className={cx('main-title')}>처방명</h6>
                         <ul>
                             <li>
-                                <div className={cx('content')}>십전대보탕</div>
+                                <div className={cx('content')}>{prescription.drug.name}</div>
                             </li>
                         </ul>
                     </div>
@@ -87,20 +104,22 @@ class CommentDetail extends Component {
                                     <span className={cx('unit')}>1첩-복용량</span>
                                 </div>
                             </li>
-                            <li>
-                                <div className={cx('name')}>작약</div>
-                                <div className={cx('herb-dose')}>
-                                    <span className={cx('value')}>7</span>
-                                    <span className={cx('unit')}>g/일</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div className={cx('name')}>감초</div>
-                                <div className={cx('herb-dose')}>
-                                    <span className={cx('value')}>7</span>
-                                    <span className={cx('unit')}>g/일</span>
-                                </div>
-                            </li>
+                            {
+                                prescription.drug.fomula.map((fomula, i) => {
+                                    const {
+                                        herb,
+                                        dose
+                                    } = fomula;
+
+                                    return <li key={i}>
+                                        <div className={cx('name')}>{herb}</div>
+                                        <div className={cx('herb-dose')}>
+                                            <span className={cx('value')}>{dose}</span>
+                                            <span className={cx('unit')}>g/일</span>
+                                        </div>
+                                    </li>
+                                })
+                            }
                         </ul>
                     </div>
                     <div className={cx('detail-item-box', 'drug-rationale')}>
@@ -108,7 +127,7 @@ class CommentDetail extends Component {
                         <ul>
                             <li>
                                 <p className={cx('content')}>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum natus eveniet debitis similique quasi eligendi sapiente, reiciendis officiis. Aliquid culpa fuga soluta illum atque sint possimus ad autem libero! Placeat.
+                                    {prescription.drug.rationale}
                                 </p>
                             </li>
                         </ul>
@@ -118,9 +137,7 @@ class CommentDetail extends Component {
                         <ul>
                             <li>
                                 <div className={cx('content')}>
-                                    <a href="https://naver.com" target="_blank" rel="noopener noreferrer">
-                                        https://naver.com
-                                    </a>
+                                    {prescription.drug.reference}
                                 </div>
                             </li>
                         </ul>
@@ -130,7 +147,7 @@ class CommentDetail extends Component {
                         <ul>
                             <li>
                                 <div className={cx('content')}>
-                                    하루 30분 운동필수
+                                    {prescription.drug.teaching}
                                 </div>
                             </li>
                         </ul>
@@ -139,7 +156,7 @@ class CommentDetail extends Component {
                         <p>도움이 되셨다면 눌러주세요^^</p>
                         <div className={cx('like')}>
                             <span className={cx('icon')}><FaRegThumbsUp /></span>
-                            <span className={cx('count')}>11</span>
+                            <span className={cx('count')}>{countLikes}</span>
                         </div>
                     </div>
                 </div>

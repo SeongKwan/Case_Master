@@ -2,12 +2,13 @@
     margin-top: 4rem;
     z-index: $basic-z-index;
     &:first-child {
-        margin-top: 5rem;
+        margin-top: 4rem;
     }
     & > div.list-item-container {
         position: relative;
         display: flex;
         width: 100%;
+        min-height: 90px;
         cursor: pointer;
         @include transEase;
         &:hover {
@@ -45,12 +46,19 @@
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            // justify-content: space-around;
             font-size: 1.4em;
             padding-left: 0;
             padding-right: 0;
             background-color: $oc-gray-9;
             color: white;
+            .gender,
+            .age {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
             .divider-vertical {
                 position: absolute;
                 left: 50%;

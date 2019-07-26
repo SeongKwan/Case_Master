@@ -11,9 +11,15 @@ import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
-@inject('swiperStore')
+@inject(
+    'swiperStore',
+    'caseStore'
+)
 @observer
 class MainCaseList extends Component {
+    componentDidMount() {
+        this.props.caseStore.loadCases();        
+    }
     componentWillUnmount() {
         this.props.swiperStore.clear();
     }
@@ -46,12 +52,14 @@ class MainCaseList extends Component {
         };
         
         const params2 = {
-            slidesPerView: 1,
+            // slidesPerView: 1,
             loop: false,
             speed: 500,
             autoHeight: true,
             spaceBetween: 30,
             on: {
+                init: () => {
+                },
                 slideChangeTransitionEnd: () => {
                     var thisComponent = this.props;
                     let changeSlide = function(index) {
@@ -66,6 +74,12 @@ class MainCaseList extends Component {
             }
         };
         const { activeTab } = this.props.swiperStore;
+        const { updatedCases, isLoading } = this.props.caseStore;
+
+        if (isLoading) {
+            return <div>Loading...</div>
+        }
+
         return (
             <section className={cx('MainCaseList')}>
                 <Swiper1 {...params1} getSwiper={(swiper) => {this.swiper1 = swiper;}}>
@@ -92,9 +106,9 @@ class MainCaseList extends Component {
                     </li>
                 </Swiper1>
                 <Swiper2 {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}}>
-                    <div><UpdatedCase /></div>
-                    <div><MyCase /></div>
-                    <div><MyComment /></div>
+                    <div><UpdatedCase cases={updatedCases} isLoading={isLoading} /></div>
+                    <div><MyCase cases={updatedCases} isLoading={isLoading} /></div>
+                    <div><MyComment cases={updatedCases} isLoading={isLoading} /></div>
                 </Swiper2>
             </section>
         );

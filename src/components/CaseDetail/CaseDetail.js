@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CaseDetail.module.scss';
+import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import BasicInfo from './components/BasicInfo';
 import Comment from './components/Comment';
 import Layout from '../Layout';
 import { TiEye } from "react-icons/ti";
-import { FiHash } from "react-icons/fi";
+// import { FiHash } from "react-icons/fi";
 import { FaNotesMedical } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
 import { MdQuestionAnswer } from "react-icons/md";
@@ -15,11 +16,14 @@ import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
-@inject('swiperStore')
+@withRouter
+@inject('swiperStore', 'caseStore')
 @observer
 class CaseDetail extends Component {
     componentDidMount() {
+        const { params: { caseid }  } = this.props.match;
         window.scrollTo(0, 0);
+        this.props.caseStore.loadCase({caseid});
     }
     
     componentWillUnmount() {
@@ -76,14 +80,21 @@ class CaseDetail extends Component {
             }
         };
         const { activeTab } = this.props.swiperStore;
-        console.log(this.props);
+        const { theCase, isLoading } = this.props.caseStore;
+        const item = JSON.parse(JSON.stringify(theCase));
+        const { comments } = item;
+
+        if (isLoading) {
+            return <div>Loading...</div>
+        }
+
         return (
             <Layout>
                 <main className={cx('CaseDetail')}>
                     <div className={cx('status-bar')}>
-                        <div className={cx('case-id')}>
+                        {/* <div className={cx('case-id')}>
                             <span><FiHash /></span>1234
-                        </div>
+                        </div> */}
                         <div className={cx('view-count')}>
                             <span><TiEye /></span>28
                         </div>
@@ -109,8 +120,8 @@ class CaseDetail extends Component {
                             </li>
                         </Swiper>
                         <Swiper {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}}>
-                            <div><BasicInfo /></div>
-                            <div><Comment /></div>
+                            <div><BasicInfo Case={item.case} isLoading={isLoading} /></div>
+                            <div><Comment comments={comments} isLoading={isLoading} /></div>
                         </Swiper>
                     </div>
                 </main>

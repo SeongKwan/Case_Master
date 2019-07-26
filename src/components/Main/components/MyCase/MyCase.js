@@ -10,22 +10,14 @@ const cx = classNames.bind(styles);
 @observer
 class MyCase extends Component {
     render() {
+        const { cases } = this.props;
         return (
             <div className={cx('MyCase')}>
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
+                {
+                    cases.map((Case, i) => {
+                        return <CaseListItem item={Case} key={i} />
+                    })
+                }
             </div>
         );
     }

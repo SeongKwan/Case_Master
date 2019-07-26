@@ -10,11 +10,14 @@ const cx = classNames.bind(styles);
 @observer
 class MyComment extends Component {
     render() {
+        const { cases } = this.props;
         return (
             <div className={cx('MyComment')}>
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
+                {
+                    cases.map((Case, i) => {
+                        return <CaseListItem item={Case} key={i} />
+                    })
+                }
             </div>
         );
     }

@@ -1,9 +1,11 @@
 .Comment {
     padding-top: 3rem;
+    min-height: 60vh;
     .my-comment {
         h6 {
             font-size: 1.5em;
             position: relative;
+            margin-bottom: 2rem;
             span {
                 position: relative;
                 background-color: white;
