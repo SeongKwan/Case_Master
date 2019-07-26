@@ -6,6 +6,7 @@ import { observer, inject } from 'mobx-react';
 import Hamburger from '../../styles/img/hamburger-white.png';
 import SearchIcon from '../../styles/img/search-white.png';
 import Back from '../../styles/img/back-white.png';
+import { IoMdHome } from "react-icons/io";
 
 const cx = classNames.bind(styles);
 
@@ -25,14 +26,23 @@ class Header extends Component {
     }
 
     render() {
-        const { back } = this.props;
+        const { back, type } = this.props;
         let switchIcon = !back ? Hamburger : Back;
         return (
             <header className={cx('Header')}>
-                <div className={cx('header-flex-box')}>
-                    <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>
-                    { !back && <Link to='/main/updatedCase' className={cx('logo')}>Case Master</Link> }
-                    { !back && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> }
+                <div className={cx('header-flex-box', {search: type==='search'})}>
+                    { type !== 'search' && <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>}
+                    { type === 'search' && <span className={cx('home-button')}><Link to='/main/updatedCase'><IoMdHome /></Link></span>}
+                    { !back && type !== 'search' && <Link to='/main/updatedCase' className={cx('logo')}>Case Master</Link> }
+                    {
+                        type === 'search' &&
+                        <div className={cx('search-bar')}>
+                            <input className={cx('search-bar-input')} type="text"/>
+                            <span><img src={SearchIcon} alt="Search icon search bar"/></span>
+                        </div>
+                    }
+                    
+                    { !back && type !== 'search' && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> }
                 </div>
             </header>
         );

@@ -5,7 +5,8 @@ import { observer, inject } from 'mobx-react';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import Modal from '../Modal';
-// import Bottom from '../Bottom/Bottom';
+import { IoIosArrowUp } from 'react-icons/io';
+import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +22,10 @@ class Layout extends Component {
         }
         commonStore.uncoverApp();
     }
+    handleClickOnScrollToTop = () => {
+        $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        return false;
+    }
     componentWillUnmount() {
         const { sidebarStore, commonStore, customModalStore } = this.props;
         sidebarStore.clearIsOpen();
@@ -31,8 +36,8 @@ class Layout extends Component {
     render() {
         const { isOpen } = this.props.sidebarStore;
         const { cover } = this.props.commonStore;
-        const { isOpenModal, content } = this.props.customModalStore;
-        const { children } = this.props;
+        const { isOpenModal, content, registry } = this.props.customModalStore;
+        const { children, location } = this.props;
         return (
             <>
                 <div 
@@ -40,13 +45,27 @@ class Layout extends Component {
                     className={cx("cover-app-layer", {cover: cover})}
                     onClick={this.handleClickOnCoverLayer}
                 ></div>
-                <Header />
-                <Modal content={content} isOpenModal={isOpenModal} />
+                <Header type={location} />
+                <Modal 
+                    content={content} 
+                    isOpenModal={isOpenModal} 
+                    data={registry}
+                />
                 <Sidebar isOpen={isOpen} />
+                {
+                    location === 'search' &&
+                    <div 
+                        id="scrollToTop" 
+                        className={cx("scrollToTop")} 
+                        onClick={this.handleClickOnScrollToTop}>
+                        <span>
+                            <IoIosArrowUp />
+                        </span>
+                    </div>
+                }
                 <div className={cx('main-container')}>
                     {children}
                 </div>
-                {/* <Bottom /> */}
             </>
         );
     }

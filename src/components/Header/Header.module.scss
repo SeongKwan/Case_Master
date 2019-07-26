@@ -11,10 +11,14 @@
     align-items: center;
     z-index: $header-z-index;
     .header-flex-box {
+        position: relative;
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &.search {
+            justify-content: flex-start;
+        }
         .logo {
             cursor: pointer;
             font-size: 1.8em;
@@ -22,6 +26,35 @@
         img {
             cursor: pointer;
             width: 2em;
+        }
+        .home-button {
+            cursor: pointer;
+            font-size: 2.4em;
+        }
+        .search-bar {
+            position: relative;
+            padding-left: 4rem;
+            padding-right: 2rem;
+            width: 100%;
+            input.search-bar-input {
+                width: 100%;
+                font-size: 1.2em;
+                padding: 0.8rem 0rem;
+                padding-left: 1rem;
+                padding-right: 3.5rem;
+                border-bottom: 1px solid $gray-2;
+                font-weight: 300;
+                color: white;
+            }
+            & > span {
+                position: absolute;
+                top: 50%;
+                right: 2.2rem;
+                transform: translateY(-50%);
+                img {
+                    width: 2rem;
+                }
+            }
         }
     }
 }
