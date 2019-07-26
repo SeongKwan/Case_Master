@@ -6,22 +6,25 @@ import CaseListItem from '../../../CaseListItem';
 
 const cx = classNames.bind(styles);
 
-@inject()
+@inject('caseStore')
 @observer
 class SearchCaseList extends Component {
+    componentDidMount() {
+        this.props.caseStore.loadCases();        
+    }
     render() {
+        const { isLoading, updatedCases } = this.props.caseStore;
+
+        if (isLoading) {
+            return <div>Loading...</div>
+        }
         return (
             <ul className={cx('SearchCaseList')}>
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
-                <CaseListItem />
+                {
+                    updatedCases.map((Case, i) => {
+                        return <CaseListItem item={Case} key={i} />
+                    })
+                }
             </ul>
         );
     }
