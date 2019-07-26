@@ -3,6 +3,7 @@ import { observable, action } from 'mobx';
 class CustomModalStore {
     @observable isOpenModal = false;
     @observable content = '';
+    @observable registry = {};
 
     @action openModal() {
         this.isOpenModal = true;
@@ -17,9 +18,14 @@ class CustomModalStore {
         this.content = content;
     }
 
+    @action setRegistry(data) {
+        this.registry = data;
+    }
+
     @action clear() {
         this.isOpenModal = false;
         this.content = '';
+        this.registry = {};
     };
 }
 

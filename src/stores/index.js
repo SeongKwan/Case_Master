@@ -3,15 +3,17 @@ import swiperStore from './swiperStore';
 import caseDetailStore from './caseDetailStore';
 import customModalStore from './customModalStore';
 import commonStore from './commonStore';
-import bottomStore from './bottomStore';
+import authStore from './authStore';
+import caseStore from './caseStore';
 
 const stores = {
+    authStore,
     sidebarStore,
     swiperStore,
     caseDetailStore,
     customModalStore,
     commonStore,
-    bottomStore
+    caseStore
 }
 
 export default stores;

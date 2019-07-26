@@ -9,18 +9,18 @@ const cx = classNames.bind(styles);
 @inject('customModalStore')
 @observer
 class Modal extends Component {
-    renderComponent = (content) => {
+    renderComponent = (content, data) => {
         if (content === 'commentDetail') {
-            return <CommentDetail />
+            return <CommentDetail comment={data} />
         } else if(content === '') {
             return <div></div>;  
         } else return false;
     }
     render() {
-        const { isOpenModal, content } = this.props;
+        const { isOpenModal, content, data } = this.props;
         return (
             <div className={cx('Modal', { isOpenModal })}>
-                {this.renderComponent(content)}
+                {this.renderComponent(content, data)}
             </div>
         );
     }
