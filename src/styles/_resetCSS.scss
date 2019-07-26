@@ -4,11 +4,16 @@
 */
 
 a,
-input,
 button {
 	all: unset;
 }
-
+input,
+input:focus {
+	outline: none;
+	box-shadow: none;
+	border: none;
+	background: none;
+}
 li {
 	list-style: none;
 }
