@@ -18,18 +18,32 @@ import Page404 from './components/Page404';
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject('commonStore')
+@inject('commonStore', 'authStore')
 @observer
 class App extends Component {
+  componentDidMount() {
+    const { isLogged } = this.props.authStore;
+    if (isLogged) {
+      // return this.props.history.push('/main/updatedCase');
+    } else {
+      return this.props.history.push('/');
+    }
+  }
   render() {
-    const { cover } = this.props.commonStore
+    const { cover } = this.props.commonStore;
+    const { isLogged } = this.props.authStore;
     return (
       <div className={cx("App", {onCoverLayer: cover })}>
-        <Switch>
-            <Route path="/caseDetail/:caseId/commentDetail/:commentId" component={CommentDetail} />
-            <Route path="/caseDetail/:caseId" component={CaseDetail} />
-            <Route path="/search" component={Search} />
-            <Route path="/main/:listType" component={Main} />
+          <Switch>
+            {
+              isLogged && 
+              <>
+                <Route path="/caseDetail/:caseid/commentDetail/:commentId" component={CommentDetail} />
+                <Route path="/caseDetail/:caseid" component={CaseDetail} />
+                <Route path="/search" component={Search} />
+                <Route path="/main/:listType" component={Main} />
+              </>
+            }
             <Route path="/login" component={Login} />
             <Route exact path="/" component={Landing} />
             <Route component={Page404} />
