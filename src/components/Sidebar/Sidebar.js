@@ -5,22 +5,28 @@ import styles from './Sidebar.module.scss';
 import { observer, inject } from 'mobx-react';
 import Close from '../../styles/img/close-white.png';
 import { FaUserTie, FaSignOutAlt } from "react-icons/fa";
-import { MdQuestionAnswer } from "react-icons/md";
 
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject('sidebarStore')
+@inject('sidebarStore', 'commonStore', 'authStore')
 @observer
 class Sidebar extends Component {
     handleClickOnClose = () => {
-        this.props.sidebarStore.toggleIsOpen();
+        const { sidebarStore, commonStore } = this.props;
+        sidebarStore.setIsClose();
+        commonStore.uncoverApp();
     }
     handleClickOnLogout = () => {
-        this.props.history.push('/');
+        if (!window.confirm('로그아웃 하시겠습니까?')) return false;
+        this.props.authStore.clear();
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 0);
     }
     render() {
         const { isOpen } = this.props;
+        const user_email = window.localStorage.getItem('email');
         return (
             <aside id='Sidebar' className={cx('Sidebar', { isOpen: isOpen })}>
                 <span 
@@ -35,8 +41,8 @@ class Sidebar extends Component {
                             Case Master
                         </li>
                         <li className={cx('user')}>
-                            <span className={cx('username')}>홍길동</span>
-                            <span className={cx('title')}>&nbsp;원장님</span>
+                            <span className={cx('username')}>{user_email}</span>
+                            <span className={cx('title')}>&nbsp;님, 안녕하세요.</span>
                         </li>
                     </ul>
                 </div>
@@ -46,10 +52,10 @@ class Sidebar extends Component {
                             <span className={cx('sidebar-icon')}><FaUserTie /></span>
                             <span className={cx('item-name')}>나의정보</span>
                         </li>
-                        <li className={cx('my-page')}>
+                        {/* <li className={cx('my-page')}>
                             <span className={cx('sidebar-icon')}><MdQuestionAnswer /></span>
                             <span className={cx('item-name')}>정보요청관리</span>
-                        </li>
+                        </li> */}
                         <li className={cx('my-page')} onClick={this.handleClickOnLogout}>
                             <span className={cx('sidebar-icon')}><FaSignOutAlt /></span>
                             <span className={cx('item-name')}>로그아웃</span>
