@@ -14,13 +14,17 @@ const cx = classNames.bind(styles);
 @observer
 class Layout extends Component {
     componentDidMount() {
-        $(window).on('scroll', () => {
-            if ( $( window ).scrollTop() > 300 ) {
-                $( '#scrollToTop' ).fadeIn();
-            } else {
-                $( '#scrollToTop' ).fadeOut();
-            }
-        })
+        const { location } = this.props;
+        if (location === 'main' || location === 'search') {
+            return $(window).on('scroll', () => {
+                if ( $( window ).scrollTop() > 200 ) {
+                    $( '#scrollToTop' ).fadeIn();
+                } else {
+                    $( '#scrollToTop' ).fadeOut();
+                }
+            })
+        }
+        return false;
     }
     handleClickOnCoverLayer = () => {
         const { sidebarStore, commonStore, customModalStore } = this.props;
@@ -47,6 +51,7 @@ class Layout extends Component {
         const { cover } = this.props.commonStore;
         const { isOpenModal, content, registry } = this.props.customModalStore;
         const { children, location } = this.props;
+        let showTopButton = (location === 'search' || location === 'main') ? true : false;
         return (
             <>
                 <div 
@@ -62,7 +67,7 @@ class Layout extends Component {
                 />
                 <Sidebar isOpen={isOpen} />
                 {
-                    (location === 'search' || location === "main") &&
+                    showTopButton &&
                     <div 
                         id="scrollToTop" 
                         className={cx("scrollToTop")} 
