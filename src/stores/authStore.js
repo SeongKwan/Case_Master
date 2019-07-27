@@ -45,7 +45,7 @@ class AuthStore {
                 this.setLocalStorage(token, this.userInfo.email);
 
                 alert(res.data.message);
-                window.location.href = '/main/updatedCase';
+                window.location.href = '/main';
                 return res.data;
             }
         }))

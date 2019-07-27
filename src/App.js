@@ -24,7 +24,7 @@ class App extends Component {
   componentDidMount() {
     const { isLogged } = this.props.authStore;
     if (isLogged) {
-      // return this.props.history.push('/main/updatedCase');
+      
     } else {
       return this.props.history.push('/');
     }
@@ -41,7 +41,7 @@ class App extends Component {
                 <Route path="/caseDetail/:caseid/commentDetail/:commentId" component={CommentDetail} />
                 <Route path="/caseDetail/:caseid" component={CaseDetail} />
                 <Route path="/search" component={Search} />
-                <Route path="/main/:listType" component={Main} />
+                <Route path="/main" component={Main} />
               </>
             }
             <Route path="/login" component={Login} />

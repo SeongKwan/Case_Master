@@ -32,8 +32,8 @@ class Header extends Component {
             <header className={cx('Header')}>
                 <div className={cx('header-flex-box', {search: type==='search'})}>
                     { type !== 'search' && <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>}
-                    { type === 'search' && <span className={cx('home-button')}><Link to='/main/updatedCase'><IoMdHome /></Link></span>}
-                    { !back && type !== 'search' && <Link to='/main/updatedCase' className={cx('logo')}>Case Master</Link> }
+                    { type === 'search' && <span className={cx('home-button')}><Link to='/main'><IoMdHome /></Link></span>}
+                    { !back && type !== 'search' && <Link to='/main' className={cx('logo')}>Case Master</Link> }
                     {
                         type === 'search' &&
                         <div className={cx('search-bar')}>
