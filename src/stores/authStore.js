@@ -14,7 +14,6 @@ class AuthStore {
     @observable token = null;
     @observable isLoading = false;
     @observable isLoggedIn = false;
-    // @observable token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1Y2QzNjNiMzc1MTQ4NzAwMDRhYmEyZTQiLCJpYXQiOjE1NjM5NDEzOTV9.dlIbVtJIJDD8Co4IJeGVuczk4wJg2xww2yazdtaGLq4';
 
     @computed get isLogged() {
         if (this.logOn.email !== null && this.logOn.email !== undefined) {
