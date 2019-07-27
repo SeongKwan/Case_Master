@@ -11,9 +11,6 @@ const cx = classNames.bind(styles);
 @inject()
 @observer
 class UpdatedCase extends Component {
-    handleClick = () => {
-
-    }
     render() {
         const { cases } = this.props;
         return (

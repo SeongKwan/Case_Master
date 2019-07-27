@@ -1,6 +1,9 @@
 .CaseDetail {
     padding: 8rem 1rem 4rem;
     font-size: 1rem;
+    &.loading {
+        margin-top: 3rem;
+    }
     .status-bar {
         font-size: 1.2em;
         padding: 0.5rem;

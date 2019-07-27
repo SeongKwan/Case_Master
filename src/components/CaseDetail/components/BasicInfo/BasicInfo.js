@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './BasicInfo.module.scss';
 import { observer, inject } from 'mobx-react';
+import Loader from '../../../Loader';
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +12,9 @@ class BasicInfo extends Component {
     render() {
         const { Case, isLoading } = this.props;
         if (isLoading || Case === undefined) {
-            return <div>Loading...</div>
+            return <div className={cx('BasicInfo', 'loading')}>
+                <Loader />
+            </div>
         }
         const {
             patient,

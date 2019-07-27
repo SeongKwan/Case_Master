@@ -9,6 +9,9 @@ const cx = classNames.bind(styles);
 @inject()
 @observer
 class MyCase extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
     render() {
         const { cases } = this.props;
         return (

@@ -7,6 +7,7 @@ import Swiper2 from 'react-id-swiper';
 import UpdatedCase from '../UpdatedCase';
 import MyCase from '../MyCase';
 import MyComment from '../MyComment';
+import Loader from '../../../Loader';
 import $ from 'jquery';
 
 const cx = classNames.bind(styles);
@@ -61,6 +62,7 @@ class MainCaseList extends Component {
                 init: () => {
                 },
                 slideChangeTransitionEnd: () => {
+                    window.scrollTo(0, 0);
                     var thisComponent = this.props;
                     let changeSlide = function(index) {
                         return thisComponent.swiperStore.setCurrentSlide(index);
@@ -77,7 +79,9 @@ class MainCaseList extends Component {
         const { updatedCases, isLoading } = this.props.caseStore;
 
         if (isLoading) {
-            return <div>Loading...</div>
+            return <section className={cx('MainCaseList', 'loading')}>
+                <Loader />
+            </section>
         }
 
         return (
@@ -106,9 +110,9 @@ class MainCaseList extends Component {
                     </li>
                 </Swiper1>
                 <Swiper2 {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}}>
-                    <div><MyComment cases={updatedCases} isLoading={isLoading} /></div>
                     <div><UpdatedCase cases={updatedCases} isLoading={isLoading} /></div>
                     <div><MyCase cases={updatedCases} isLoading={isLoading} /></div>
+                    <div><MyComment cases={updatedCases} isLoading={isLoading} /></div>
                 </Swiper2>
             </section>
         );

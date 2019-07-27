@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import styles from './Comment.module.scss';
 import { observer, inject } from 'mobx-react';
 import CommentCard from '../CommentCard/CommentCard';
-
+import Loader from '../../../Loader';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +16,9 @@ class Comment extends Component {
         const { comments, isLoading } = this.props;
 
         if (isLoading || comments === undefined) {
-            return <div>Loading...</div>
+            return <div className={cx('Comment', 'loading')}>
+                <Loader />
+            </div>
         }
 
         return (

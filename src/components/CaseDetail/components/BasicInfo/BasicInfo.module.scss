@@ -1,5 +1,8 @@
 .BasicInfo {
     padding-top: 3rem;
+    &.loading {
+        margin-top: 3rem;
+    }
     .PatientInfo,
     .Symptom,
     .Lab,

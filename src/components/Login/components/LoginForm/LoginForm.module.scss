@@ -1,6 +1,9 @@
 .LoginForm {
     display: flex;
     flex-direction: column;
+    &.loading {
+        margin-top: 6rem;
+    }
     input {
         @include cm-input;
     }

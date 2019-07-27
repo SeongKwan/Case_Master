@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './SearchCaseList.module.scss';
 import { observer, inject } from 'mobx-react';
 import CaseListItem from '../../../CaseListItem';
+import Loader from '../../../Loader';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,9 @@ class SearchCaseList extends Component {
         const { isLoading, updatedCases } = this.props.caseStore;
 
         if (isLoading) {
-            return <div>Loading...</div>
+            return <div className={cx('SearchCaseList', 'loading')}>
+                <Loader />
+            </div>
         }
         return (
             <ul className={cx('SearchCaseList')}>

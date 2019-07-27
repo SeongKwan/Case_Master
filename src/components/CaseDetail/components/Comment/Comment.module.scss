@@ -1,6 +1,9 @@
 .Comment {
     padding-top: 3rem;
     min-height: 60vh;
+    &.loading {
+        margin-top: 3rem;
+    }
     .my-comment {
         h6 {
             font-size: 1.5em;

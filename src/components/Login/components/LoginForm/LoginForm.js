@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './LoginForm.module.scss';
-// import { Link } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
+import Loader from '../../../Loader/Loader';
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +38,12 @@ class LoginForm extends Component {
     }
 
     render() {
+        const { isLoading } = this.props.authStore;
+        if (isLoading) {
+            return <div className={cx('LoginForm', "loading")}>
+                    <Loader />
+                </div>
+        }
         return (
             <div className={cx('LoginForm')}>
                 <input 

@@ -13,6 +13,7 @@ import { TiDocumentAdd } from "react-icons/ti";
 import { MdQuestionAnswer } from "react-icons/md";
 import Swiper from 'react-id-swiper';
 import $ from 'jquery';
+import Loader from '../Loader';
 
 const cx = classNames.bind(styles);
 
@@ -85,7 +86,11 @@ class CaseDetail extends Component {
         const { comments } = item;
 
         if (isLoading) {
-            return <div>Loading...</div>
+            return <Layout>
+                <main className={cx('CaseDetail', 'loading')}>
+                    <Loader />
+                </main>
+            </Layout>
         }
 
         return (

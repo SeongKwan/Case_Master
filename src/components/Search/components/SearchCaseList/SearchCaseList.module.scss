@@ -1,4 +1,7 @@
 .SearchCaseList {
     font-size: 1.3em;
     padding: 0 1rem;
+    &.loading {
+        margin-top: 3rem;
+    }
 }
