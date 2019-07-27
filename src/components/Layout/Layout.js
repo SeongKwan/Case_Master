@@ -13,6 +13,15 @@ const cx = classNames.bind(styles);
 @inject('sidebarStore', 'commonStore', 'customModalStore')
 @observer
 class Layout extends Component {
+    componentDidMount() {
+        $(window).on('scroll', () => {
+            if ( $( window ).scrollTop() > 300 ) {
+                $( '#scrollToTop' ).fadeIn();
+            } else {
+                $( '#scrollToTop' ).fadeOut();
+            }
+        })
+    }
     handleClickOnCoverLayer = () => {
         const { sidebarStore, commonStore, customModalStore } = this.props;
         if (sidebarStore.isOpen) {
@@ -53,7 +62,7 @@ class Layout extends Component {
                 />
                 <Sidebar isOpen={isOpen} />
                 {
-                    location === 'search' &&
+                    (location === 'search' || location === "main") &&
                     <div 
                         id="scrollToTop" 
                         className={cx("scrollToTop")} 
