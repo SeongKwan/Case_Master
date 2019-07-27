@@ -47,6 +47,7 @@ class LoginForm extends Component {
         return (
             <div className={cx('LoginForm')}>
                 <input 
+                    autoFocus
                     name="email" 
                     type="text" 
                     placeholder="이메일"
