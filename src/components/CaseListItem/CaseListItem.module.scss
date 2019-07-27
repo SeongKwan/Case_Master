@@ -128,13 +128,13 @@
                     border-left: none;
                 }
                 .number {
-                    flex: 0.5;
+                    flex: 0.3;
                 }
                 .status {
                     flex: 1;
                 }
                 .user {
-                    flex: 2;
+                    flex: 1.5;
                 }
                 .date {
                     flex: 1;
@@ -154,6 +154,7 @@
         }
     }
     .myComment-drug {
+        margin-top: 0.5rem;
         display: flex;
         background-color: $oc-gray-9;
         padding: 1rem 0;
