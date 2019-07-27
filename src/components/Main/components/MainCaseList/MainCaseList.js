@@ -106,9 +106,9 @@ class MainCaseList extends Component {
                     </li>
                 </Swiper1>
                 <Swiper2 {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}}>
+                    <div><MyComment cases={updatedCases} isLoading={isLoading} /></div>
                     <div><UpdatedCase cases={updatedCases} isLoading={isLoading} /></div>
                     <div><MyCase cases={updatedCases} isLoading={isLoading} /></div>
-                    <div><MyComment cases={updatedCases} isLoading={isLoading} /></div>
                 </Swiper2>
             </section>
         );

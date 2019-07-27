@@ -15,7 +15,7 @@ class MyComment extends Component {
             <div className={cx('MyComment')}>
                 {
                     cases.map((Case, i) => {
-                        return <CaseListItem item={Case} key={i} />
+                        return <CaseListItem type="MyComment" item={Case} key={i} />
                     })
                 }
             </div>

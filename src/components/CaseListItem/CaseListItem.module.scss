@@ -99,4 +99,122 @@
             }
         }
     }
+    .myCase-question-list {
+        margin-top: 0.5rem;
+        .question {
+            font-weight: 300;
+            .question-status {
+                display: flex;
+                background-color: $oc-gray-9;
+                font-size: 0.8em;
+                color: white;
+                .status {
+                    color: $oc-red-9;
+                    font-weight: 700;
+                }
+                &.answered .status {
+                    color: $oc-green-9;
+                    font-weight: 300;
+                }
+                div {
+                    border: 1px solid $oc-gray-7;
+                    padding: 0.5rem 1rem;
+                }
+                div:nth-child(2),
+                div:nth-child(3) {
+                    border-left: none;
+                }
+                div:last-child {
+                    border-left: none;
+                }
+                .number {
+                    flex: 0.5;
+                }
+                .status {
+                    flex: 1;
+                }
+                .user {
+                    flex: 2;
+                }
+                .date {
+                    flex: 1;
+                }
+                
+                &.answered + .question-content {
+                    font-weight: 300;
+                }
+            }
+            .question-content {
+                padding: 1.5rem 1rem 1.5rem 2.5rem;
+                background-color: $oc-gray-9;
+                font-size: 0.8em;
+                color: white;
+                font-weight: 700;
+            }
+        }
+    }
+    .myComment-drug {
+        display: flex;
+        background-color: $oc-gray-9;
+        padding: 1rem 0;
+        font-size: 0.8em;
+        color: white;
+        border-top: 1px solid $oc-gray-7;
+        .drug-name {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0;
+            .icon {
+                margin-bottom: 0.3rem;
+                font-size: 2em;
+            }
+        }
+        .drug-formula {
+            flex: 3;
+            border-left: 1px solid $oc-gray-7;
+            border-right: 1px solid $oc-gray-7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            li {
+                display: flex;
+                justify-content: center;
+                &:not(:last-child) {
+                    margin-bottom: 0.7rem;
+                }
+                .herb {
+                    position: relative;
+                    padding-right: 0.7rem;
+                    &::after {
+                        content: '';
+                        width: 1px;
+                        height: 100%;
+                        background-color: $oc-red-5;
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+                .dose {
+                    padding-left: 0.7rem;
+                }
+            }
+        }
+        .like-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .icon {
+                margin-bottom: 0.5rem;
+                font-size: 1.5em;
+            }
+            .like-count {
+                font-size: 1.2em;
+            }
+        } 
+    }
 }
