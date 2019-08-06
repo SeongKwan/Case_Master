@@ -162,8 +162,11 @@
                 }
                 .list-item-header {
                     display: flex;
-                    justify-content: flex-end;
+                    justify-content: space-between;
                     padding-bottom: 0.5rem;
+                    .diagnosis-count {
+                        color: white;
+                    }
                     
                     button {
                         cursor: pointer;

@@ -4,8 +4,6 @@ import styles from './SearchCaseList.module.scss';
 import { observer, inject } from 'mobx-react';
 import CaseListItem from '../../../CaseListItem';
 import Loader from '../../../Loader';
-import debounce from 'lodash.debounce';
-import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
@@ -35,10 +33,10 @@ class SearchCaseList extends Component {
         const { scrollHeight } = document.body;
         // IE에서는 document.documentElement 를 사용.
         const scrollTop =
-            (document.documentElement && document.documentElement.scrollTop) ||
-            document.body.scrollTop;
-            
-        if (scrollHeight - innerHeight - scrollTop < 100) {
+        (document.documentElement && document.documentElement.scrollTop) ||
+        document.body.scrollTop;
+        
+        if (scrollHeight - innerHeight - scrollTop === 0) {
             if(!this.state.loadingState) {
                 this.setState({ loadingState: true });
                 this.props.caseStore.loadCases(lastCaseId);
@@ -51,18 +49,18 @@ class SearchCaseList extends Component {
     }
 
     render() {
-        const { isLoading, registry, lastCaseId } = this.props.caseStore;
-        // if (isLoading) {
-        //     return <div className={cx('SearchCaseList', 'loading')}>
-        //         <Loader />
-        //     </div>
-        // }
+        const { isLoading, registry } = this.props.caseStore;
         return (
             <ul className={cx('SearchCaseList')}>
                 {
                     registry.map((Case, i) => {
                         return <CaseListItem type={'search'} item={Case} key={i} />
                     })
+                }
+                {
+                    isLoading && <div className={cx('SearchCaseList', 'loading')}>
+                        <Loader />
+                    </div>
                 }
             </ul>
         );

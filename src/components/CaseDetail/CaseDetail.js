@@ -47,6 +47,7 @@ class CaseDetail extends Component {
         if (check.length <= 0) {
             return this.props.history.push(`/create/comment/${caseid}`);
         }
+        window.alert('이미 작성하신 처방이 있습니다.');
     }
     handleClickOnScrollToTop = () => {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );

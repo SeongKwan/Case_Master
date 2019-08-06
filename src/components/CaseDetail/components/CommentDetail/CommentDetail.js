@@ -270,7 +270,7 @@ class CommentDetail extends Component {
                                         } = diagnosis;
                                         return <li data-index={i} key={i}>
                                             <div className={cx('list-item-header')}>
-                                                {/* <div>#{i + 1}</div> */}
+                                                <div className={cx('diagnosis-count')}>#{i + 1}</div>
                                                 <button 
                                                     disabled={disabledDelete}
                                                     data-index={i} 
