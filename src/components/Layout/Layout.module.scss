@@ -27,4 +27,8 @@
     padding: 1rem;
     border-radius: 100%;
     color: $gray-4;
+    span {
+        display: flex;
+        align-items: center;
+    }
 }
