@@ -35,7 +35,7 @@ class BasicInfo extends Component {
                         </li>
                         <li>
                             <div className={cx('sub-title', 'age')}>연령</div>
-                            <div className={cx('content')}>만 {patient.age}</div>
+                            <div className={cx('content')}>만 {patient.age}세</div>
                         </li>
                         <li>
                             <div className={cx('sub-title', 'past')}>과거력</div>
