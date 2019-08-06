@@ -16,7 +16,7 @@ class Search extends Component {
     
     render() {
         return (
-            <Layout location={'search'}>
+            <Layout where={'search'}>
                 <main className={cx('Search')}>
                     <div className={cx('sort')}>
                         <ul>

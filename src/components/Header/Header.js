@@ -30,7 +30,7 @@ class Header extends Component {
         let switchIcon = !back ? Hamburger : Back;
         return (
             <header className={cx('Header')}>
-                <div className={cx('header-flex-box', {search: type==='search'})}>
+                <div className={cx('header-flex-box', {search: type==='search'}, {create: type==='create-comment'})}>
                     { type !== 'search' && <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>}
                     { type === 'search' && <span className={cx('home-button')}><Link to='/main'><IoMdHome /></Link></span>}
                     { !back && type !== 'search' && <Link to='/main' className={cx('logo')}>Case Master</Link> }
@@ -41,8 +41,10 @@ class Header extends Component {
                             <span><img src={SearchIcon} alt="Search icon search bar"/></span>
                         </div>
                     }
-                    
                     { !back && type !== 'search' && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> }
+                    {
+                        back && <h1 className={cx('create-comment-title')} >진단 및 처방 작성</h1>
+                    }
                 </div>
             </header>
         );

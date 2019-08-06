@@ -59,7 +59,11 @@
     right: 1rem;
     bottom: 2rem;
     z-index: 9997;
-    div {
+    .requestInfo,
+    .addComment {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
         background-color: rgba(black, 0.5);
         color: white;
         font-weight: 700;
@@ -68,7 +72,19 @@
         border-radius: 100%;
         text-align: center;
     }
-    div:first-child {
+    div:not(:last-child) {
         margin-bottom: 1rem;
+    }
+
+    .scrollToTop {
+        display: none;
+        cursor: pointer;
+        background-color: rgba(black, 0.5);
+        color: white;
+        font-weight: 700;
+        font-size: 1.8em;
+        padding: 1rem;
+        border-radius: 100%;
+        text-align: center;
     }
 }

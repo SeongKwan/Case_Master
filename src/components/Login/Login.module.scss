@@ -5,4 +5,7 @@
         flex-direction: column;
         padding: 2em;
     }
+    &.loading {
+        margin-top: 10rem;
+    }
 }

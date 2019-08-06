@@ -11,10 +11,13 @@ const cx = classNames.bind(styles);
 class MyComment extends Component {
     render() {
         const { cases } = this.props;
+        if (cases.caseWithMyComment === undefined) {
+            return <div style={{display: 'none'}}>loading...</div>
+        }
         return (
             <div className={cx('MyComment')}>
                 {
-                    cases.map((Case, i) => {
+                    cases.caseWithMyComment.map((Case, i) => {
                         return <CaseListItem type="MyComment" item={Case} key={i} />
                     })
                 }

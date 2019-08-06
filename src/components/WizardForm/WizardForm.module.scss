@@ -1,0 +1,13 @@
+.WizardForm {
+    .step-component {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    .confirm-submit-container {
+        background-color: $oc-gray-3;
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,90 @@
+.Diagnosis {
+    background-color: $oc-gray-3;
+    margin-top: 2rem;
+    padding: 1rem;
+    button {
+        user-select: none;
+        cursor: pointer;
+        display: inline-block;
+        background-color: $oc-teal-9;
+        padding: 1rem;
+        margin-right: 0.5rem;
+        &:disabled {
+            cursor: no-drop;
+            background-color: $oc-gray-1;
+            color: $oc-gray-6;
+        }
+        &.add-diagnosis {
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            padding: 0.5rem;
+        }
+    }
+    ul {
+        margin-bottom: 2rem;
+        li {
+            .list-item-header {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.2em;
+                background-color: $oc-gray-8;
+                color: white;
+                padding: 0.5rem 0.5rem;
+                margin-bottom: 0.2rem;
+                
+                button.delete-diagnosis {
+                    background-color: transparent;
+                    color: white;
+                    padding: 0;
+                    &:disabled {
+                        color: $oc-gray-7;
+                    }
+                }
+            }
+            &:not(:last-child) {
+                margin-bottom: 2rem;
+            }
+            div {
+                input {
+                    width: 100%;
+                    background-color: white;
+                    padding: 0.5rem;
+                    font-size: 1.2em;
+                    &::placeholder {
+                        font-size: 0.9em;
+                        color: $oc-gray-5;
+                    }
+                }
+                &:not(:last-child) {
+                    input {
+                        margin-bottom: 0.5rem;
+                    }
+                    textarea {
+                        margin-bottom: 0.5rem;
+                    }
+                }
+                textarea {
+                    background-color: white;
+                    padding: 0.5rem;
+                    min-width: 100%;
+                    width: 100%;
+                    max-width: 100%;
+                    font-size: 1.2em;
+                    border: none;
+                    &::placeholder {
+                        font-size: 0.9em;
+                        color: $oc-gray-5;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+    
+}

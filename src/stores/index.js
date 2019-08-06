@@ -5,7 +5,8 @@ import customModalStore from './customModalStore';
 import commonStore from './commonStore';
 import authStore from './authStore';
 import caseStore from './caseStore';
-
+import commentStore from './commentStore';
+import wizardFormStore from './wizardFormStore';
 const stores = {
     authStore,
     sidebarStore,
@@ -13,7 +14,9 @@ const stores = {
     caseDetailStore,
     customModalStore,
     commonStore,
-    caseStore
+    caseStore,
+    commentStore,
+    wizardFormStore
 }
 
 export default stores;

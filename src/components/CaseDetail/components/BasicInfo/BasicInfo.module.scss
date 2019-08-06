@@ -48,6 +48,21 @@
             margin-bottom: 0;
         }
     }
+    .Lab {
+        li div {
+            display: flex;
+            align-items: center;
+            &.name {
+                flex: 3.5;
+            }
+            &.state {
+                flex: 2;
+                span {
+                    display: inline-block;
+                }
+            }
+        }
+    }
     .main-title {
         font-size: 1.5em;
         position: absolute;

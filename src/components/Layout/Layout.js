@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Layout.module.scss';
+import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
@@ -10,12 +11,13 @@ import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
+@withRouter
 @inject('sidebarStore', 'commonStore', 'customModalStore')
 @observer
 class Layout extends Component {
     componentDidMount() {
-        const { location } = this.props;
-        if (location === 'main' || location === 'search') {
+        const { where } = this.props;
+        if (where === 'main' || where === 'search') {
             return $(window).on('scroll', () => {
                 if ( $( window ).scrollTop() > 200 ) {
                     $( '#scrollToTop' ).fadeIn();
@@ -39,6 +41,9 @@ class Layout extends Component {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         return false;
     }
+    handleClickOnBack = () => {
+        this.props.history.goBack();
+    }
     componentWillUnmount() {
         const { sidebarStore, commonStore, customModalStore } = this.props;
         sidebarStore.clearIsOpen();
@@ -50,8 +55,8 @@ class Layout extends Component {
         const { isOpen } = this.props.sidebarStore;
         const { cover } = this.props.commonStore;
         const { isOpenModal, content, registry } = this.props.customModalStore;
-        const { children, location } = this.props;
-        let showTopButton = (location === 'search' || location === 'main') ? true : false;
+        let { children, where, headerBack } = this.props;
+        let showTopButton = (where === 'search' || where === 'main') ? true : false;
         return (
             <>
                 <div 
@@ -59,7 +64,7 @@ class Layout extends Component {
                     className={cx("cover-app-layer", {cover: cover})}
                     onClick={this.handleClickOnCoverLayer}
                 ></div>
-                <Header type={location} />
+                <Header type={where} back={headerBack} handleClickOnBack={this.handleClickOnBack} />
                 <Modal 
                     content={content} 
                     isOpenModal={isOpenModal} 
@@ -85,4 +90,7 @@ class Layout extends Component {
     }
 }
 
+Layout.defaultProps = {
+    where: ''
+};
 export default Layout;

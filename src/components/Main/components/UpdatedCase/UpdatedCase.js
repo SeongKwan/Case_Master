@@ -13,11 +13,14 @@ const cx = classNames.bind(styles);
 class UpdatedCase extends Component {
     render() {
         const { cases } = this.props;
+        if (cases.todaysCase === undefined) {
+            return <div style={{display: 'none'}}>loading...</div>
+        }
         return (
             <div className={cx('UpdatedCase')}>
                 {
-                    cases.map((Case, i) => {
-                        return <CaseListItem item={Case} key={i} />
+                    cases.todaysCase.map((Case, i) => {
+                        return <CaseListItem type={'TodayCase'} item={Case} key={i} />
                     })
                 }
                 <Link to='/search' onClick={this.handleClick}>

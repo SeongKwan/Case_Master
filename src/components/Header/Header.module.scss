@@ -19,6 +19,14 @@
         &.search {
             justify-content: flex-start;
         }
+        &.create {
+            justify-content: flex-start;
+            .create-comment-title {
+                width: 100%;
+                text-align: center;
+                font-size: 1.2em;
+            }
+        }
         .logo {
             cursor: pointer;
             font-size: 1.8em;

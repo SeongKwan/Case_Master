@@ -1,0 +1,19 @@
+.ControlButton {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-top: 2rem;
+    user-select: none;
+    &.start {
+        justify-content: flex-end;
+    }
+    button {
+        cursor: pointer;
+        padding: 1rem 2rem;
+        background-color: aquamarine;
+        &:disabled {
+            background-color: $oc-gray-1;
+            color: $oc-gray-6;
+        }
+    }
+}

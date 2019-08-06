@@ -9,6 +9,7 @@ class AuthStore {
     }
     @observable logOn = {
         email: window.localStorage.getItem('email'),
+        userId: window.localStorage.getItem('userid'),
         token: window.localStorage.getItem('token')
     }
     @observable token = null;
@@ -16,7 +17,7 @@ class AuthStore {
     @observable isLoggedIn = false;
 
     @computed get isLogged() {
-        if (this.logOn.email !== null && this.logOn.email !== undefined) {
+        if (this.logOn.email !== null && this.logOn.email !== undefined && this.logOn.token !== null) {
             return true;
         }
         if (this.isLoggedIn) {
@@ -36,15 +37,15 @@ class AuthStore {
         return agent.login({ email, password })
         .then(action((res) => {
             let { 
-                token
+                token,
+                user
             } = res.data;
             if (res.status === 200) {
                 this.token = token;
                 this.isLoading = false;
                 this.isLoggedIn = true;
-                this.setLocalStorage(token, this.userInfo.email);
+                this.setLocalStorage(token, this.userInfo.email, user.user_id);
 
-                alert(res.data.message);
                 window.location.href = '/main';
                 return res.data;
             }
@@ -52,7 +53,7 @@ class AuthStore {
         .catch(action((err) => {
             this.errors = err.response && err.response.body && err.response.body.errors;
             this.isLoading = false;
-            this.isLoggedIn = true;
+            this.isLoggedIn = false;
             // const { email, password } = err.data.errors || {};
             // const { message } = err.data || {};
 
@@ -78,14 +79,14 @@ class AuthStore {
             //     alert('틀린 비밀번호 입니다');
             //     throw err;
             // }
-            console.log(err);
-            alert(err);
+            return alert(err);
         }));
     }
 
-    @action setLocalStorage(token, email) {
+    @action setLocalStorage(token, email, userid) {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('email', email);
+        window.localStorage.setItem('userid', userid);
     }
 
     @action clearUserInfo() {

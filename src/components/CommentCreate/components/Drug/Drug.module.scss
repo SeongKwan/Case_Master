@@ -1,0 +1,143 @@
+.Drug {
+    background-color: $oc-gray-3;
+    margin-top: 2rem;
+    padding: 1rem;
+    input {
+        width: 100%;
+        background-color: white;
+        padding: 0.5rem;
+        font-size: 1.2em;
+        &::placeholder {
+            font-size: 0.9em;
+            color: $oc-gray-5;
+        }
+    }
+    button {
+        user-select: none;
+        cursor: pointer;
+        display: inline-block;
+        background-color: $oc-teal-9;
+        padding: 1rem;
+        &:disabled {
+            cursor: no-drop;
+            background-color: $oc-gray-1;
+            color: $oc-gray-3;
+        }
+        &.add-formula {
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            padding: 0.5rem;
+        }
+    }
+    .drug-name {
+        margin-bottom: 0.5rem;
+    }
+    ul {
+        margin-bottom: 2px;
+        li {
+            display: flex;
+            position: relative;
+            .list-item-header {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 1.2em;
+                // background-color: $oc-gray-8;
+                color: white;
+                padding: 0.5rem 1rem;
+                margin-bottom: 0.2rem;
+                
+                button.delete-formula {
+                    background-color: transparent;
+                    color: $oc-gray-8;
+                    padding: 0;
+                    &:disabled {
+                        color: $oc-gray-4;
+                    }
+                }
+            }
+            &:not(:last-child) {
+                margin-bottom: 2px;
+            }
+            div {
+                input {
+                    background-color: white;
+                    padding: 0.5rem;
+                    font-size: 1.2em;
+                    &::placeholder {
+                        font-size: 0.9em;
+                        color: $oc-gray-5;
+                    }
+                }
+                textarea {
+                    background-color: white;
+                    padding: 0.5rem;
+                    min-width: 100%;
+                    width: 100%;
+                    max-width: 100%;
+                    font-size: 1.2em;
+                    border: none;
+                    &::placeholder {
+                        font-size: 0.9em;
+                        color: $oc-gray-5;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                &:not(:last-child) {
+                    margin-right: 2px;
+                }
+                &.herb {
+                    width: 100%;
+                }
+                &.dose {
+                    width: 30%;
+                }
+                &.unit {
+                    input {
+                        padding-inline-end: 3rem;
+                    }
+                }
+            }
+        }
+    }
+    div {
+        &.textarea-container {
+            margin-top: 0.5rem;
+        }
+        input {
+            background-color: white;
+            padding: 0.5rem;
+            font-size: 1.2em;
+            &::placeholder {
+                font-size: 0.9em;
+                color: $oc-gray-5;
+            }
+        }
+        textarea {
+            background-color: white;
+            padding: 0.5rem;
+            min-width: 100%;
+            width: 100%;
+            max-width: 100%;
+            font-size: 1.2em;
+            border: none;
+            &::placeholder {
+                font-size: 0.9em;
+                color: $oc-gray-5;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

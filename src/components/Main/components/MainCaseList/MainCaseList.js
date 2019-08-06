@@ -14,12 +14,16 @@ const cx = classNames.bind(styles);
 
 @inject(
     'swiperStore',
-    'caseStore'
+    'caseStore',
+    'authStore'
 )
 @observer
 class MainCaseList extends Component {
     componentDidMount() {
-        this.props.caseStore.loadCases();        
+        const { logOn } = this.props.authStore;
+        this.props.caseStore.loadTodaysCases({userid: logOn.userId});        
+        this.props.caseStore.loadMyCases({userid: logOn.userId});        
+        this.props.caseStore.loadMyComments({userid: logOn.userId});        
     }
     componentWillUnmount() {
         this.props.swiperStore.clear();
@@ -53,7 +57,6 @@ class MainCaseList extends Component {
         };
         
         const params2 = {
-            // slidesPerView: 1,
             loop: false,
             speed: 500,
             autoHeight: true,
@@ -62,7 +65,12 @@ class MainCaseList extends Component {
                 init: () => {
                 },
                 slideChangeTransitionEnd: () => {
-                    window.scrollTo(0, 0);
+                    let swiper1 = $(".swiper1");
+                    let header_height = $('header').prop('offsetHeight');
+                    let swiper1_top_position = swiper1.offset().top;
+                    let scroll_position = swiper1_top_position - header_height - 16;
+                    
+                    $( 'html, body' ).animate( { scrollTop : scroll_position }, 300 );
                     var thisComponent = this.props;
                     let changeSlide = function(index) {
                         return thisComponent.swiperStore.setCurrentSlide(index);
@@ -76,7 +84,7 @@ class MainCaseList extends Component {
             }
         };
         const { activeTab } = this.props.swiperStore;
-        const { updatedCases, isLoading } = this.props.caseStore;
+        const { todaysCases, myCases, myComments, isLoading } = this.props.caseStore;
 
         if (isLoading) {
             return <section className={cx('MainCaseList', 'loading')}>
@@ -86,7 +94,7 @@ class MainCaseList extends Component {
 
         return (
             <section className={cx('MainCaseList')}>
-                <Swiper1 {...params1} getSwiper={(swiper) => {this.swiper1 = swiper;}}>
+                <Swiper1 containerClass="swiper-container swiper1" {...params1} getSwiper={(swiper) => {this.swiper1 = swiper;}}>
                     <li 
                         data-id='0'
                         className={cx('tab-header-item', {active: activeTab === 0})}
@@ -110,9 +118,9 @@ class MainCaseList extends Component {
                     </li>
                 </Swiper1>
                 <Swiper2 {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}}>
-                    <div><UpdatedCase cases={updatedCases} isLoading={isLoading} /></div>
-                    <div><MyCase cases={updatedCases} isLoading={isLoading} /></div>
-                    <div><MyComment cases={updatedCases} isLoading={isLoading} /></div>
+                    <div><UpdatedCase cases={todaysCases} isLoading={isLoading} /></div>
+                    <div><MyCase cases={myCases} isLoading={isLoading} /></div>
+                    <div><MyComment cases={myComments} isLoading={isLoading} /></div>
                 </Swiper2>
             </section>
         );

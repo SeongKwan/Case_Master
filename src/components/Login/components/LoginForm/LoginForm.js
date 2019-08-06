@@ -20,8 +20,14 @@ class LoginForm extends Component {
 
     _handleClick = () => {
         const { authStore, authStore: {userInfo: {email, password}}} = this.props;
-        if (email === null || password === null) {
-            return window.alert('이메일 또는 비밀번호를 입력해주세요')
+        if (email === null) {
+            return window.alert('이메일을 입력해주세요')
+        }
+        if (password === null) {
+            return window.alert('비밀번호를 입력해주세요')
+        }
+        if (email === null && password === null) {
+            return window.alert('이메일과 비밀번호를 입력해주세요')
         }
         return authStore.login({email, password});
     }
@@ -38,8 +44,8 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { isLoading } = this.props.authStore;
-        if (isLoading) {
+        const { isLoading, isLogged } = this.props.authStore;
+        if (isLoading || isLogged) {
             return <div className={cx('LoginForm', "loading")}>
                     <Loader />
                 </div>

@@ -11,6 +11,7 @@ import { TiEye } from "react-icons/ti";
 import { FaNotesMedical } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
 import { MdQuestionAnswer } from "react-icons/md";
+import { IoIosArrowUp } from 'react-icons/io';
 import Swiper from 'react-id-swiper';
 import $ from 'jquery';
 import Loader from '../Loader';
@@ -18,17 +19,38 @@ import Loader from '../Loader';
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject('swiperStore', 'caseStore')
+@inject('swiperStore', 'caseStore', 'commentStore')
 @observer
 class CaseDetail extends Component {
     componentDidMount() {
         const { params: { caseid }  } = this.props.match;
+        $(window).on('scroll', () => {
+            if ( $( window ).scrollTop() > 200 ) {
+                $( '#scrollToTop_case' ).fadeIn();
+            } else {
+                $( '#scrollToTop_case' ).fadeOut();
+            }
+        })
         window.scrollTo(0, 0);
         this.props.caseStore.loadCase({caseid});
     }
     
     componentWillUnmount() {
+        this.props.caseStore.clear();
         this.props.swiperStore.clear();
+    }
+    handleClickOnAddComment = () => {
+        const { params: { caseid }  } = this.props.match;
+        const userId = window.localStorage.getItem('userid');
+        const { comments } = this.props.caseStore;
+        let check = comments.filter(comment => comment.commenter_id === userId);
+        if (check.length <= 0) {
+            return this.props.history.push(`/create/comment/${caseid}`);
+        }
+    }
+    handleClickOnScrollToTop = () => {
+        $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        return false;
     }
     setCurrentSlideIndex = (event) => {
         const { dataset } = event.target;
@@ -80,12 +102,12 @@ class CaseDetail extends Component {
                 }
             }
         };
+        
         const { activeTab } = this.props.swiperStore;
-        const { theCase, isLoading } = this.props.caseStore;
+        const { theCase, isLoading, comments } = this.props.caseStore;
         const item = JSON.parse(JSON.stringify(theCase));
-        const { comments } = item;
 
-        if (isLoading) {
+        if ( theCase.comments === undefined || isLoading) {
             return <Layout>
                 <main className={cx('CaseDetail', 'loading')}>
                     <Loader />
@@ -93,6 +115,7 @@ class CaseDetail extends Component {
             </Layout>
         }
 
+        const countComments = item.comments.length;
         return (
             <Layout>
                 <main className={cx('CaseDetail')}>
@@ -101,10 +124,10 @@ class CaseDetail extends Component {
                             <span><FiHash /></span>1234
                         </div> */}
                         <div className={cx('view-count')}>
-                            <span><TiEye /></span>28
+                            <span><TiEye /></span>{theCase.views || 0}
                         </div>
                         <div className={cx('comment-count')}>
-                            <span><FaNotesMedical /></span>7
+                            <span><FaNotesMedical /></span>{countComments || 0}
                         </div>
                     </div>
                     <div className={cx('tab-content')}>
@@ -132,7 +155,15 @@ class CaseDetail extends Component {
                 </main>
                 <div className={cx('requestInfo-addComment')}>
                     <div className={cx('requestInfo')}><MdQuestionAnswer /></div>
-                    <div className={cx('addComment')}><TiDocumentAdd /></div>
+                    <div className={cx('addComment')} onClick={this.handleClickOnAddComment}><TiDocumentAdd /></div>
+                    <div 
+                        id="scrollToTop_case" 
+                        className={cx("scrollToTop")} 
+                        onClick={this.handleClickOnScrollToTop}>
+                        <span>
+                            <IoIosArrowUp />
+                        </span>
+                    </div>
                 </div>
             </Layout>
         );

@@ -3,9 +3,16 @@
    License: none (public domain)
 */
 
-a,
-button {
+a {
 	all: unset;
+}
+
+button {
+	border: none;
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
 }
 input,
 input:focus {

@@ -56,12 +56,45 @@ class Agent {
 
 /* ------------------------ */
     // ClouDoc - Case
-    loadCases() {
-        return this.get(`/case`);
+    loadCases({lastCaseId}) {
+        if (lastCaseId === '') {
+            return this.get(`/case/search/init`);
+        }
+        return this.get(`/case/search/${lastCaseId}`);
     }
 
     loadCase({caseid}) {
         return this.get(`/case/${caseid}`);
+    }
+
+    loadTodaysCases({userid}) {
+        return this.get(`/case/user/${userid}/todayscase`);
+    }
+    loadMyCases({userid}) {
+        return this.get(`/case/user/${userid}/mycase`);
+    }
+    loadMyComments({userid}) {
+        return this.get(`/case/user/${userid}/mycomment`);
+    }
+
+    patchLike({comment_id, user_id, status}) {
+        return this.patch(`/comment/${comment_id}/like`, {comment_id, user_id, status});
+    }
+
+    loadComment({comment_id}) {
+        return this.get(`/comment/${comment_id}`);
+    }
+    
+    createComment(newComment) {
+        return this.post(`/comment/`, newComment);
+    }
+
+    updateComment({comment_id}, updatedComment) {
+        return this.patch(`/comment/${comment_id}`, updatedComment)
+    }
+
+    deleteComment({comment_id}) {
+        return this.delete(`/comment/${comment_id}`);
     }
 
     // postCase(newCase) {

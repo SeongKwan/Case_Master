@@ -9,15 +9,15 @@ const cx = classNames.bind(styles);
 @inject()
 @observer
 class MyCase extends Component {
-    componentDidMount() {
-        window.scrollTo(0, 0);
-    }
     render() {
         const { cases } = this.props;
+        if (cases.myCaseWithQuestion === undefined) {
+            return <div style={{display: 'none'}}>loading...</div>
+        }
         return (
             <div className={cx('MyCase')}>
                 {
-                    cases.map((Case, i) => {
+                    cases.myCaseWithQuestion.map((Case, i) => {
                         return <CaseListItem type={'MyCase'} item={Case} key={i} />
                     })
                 }

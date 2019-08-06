@@ -1,25 +1,68 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action } from 'mobx';
 import agent from '../util/agent';
 
 class CaseStore {
     @observable isLoading = false;
     @observable registry = [];
+    @observable todaysCases = [];
+    @observable myCases = [];
+    @observable myComments = [];
     @observable theCase = {};
+    @observable comments = [{}];
+    @observable hasMore = false;
+    @observable error = '';
+    @observable lastCaseId = '';
 
-    @computed get updatedCases() {
-        return this.registry;
-    }
-
-    @action loadCases() {
+    @action loadCases(lastCaseId) {
         this.isLoading = true;
-        return agent.loadCases()
+        return agent.loadCases({lastCaseId})
             .then(action((response) => {
                 this.isLoading = false;
-                this.registry = response.data;
+                this.registry = [...this.registry, ...response.data.cases];
+                this.hasMore = response.data.hasMore;
+                this.lastCaseId = this.registry[this.registry.length - 1]._id;
             }))
-            .catch(error => {
+            .catch(action((error) => {
+                this.isLoading = false;
+                this.error = error;
                 throw error;
-            });
+            }));
+    }
+
+    @action loadTodaysCases({userid}) {
+        this.isLoading = true;
+        return agent.loadTodaysCases({userid})
+        .then(action((response) => {
+            this.isLoading = false;
+            this.todaysCases = response.data;
+        }))
+        .catch(action((error) => {
+            throw error;
+        }))
+    }
+    @action loadMyCases({userid}) {
+        this.isLoading = true;
+        return agent.loadMyCases({userid})
+        .then(action((response) => {
+            this.myCases = response.data;
+        }))
+        .then(action(() => {
+            this.isLoading = false;
+        }))
+        .catch(action((error) => {
+            throw error;
+        }))
+    }
+    @action loadMyComments({userid}) {
+        this.isLoading = true;
+        return agent.loadMyComments({userid})
+        .then(action((response) => {
+            this.isLoading = false;
+            this.myComments = response.data;
+        }))
+        .catch(action((error) => {
+            throw error;
+        }))
     }
 
     @action loadCase({caseid}) {
@@ -28,10 +71,25 @@ class CaseStore {
             .then(action((response) => {
                 this.isLoading = false;
                 this.theCase = response.data;
+                this.comments = response.data.comments;
             }))
             .catch(error => {
                 throw error;
             })
+    }
+
+    @action clear() {
+        this.todaysCases = [];
+        this.myCases = [];
+        this.myComments = [];
+        this.theCase = {};
+        this.comments = [];
+    }
+    @action clearRegistry() {
+        this.registry = [];
+    }
+    @action clearLastCaseId() {
+        this.lastCaseId = '';
     }
 }
 

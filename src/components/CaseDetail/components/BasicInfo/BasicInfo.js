@@ -16,19 +16,13 @@ class BasicInfo extends Component {
                 <Loader />
             </div>
         }
+        
         const {
             patient,
-            record,
-            user_id,
-            _id
-        } = Case;
-        let lengthOfRecord = record.length - 1;
-
-        const {
             symptom,
             exam,
             lab
-        } = record[lengthOfRecord];
+        } = Case.case;
 
         return (
             <div className={cx('BasicInfo')}>

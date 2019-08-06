@@ -4,28 +4,64 @@ import styles from './SearchCaseList.module.scss';
 import { observer, inject } from 'mobx-react';
 import CaseListItem from '../../../CaseListItem';
 import Loader from '../../../Loader';
+import debounce from 'lodash.debounce';
+import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
 @inject('caseStore')
 @observer
 class SearchCaseList extends Component {
+    state = {
+        loadingState: false
+    };
     componentDidMount() {
-        this.props.caseStore.loadCases();        
-    }
-    render() {
-        const { isLoading, updatedCases } = this.props.caseStore;
-
-        if (isLoading) {
-            return <div className={cx('SearchCaseList', 'loading')}>
-                <Loader />
-            </div>
+        const { lastCaseId } = this.props.caseStore;
+        if (lastCaseId === '') {
+            this.props.caseStore.loadCases('');
         }
+        window.addEventListener("scroll", this.handleScroll);
+    }
+    componentWillUnmount() {
+        const { caseStore } = this.props;
+        caseStore.clearRegistry();
+        caseStore.clearLastCaseId();
+        window.removeEventListener("scroll", this.handleScroll);
+    }
+
+    handleScroll = () => {
+        const { lastCaseId } = this.props.caseStore;
+        const { innerHeight } = window;
+        const { scrollHeight } = document.body;
+        // IE에서는 document.documentElement 를 사용.
+        const scrollTop =
+            (document.documentElement && document.documentElement.scrollTop) ||
+            document.body.scrollTop;
+            
+        if (scrollHeight - innerHeight - scrollTop < 100) {
+            if(!this.state.loadingState) {
+                this.setState({ loadingState: true });
+                this.props.caseStore.loadCases(lastCaseId);
+            }
+        } else {
+            if (this.state.loadingState) {
+                this.setState({ loadingState: false });
+            }
+        }
+    }
+
+    render() {
+        const { isLoading, registry, lastCaseId } = this.props.caseStore;
+        // if (isLoading) {
+        //     return <div className={cx('SearchCaseList', 'loading')}>
+        //         <Loader />
+        //     </div>
+        // }
         return (
             <ul className={cx('SearchCaseList')}>
                 {
-                    updatedCases.map((Case, i) => {
-                        return <CaseListItem item={Case} key={i} />
+                    registry.map((Case, i) => {
+                        return <CaseListItem type={'search'} item={Case} key={i} />
                     })
                 }
             </ul>

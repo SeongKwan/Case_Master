@@ -9,9 +9,15 @@ import LoginForm from './components/LoginForm';
 const cx = classNames.bind(styles);
 
 @withRouter
-@inject()
+@inject('authStore')
 @observer
 class Login extends Component {
+    componentDidMount() {
+        const { isLogged } = this.props.authStore;
+        if (isLogged) {
+            return this.props.history.replace('/main');
+        }
+    }
     render() {
         return (
             <div className={cx('Login')}>
