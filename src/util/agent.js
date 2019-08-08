@@ -97,6 +97,10 @@ class Agent {
         return this.delete(`/comment/${comment_id}`);
     }
 
+    createQuestion(newQuestion) {
+        return this.post(`/question`, newQuestion);
+    }
+
     // postCase(newCase) {
     //     return this.post(`/cases`, newCase);
     // }

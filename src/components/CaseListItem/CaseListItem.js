@@ -8,6 +8,7 @@ import { TiEye } from "react-icons/ti";
 import { FaNotesMedical } from "react-icons/fa";
 import { FaRegThumbsUp } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
+import momentHelper from '../../util/momentHelper';
 
 const cx = classNames.bind(styles);
 
@@ -121,13 +122,15 @@ class CaseListItem extends Component {
                                     const {
                                         createdDate,
                                         content,
-                                        status
+                                        status,
+                                        questioner_name,
                                     } = question;
+                                    
                                     return <li key={i} className={cx('question')}>
                                         <div className={cx('question-status', {answered: status === "answered"})}>
                                             <div className={cx('number')}>#{i + 1}</div>
-                                            <div className={cx('date')}>{createdDate}</div>
-                                            <div className={cx('user')}>질문자: 토니</div>
+                                            <div className={cx('date')}>{momentHelper.getLocaleDateWithYYYY(createdDate)}</div>
+                                            <div className={cx('user')}>질문자: {questioner_name || ''}</div>
                                             <div className={cx('status')}>
                                                 {
                                                     status === "answered" ? '답변완료' : '미답변'

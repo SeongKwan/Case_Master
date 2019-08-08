@@ -49,6 +49,10 @@ class CaseDetail extends Component {
         }
         window.alert('이미 작성하신 처방이 있습니다.');
     }
+    handleClickOnAddQuestion = () => {
+        const { params: { caseid }  } = this.props.match;
+        this.props.history.push(`/create/question/${caseid}`);
+    }
     handleClickOnScrollToTop = () => {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         return false;
@@ -155,7 +159,7 @@ class CaseDetail extends Component {
                     </div>
                 </main>
                 <div className={cx('requestInfo-addComment')}>
-                    <div className={cx('requestInfo')}><MdQuestionAnswer /></div>
+                    <div className={cx('requestInfo')} onClick={this.handleClickOnAddQuestion}><MdQuestionAnswer /></div>
                     <div className={cx('addComment')} onClick={this.handleClickOnAddComment}><TiDocumentAdd /></div>
                     <div 
                         id="scrollToTop_case" 

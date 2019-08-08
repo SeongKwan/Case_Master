@@ -1,0 +1,57 @@
+.QuestionCreate {
+    padding: 8rem 1rem 4rem;
+    h1 {
+        margin-bottom: 2rem;
+        padding: 0 0.75rem;
+        font-size: 1.3em;
+    }
+    button {
+        margin-top: 1rem;
+        width: 100%;
+        color: white;
+        user-select: none;
+        cursor: pointer;
+        display: inline-block;
+        background-color: $oc-teal-9;
+        padding: 1rem;
+        font-size: 1.1em;
+        &:disabled {
+            cursor: no-drop;
+            background-color: $oc-gray-1;
+            color: $oc-gray-3;
+        }
+    }
+    .form-container {
+        background-color: $oc-gray-3;
+        padding: 1rem;
+
+
+        div {
+            input {
+                background-color: white;
+                padding: 0.5rem;
+                font-size: 1.2em;
+                &::placeholder {
+                    font-size: 0.9em;
+                    color: $oc-gray-5;
+                }
+            }
+            textarea {
+                background-color: white;
+                padding: 0.5rem;
+                min-width: 100%;
+                width: 100%;
+                max-width: 100%;
+                font-size: 1.2em;
+                border: none;
+                &::placeholder {
+                    font-size: 0.9em;
+                    color: $oc-gray-5;
+                }
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+}

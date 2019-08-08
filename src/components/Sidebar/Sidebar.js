@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import { observer, inject } from 'mobx-react';
 import Close from '../../styles/img/close-white.png';
 import { FaUserTie, FaSignOutAlt } from "react-icons/fa";
+import { MdQuestionAnswer } from "react-icons/md";
 
 const cx = classNames.bind(styles);
 
@@ -49,14 +50,18 @@ class Sidebar extends Component {
                 <div className={cx('flex-box-bottom')}>
                     <ul>
                         <li className={cx('my-page')}>
-                            <span className={cx('sidebar-icon')}><FaUserTie /></span>
-                            <span className={cx('item-name')}>나의정보</span>
+                            <Link to="/my-page">
+                                <span className={cx('sidebar-icon')}><FaUserTie /></span>
+                                <span className={cx('item-name')}>나의정보</span>
+                            </Link>
                         </li>
-                        {/* <li className={cx('my-page')}>
-                            <span className={cx('sidebar-icon')}><MdQuestionAnswer /></span>
-                            <span className={cx('item-name')}>정보요청관리</span>
-                        </li> */}
-                        <li className={cx('my-page')} onClick={this.handleClickOnLogout}>
+                        <li className={cx('question-board')}>
+                            <Link to="/question/board">
+                                <span className={cx('sidebar-icon')}><MdQuestionAnswer /></span>
+                                <span className={cx('item-name')}>질의응답관리</span>
+                            </Link>
+                        </li>
+                        <li className={cx('logout')} onClick={this.handleClickOnLogout}>
                             <span className={cx('sidebar-icon')}><FaSignOutAlt /></span>
                             <span className={cx('item-name')}>로그아웃</span>
                         </li>

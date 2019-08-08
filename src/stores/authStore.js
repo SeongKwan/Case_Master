@@ -9,6 +9,7 @@ class AuthStore {
     }
     @observable logOn = {
         email: window.localStorage.getItem('email'),
+        username: window.localStorage.getItem('username'),
         userId: window.localStorage.getItem('userid'),
         token: window.localStorage.getItem('token')
     }
@@ -44,7 +45,7 @@ class AuthStore {
                 this.token = token;
                 this.isLoading = false;
                 this.isLoggedIn = true;
-                this.setLocalStorage(token, this.userInfo.email, user.user_id);
+                this.setLocalStorage(token, this.userInfo.email, user.user_id, user.name);
 
                 window.location.href = '/main';
                 return res.data;
@@ -83,10 +84,11 @@ class AuthStore {
         }));
     }
 
-    @action setLocalStorage(token, email, userid) {
+    @action setLocalStorage(token, email, userid, username) {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('email', email);
         window.localStorage.setItem('userid', userid);
+        window.localStorage.setItem('username', username);
     }
 
     @action clearUserInfo() {
