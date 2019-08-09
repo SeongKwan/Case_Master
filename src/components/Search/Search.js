@@ -17,7 +17,7 @@ class Search extends Component {
     render() {
         return (
             <Layout where={'search'}>
-                <main className={cx('Search')}>
+                <div role="main" className={cx('Search')}>
                     <div className={cx('sort')}>
                         <ul>
                             <li className={cx('sort-item', 'active')}>처방수<span>&uarr;</span></li>
@@ -26,7 +26,7 @@ class Search extends Component {
                         </ul>
                     </div>
                     <SearchCaseList />
-                </main>
+                </div>
             </Layout>
         );
     }

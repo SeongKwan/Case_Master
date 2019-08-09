@@ -35,6 +35,7 @@ class App extends Component {
   render() {
     const { cover } = this.props.commonStore;
     const { isLogged } = this.props.authStore;
+    
     if (isLogged) {
       return (
         <div className={cx("App", {onCoverLayer: cover })}>

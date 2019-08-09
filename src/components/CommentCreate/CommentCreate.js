@@ -32,9 +32,9 @@ class CommentCreate extends Component {
         ];
         return (
             <Layout where="create-comment" headerBack>
-                <main className={cx('CommentCreate')}>
+                <div className={cx('CommentCreate')} role="main">
                     <WizardForm stepCount={3} steps={components} completeAction={this.handleCompleteAction} />
-                </main>
+                </div>
             </Layout>
         );
     }

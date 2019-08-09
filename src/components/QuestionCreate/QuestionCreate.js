@@ -33,7 +33,7 @@ class QuestionCreate extends Component {
 
         return (
             <Layout where="create-question" headerBack>
-                <main className={cx('QuestionCreate')}>
+                <div role="main" className={cx('QuestionCreate')}>
                     <h1>아래에 증례에 관련한 의문사항 또는 처방에 관련한 질문을 적어주세요</h1>
                     <div className={cx('form-container')}>
                         <div className={cx('textarea-container')}>
@@ -47,7 +47,7 @@ class QuestionCreate extends Component {
                         </div>
                     </div>
                     <button onClick={this.handleSubmit}>질문하기</button>
-                </main>
+                </div>
             </Layout>
         );
     }

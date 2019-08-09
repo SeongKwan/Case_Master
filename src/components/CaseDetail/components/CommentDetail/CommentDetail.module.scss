@@ -55,8 +55,8 @@
                 white-space: normal;
                 word-break: break-all;
             }
-            div:not(:first-child) {
-                flex: 10;
+            div.name:not(:first-child) {
+                // flex: 10;
                 white-space: normal;
                 word-break: break-all;
             }
@@ -71,6 +71,9 @@
             li.content {
                 display: flex;
                 flex-direction: column;
+                div {
+                    display: block;
+                }
                 div:not(:last-child) {
                     margin-bottom: 1rem;
                 }

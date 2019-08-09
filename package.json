@@ -7,6 +7,7 @@
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
+    "autoprefixer": "^9.6.1",
     "axios": "^0.19.0",
     "babel-eslint": "10.0.1",
     "babel-jest": "^24.8.0",
@@ -43,8 +44,8 @@
     "lodash": "^4.17.14",
     "lodash.debounce": "^4.0.8",
     "mini-css-extract-plugin": "0.5.0",
-    "mobx": "^4.13.0",
-    "mobx-react": "^6.1.1",
+    "mobx": "^4.9.4",
+    "mobx-react": "^5.4.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "node-sass": "^4.12.0",
@@ -88,12 +89,17 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 9-11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "ie 9-11"
     ]
   },
   "jest": {

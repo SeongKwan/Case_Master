@@ -114,16 +114,16 @@ class CaseDetail extends Component {
 
         if ( theCase.comments === undefined || isLoading) {
             return <Layout>
-                <main className={cx('CaseDetail', 'loading')}>
+                <div className={cx('CaseDetail', 'loading')} role="main">
                     <Loader />
-                </main>
+                </div>
             </Layout>
         }
 
         const countComments = item.comments.length;
         return (
             <Layout>
-                <main className={cx('CaseDetail')}>
+                <div className={cx('CaseDetail')} role="main">
                     <div className={cx('status-bar')}>
                         {/* <div className={cx('case-id')}>
                             <span><FiHash /></span>1234
@@ -157,7 +157,7 @@ class CaseDetail extends Component {
                             <div><Comment comments={comments} isLoading={isLoading} /></div>
                         </Swiper>
                     </div>
-                </main>
+                </div>
                 <div className={cx('requestInfo-addComment')}>
                     <div className={cx('requestInfo')} onClick={this.handleClickOnAddQuestion}><MdQuestionAnswer /></div>
                     <div className={cx('addComment')} onClick={this.handleClickOnAddComment}><TiDocumentAdd /></div>

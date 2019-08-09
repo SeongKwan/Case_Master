@@ -1,7 +1,7 @@
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'react-app-polyfill/ie9'; // For IE 9-11 support
-import 'react-app-polyfill/ie11'; // For IE 11 support
 import './styles/base.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { configure } from 'mobx';

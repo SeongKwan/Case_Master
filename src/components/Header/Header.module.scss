@@ -65,7 +65,7 @@
                 background-color: $brand-primary;
                 top: calc(50% + 0.5rem + 1px);
                 right: -0.5rem;
-                transform: translateY(calc(-50% - 0.5rem - 0.5px));
+                transform: translateY((-50%));
                 img {
                     width: 2rem;
                 }

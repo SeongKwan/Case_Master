@@ -14,9 +14,9 @@ class QuestionBoard extends Component {
     render() {
         return (
             <Layout where="questionBoard">
-                <main className={cx('QuestionBoard')}>
+                <div role="main" className={cx('QuestionBoard')}>
                     question board
-                </main>
+                </div>
             </Layout>
         );
     }

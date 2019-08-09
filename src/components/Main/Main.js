@@ -19,12 +19,12 @@ class Main extends Component {
     render() {
         return (
             <Layout where="main">
-                <main className={cx('Main')}>
+                <div role="main" className={cx('Main')} role="main">
                     <section className={cx('catchphrase-box')}>
                         <p>다양한 증례와 처방을<br/>만나보세요</p>
                     </section>
                     <MainCaseList />
-                </main>
+                </div>
             </Layout>
         );
     }
