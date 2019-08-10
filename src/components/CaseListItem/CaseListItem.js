@@ -27,13 +27,13 @@ class CaseListItem extends Component {
             const {
                 _id,
                 views,
-                createdDate
+                // createdDate
             } = JSON.parse(JSON.stringify(this.props.item));
             const caseData = this.props.item.case;
             const {
                 patient,
                 symptom,
-                user_id
+                // user_id
             } = caseData;
 
             return (
