@@ -12,6 +12,7 @@ class CaseStore {
     @observable hasMore = false;
     @observable error = '';
     @observable lastCaseId = '';
+    @observable myCaseOrNot = false;
 
     @action loadCases(lastCaseId) {
         this.isLoading = true;
@@ -69,6 +70,9 @@ class CaseStore {
         this.isLoading = true;
         return agent.loadCase({caseid})
             .then(action((response) => {
+                const case_writer = response.data.case.user_id;
+                const loggedUser = window.localStorage.getItem('userid');
+                this.myCaseOrNot = case_writer === loggedUser ? true : false;
                 this.isLoading = false;
                 this.theCase = response.data;
                 this.comments = response.data.comments;

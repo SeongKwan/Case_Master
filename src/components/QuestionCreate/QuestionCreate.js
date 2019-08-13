@@ -19,6 +19,7 @@ class QuestionCreate extends Component {
         const { params: { caseid }  } = this.props.match;
         const questioner_id = window.localStorage.getItem('userid');
         const questioner_name = window.localStorage.getItem('username');
+        if (window.confirm('작성하신 질문을 전송하시겠습니까?'))
         this.props.questionStore.createQuestion({case_id: caseid, questioner_id, questioner_name})
         .then((res) => {
             return this.props.history.goBack();

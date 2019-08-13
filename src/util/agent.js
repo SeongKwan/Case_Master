@@ -97,6 +97,10 @@ class Agent {
         return this.delete(`/comment/${comment_id}`);
     }
 
+    loadQuestions({userid}) {
+        return this.get(`/case/user/${userid}/myquestion`);
+    }
+
     createQuestion(newQuestion) {
         return this.post(`/question`, newQuestion);
     }

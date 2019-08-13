@@ -50,8 +50,9 @@ class CaseDetail extends Component {
         window.alert('이미 작성하신 처방이 있습니다.');
     }
     handleClickOnAddQuestion = () => {
+        const { myCaseOrNot } = this.props.caseStore;
         const { params: { caseid }  } = this.props.match;
-        this.props.history.push(`/create/question/${caseid}`);
+        if (!myCaseOrNot) return this.props.history.push(`/create/question/${caseid}`);
     }
     handleClickOnScrollToTop = () => {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
@@ -109,7 +110,7 @@ class CaseDetail extends Component {
         };
         
         const { activeTab } = this.props.swiperStore;
-        const { theCase, isLoading, comments } = this.props.caseStore;
+        const { theCase, isLoading, comments, myCaseOrNot } = this.props.caseStore;
         const item = JSON.parse(JSON.stringify(theCase));
 
         if ( theCase.comments === undefined || isLoading) {
@@ -159,7 +160,10 @@ class CaseDetail extends Component {
                     </div>
                 </div>
                 <div className={cx('requestInfo-addComment')}>
-                    <div className={cx('requestInfo')} onClick={this.handleClickOnAddQuestion}><MdQuestionAnswer /></div>
+                    {
+                        !myCaseOrNot &&
+                        <div className={cx('requestInfo')} onClick={() => {this.handleClickOnAddQuestion()}}><MdQuestionAnswer /></div>
+                    }
                     <div className={cx('addComment')} onClick={this.handleClickOnAddComment}><TiDocumentAdd /></div>
                     <div 
                         id="scrollToTop_case" 

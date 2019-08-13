@@ -1,0 +1,31 @@
+.QuestionBoard {
+    padding: 8rem 1rem 4rem;
+    font-size: 1rem;
+
+    li {
+        padding: 1rem;
+        background-color: $oc-gray-2;
+        &:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
+    }
+    .question-list-item-top {
+        background-color: $oc-gray-5;
+        padding: 0.5rem;
+        display: flex;
+        span {
+            flex: 1;
+        }
+        span:first-child {
+            flex: 0.5;
+        }
+        span:last-child {
+            flex: 0.5;
+        }
+    }
+    .question-list-item-bottom {
+        p {
+            padding: 1rem;
+        }
+    }
+}
