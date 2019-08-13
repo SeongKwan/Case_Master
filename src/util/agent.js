@@ -8,6 +8,7 @@ import authStore from '../stores/authStore';
 // import errorHelper from './errorHelper';
 // const API_ROOT = `${process.env.REACT_APP_API_ENDPOINT}`;
 const API_ROOT = `http://3.113.76.136:3000`;
+const API_ROOT_EDITOR = `https://cloudoc-api.herokuapp.com`;
 
 class Agent {
     constructor(baseURL = null) {
@@ -51,6 +52,13 @@ class Agent {
                     }
                 })
                 .catch(this._handleError);
+    }
+    signup({email, password}) {
+        return this.axios
+            .post(`/auth/casemaster`, {email, password}, {
+                baseURL: API_ROOT_EDITOR
+            })
+            .catch(this._handleError);
     }
 
 

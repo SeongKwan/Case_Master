@@ -16,6 +16,10 @@ class AuthStore {
     @observable token = null;
     @observable isLoading = false;
     @observable isLoggedIn = false;
+    @observable signupInfo = {
+        email: null,
+        password: null
+    }
 
     @computed get isLogged() {
         if (this.logOn.email !== null && this.logOn.email !== undefined && this.logOn.token !== null) {
@@ -30,6 +34,32 @@ class AuthStore {
     @action changeInput(key, value) {
         this.userInfo[key] = value;
     }
+    @action changeInputSignup(key, value) {
+        this.signupInfo[key] = value;
+    }
+
+    @action signup() {
+        this.isLoading = true;
+        this.errors = null;
+        const { email, password } = this.signupInfo;
+        return agent.signup({email, password})
+            .then(action((response) => {
+                this.isLoading = false;
+                console.log(response);
+                const { success, message } = response.data;
+                if (!success || success === undefined || success === null) {
+                    return alert('이메일 또는 비밀번호가 틀립니다.')
+                }
+                if (success) {
+                    return alert(message);
+                }
+                return response.data;
+            }))
+            .catch(action((error) => {
+                this.isLoading = false;
+                throw error;
+            }))
+    }
 
     @action login() {
         this.isLoading = true;
@@ -39,15 +69,19 @@ class AuthStore {
         .then(action((res) => {
             let { 
                 token,
-                user
+                user,
+                message
             } = res.data;
-            if (res.status === 200) {
+            if (res.data.success) {
                 this.token = token;
                 this.isLoading = false;
                 this.isLoggedIn = true;
                 this.setLocalStorage(token, this.userInfo.email, user.user_id, user.name);
-
+                alert(message);
                 window.location.href = '/main';
+                return res.data;
+            } else {
+                this.isLoading = false;
                 return res.data;
             }
         }))
@@ -80,7 +114,7 @@ class AuthStore {
             //     alert('틀린 비밀번호 입니다');
             //     throw err;
             // }
-            return alert(err);
+            throw err;
         }));
     }
 
@@ -102,6 +136,13 @@ class AuthStore {
 
     @action clearIsLogged() {
         this.isLogged = false;
+    }
+
+    @action clearSignup() {
+        this.signupInfo = {
+            email: null,
+            password: null
+        }
     }
 
     @action clear() {

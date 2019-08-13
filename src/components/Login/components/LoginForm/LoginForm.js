@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './LoginForm.module.scss';
 import { observer, inject } from 'mobx-react';
@@ -29,7 +30,15 @@ class LoginForm extends Component {
         if (email === null && password === null) {
             return window.alert('이메일과 비밀번호를 입력해주세요')
         }
-        return authStore.login({email, password});
+        return authStore.login({email, password})
+            .then((res) => {
+                if(!res.error.success) {
+                    alert(res.error.message);
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            });
     }
 
     _handleKeyDown = (e) => {
@@ -39,7 +48,15 @@ class LoginForm extends Component {
             if (email === null || email === '' || password === null || password === '') {
                 return window.alert('이메일 또는 비밀번호를 입력해주세요')
             }
-            return authStore.login({email, password});
+            return authStore.login({email, password})
+                .then((res) => {
+                    if(!res.error.success) {
+                        alert(res.error.message);
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                });
         }
     }
 
@@ -78,7 +95,7 @@ class LoginForm extends Component {
                     로그인
                 </button>
                 <div className={cx('login-signup-link')}>
-                    <p>계정이 없으신가요? <a href="/login">회원가입<span>&nbsp;</span></a></p>
+                    <p>계정이 없으신가요? <Link to="/signup">회원가입</Link><span>&nbsp;</span></p>
                 </div>
             </div>
         );

@@ -10,6 +10,7 @@ import {
 import { inject, observer } from 'mobx-react';
 import Landing from './components/Landing';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Main from './components/Main';
 import Search from './components/Search';
 import QuestionBoard from './components/Sidebar/components/QuestionBoard';
@@ -57,6 +58,7 @@ class App extends Component {
       return (
         <div className={cx("App")}>
             <Switch>
+              <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route exact path="/" component={Landing} />
               <Route component={Page404} />
