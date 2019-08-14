@@ -37,7 +37,6 @@ class Agent {
                 .post('/auth/login', {email, password}, { 
                     baseURL: API_ROOT,
                     headers: { 
-                        
                     }
                 })
                 .catch(this._handleError);
@@ -111,6 +110,15 @@ class Agent {
 
     createQuestion(newQuestion) {
         return this.post(`/question`, newQuestion);
+    }
+    
+    /**
+     * 
+     * Search API
+     */
+
+    searchCases({keywords, filter}) {
+        return this.get(`/case/search/${filter}`, {keywords})
     }
 
     // postCase(newCase) {

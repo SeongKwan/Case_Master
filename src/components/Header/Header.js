@@ -10,9 +10,29 @@ import { IoMdHome } from "react-icons/io";
 
 const cx = classNames.bind(styles);
 
-@inject('sidebarStore', 'commonStore')
+@inject('sidebarStore', 'commonStore', 'searchStore')
 @observer
 class Header extends Component {
+    componentWillUnmount() {
+        this.props.searchStore.clear();
+    }
+
+    handleChangeSearchKeyword = (e) => {
+        this.props.searchStore.changeSearchKeyword(e.target.value);
+    }
+
+    handleClickForSearch = () => {
+        this.props.searchStore.searchCases();
+    }
+
+    _handleKeyDown = (e) => {
+        const { keyCode } = e;
+        if (keyCode === 13) {
+            console.log('enger')
+            this.props.searchStore.searchCases();
+        }
+    }
+
     handleClickOnMenu = () => {
         const { handleClickOnBack, back } = this.props;
         // On Menu Icon State
@@ -27,6 +47,7 @@ class Header extends Component {
 
     render() {
         const { back, type } = this.props;
+        const { searchKeyword } = this.props.searchStore;
         let switchIcon = !back ? Hamburger : Back;
         return (
             <header className={cx('Header')}>
@@ -43,7 +64,7 @@ class Header extends Component {
                     {
                         type === 'search' &&
                         <div className={cx('search-bar')}>
-                            <input className={cx('search-bar-input')} type="text"/>
+                            <input value={searchKeyword} className={cx('search-bar-input')} placeholder="단어로 검색" type="text" onChange={this.handleChangeSearchKeyword} onKeyDown={this._handleKeyDown}/>
                             <span><img src={SearchIcon} alt="Search icon search bar"/></span>
                         </div>
                     }

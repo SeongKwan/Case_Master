@@ -8,6 +8,7 @@ import caseStore from './caseStore';
 import commentStore from './commentStore';
 import wizardFormStore from './wizardFormStore';
 import questionStore from './questionStore';
+import searchStore from './searchStore';
 
 const stores = {
     authStore,
@@ -19,7 +20,8 @@ const stores = {
     caseStore,
     commentStore,
     wizardFormStore,
-    questionStore
+    questionStore,
+    searchStore
 }
 
 export default stores;
