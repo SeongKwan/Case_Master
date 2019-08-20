@@ -145,9 +145,18 @@ class CommentDetail extends Component {
                                     diagnosis.map((diagnosis, i) => {
                                         const { name, rationale, reference } = diagnosis;
                                         return <li key={i} className={cx('content')}>
-                                            <div>{name}</div>
-                                            <div>{rationale}</div>
-                                            <div>{reference}</div>
+                                            <div>
+                                                <span>진단명</span>
+                                                <span>{name}</span>
+                                            </div>
+                                            <div>
+                                                <span>근거</span>
+                                                <span>{rationale}</span>
+                                            </div>
+                                            <div>
+                                                <span>참고문헌</span>
+                                                <span>{reference}</span>
+                                            </div>
                                         </li>
                                     })
                                 }
@@ -164,13 +173,13 @@ class CommentDetail extends Component {
                         <div className={cx('detail-item-box', 'drug-formula')}>
                             <h6 className={cx('main-title')}>처방구성</h6>
                             <ul>
-                                <li>
+                                {/* <li>
                                     <div className={cx('name')}>약재명</div>
                                     <div className={cx('herb-dose')}>
                                         <span className={cx('value')}></span>
                                         <span className={cx('unit')}>1첩-복용량</span>
                                     </div>
-                                </li>
+                                </li> */}
                                 {
                                     prescription.drug.fomula.map((fomula, i) => {
                                         const {

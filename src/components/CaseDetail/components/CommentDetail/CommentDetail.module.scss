@@ -17,7 +17,7 @@
         margin-bottom: 4rem;
         span {
             position: relative;
-            background-color: white;
+            background-color: $brand-quaternary;
             z-index: 1001;
             padding: 0 0.8rem;
             font-weight: 700;
@@ -26,7 +26,7 @@
             position: absolute;
             width: 100%;
             height: 1px;
-            background-color: $gray-2;
+            background-color: $brand-primary;
             z-index: 100;
             top: 50%;
         }
@@ -42,10 +42,14 @@
         }
         li {
             display: flex;
-            background-color: white;
+            background-color: $brand-primary;
+            color: $brand-quaternary;
             padding: 0.75rem 0;
             margin-bottom: 0.5rem;
             font-weight: 300;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            line-height: 1.6rem;
             
             .sub-title,
             .name {
@@ -71,8 +75,24 @@
             li.content {
                 display: flex;
                 flex-direction: column;
+                &:not(:first-child) {
+                    padding-top: 2rem;
+                }
+                &:not(:last-child) {
+                    padding-bottom: 2rem;
+                    margin-bottom: 0;
+                    border-bottom: 1px solid $brand-quaternary;
+                }
                 div {
-                    display: block;
+                    display: flex;
+                    letter-spacing: 2px;
+                    line-height: 1.6rem;
+                    span:first-child {
+                        flex: 5;
+                    }
+                    span:last-child {
+                        flex: 7;
+                    }
                 }
                 div:not(:last-child) {
                     margin-bottom: 1rem;
@@ -85,11 +105,12 @@
         .main-title {
             font-size: 1.5em;
             position: absolute;
-            top: -18px;
+            top: -30px;
             left: 5px;
-            background-color: $gray-2;
+            background-color: $brand-tertiary;
             padding: 0.5rem 1rem;
-            font-weight: 700;
+            font-weight: 500;
+            color: $brand-quaternary;
         }
     }
     .diagnosis-reference,
@@ -100,15 +121,16 @@
         }
     }
     .like-box {
-        color: white;
+        background-color: $brand-quaternary;
+        color: $brand-primary;
         text-align: center;
         padding: 2rem 0;
-        cursor: pointer;
         user-select: none;
         p {
             font-size: 0.9em;
         }
         .like {
+            cursor: pointer;
             margin-top: 2rem;
             font-size: 1.3em;
             font-weight: 700;
@@ -134,14 +156,15 @@
             position: sticky;
             bottom: 0;
             left: 0;
-            background-color: $oc-gray-9;
+            background-color: $brand-tertiary;
+            color: $brand-quaternary;
             padding: 1rem;
             text-align: center;
-            color: white;
+            color: $brand-quaternary;
         }
         textarea {
             width: 100%;
-            background-color: $oc-gray-0;
+            background-color: $brand-quaternary;
             padding: 0.5rem;
             border: none;
             &:focus {
@@ -168,14 +191,14 @@
                     justify-content: space-between;
                     padding-bottom: 0.5rem;
                     .diagnosis-count {
-                        color: white;
+                        color: $brand-quaternary;
                     }
                     
                     button {
                         cursor: pointer;
                         padding: 0 0.5rem;
                         background-color: transparent;
-                        color: white;
+                        color: $brand-quaternary;
                         &:disabled {
                             color: $oc-gray-8;
                         }
@@ -185,7 +208,7 @@
                     input,
                     textarea {
                         width: 100%;
-                        background-color: $oc-gray-0;
+                        background-color: $brand-quaternary;
                         padding: 0.5rem;
                         border: none;
                     }
@@ -205,7 +228,8 @@
                 align-items: center;
                 cursor: pointer;
                 width: 100%;
-                background-color: $oc-gray-4;
+                background-color: $brand-tertiary;
+                color: $brand-quaternary;
                 margin-top: 0.5rem;
                 padding: 0.3rem;
             }
@@ -213,7 +237,7 @@
         .drug-name {
             input {
                 width: 100%;
-                background-color: $oc-gray-0;
+                background-color: $brand-quaternary;
                 padding: 0.5rem;
                 border: none;
             }
@@ -223,7 +247,7 @@
                 li {
                     div {
                         padding: 0.5rem;
-                        background-color: white;
+                        background-color: $brand-quaternary;
                     }
                     
                 }
@@ -241,6 +265,7 @@
                         flex: 0;
                         margin-left: 1px;
                         .delete-formula {
+                            background-color: $brand-quaternary;
                             cursor: pointer;
                         }
                     }
@@ -264,7 +289,8 @@
                 align-items: center;
                 cursor: pointer;
                 width: 100%;
-                background-color: $oc-gray-4;
+                background-color: $brand-tertiary;
+                color: $brand-quaternary;
                 margin-top: 0.5rem;
                 padding: 0.3rem;
             }

@@ -10,7 +10,7 @@ import Note from './components/Note';
 
 const cx = classNames.bind(styles);
 
-@inject('wizardFormStore', 'commentStore')
+@inject('wizardFormStore', 'commentStore', 'swiperStore')
 @observer
 class CommentCreate extends Component {
     handleCompleteAction = () => {
@@ -18,6 +18,7 @@ class CommentCreate extends Component {
         const commenter_id = window.localStorage.getItem('userid');
         this.props.commentStore.createComment({case_id: caseid, commenter_id})
         .then((res) => {
+            this.props.swiperStore.setCurrentSlide(1);
             return this.props.history.goBack();
         })
         .catch((error) => {

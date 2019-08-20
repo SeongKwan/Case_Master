@@ -7,25 +7,28 @@
     .Symptom,
     .Lab,
     .Exam {
-        font-size: 1.3em;
+        font-size: 1.1em;
         padding: 2.5rem 1rem 1rem;
         position: relative;
-        background-color: $brand-primary;
+        background-color: $brand-secondary;
         margin-bottom: 3rem;
         li {
             display: flex;
-            background-color: white;
+            color: $brand-quaternary;
             padding: 0.75rem 0;
             margin-bottom: 0.5rem;
             font-weight: 300;
+            letter-spacing: 2px;
+            line-height: 1.5rem;
             .sub-title,
             .name {
-                flex: 2;
+                flex: 3;
                 min-width: 6.5rem;
                 padding-right: 2rem;
                 white-space: normal;
                 word-break: break-all;
             }
+            
             div:not(:first-child) {
                 flex: 10;
                 white-space: normal;
@@ -38,14 +41,23 @@
                 margin-right: 1rem;
                 display: flex;
                 align-items: center;
+                .value {
+                    word-break: keep-all;
+                    margin-right: 0.2rem;
+                }
                 .unit {
+                    word-break: break-all;
                     font-size: 0.8em;
-                    color: $oc-gray-7;
                 }
             }
         }
         li:last-child {
             margin-bottom: 0;
+        }
+    }
+    .Symptom {
+        .name {
+            min-width: 8.5rem !important;
         }
     }
     .Lab {
@@ -62,14 +74,25 @@
                 }
             }
         }
+        .unit {
+            color: $brand-tertiary;
+        }
+    }
+    .Exam {
+        .empty-exam {
+            color: $brand-quaternary;
+            padding: 1rem 0;
+            font-weight: 100;
+        }
     }
     .main-title {
         font-size: 1.5em;
         position: absolute;
         top: -18px;
         left: 5px;
-        background-color: $gray-2;
+        background-color: $brand-tertiary;
         padding: 0.5rem 1rem;
-        font-weight: 700;
+        font-weight: 500;
+        color: $brand-quaternary;
     }
 }

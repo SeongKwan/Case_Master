@@ -16,7 +16,8 @@
                 justify-content: center;
         position: relative;
         background-color: $brand-primary;
-        color: white;
+        color: $brand-quaternary;
         padding: 1rem 0;
+        text-decoration: underline;
     }
 }

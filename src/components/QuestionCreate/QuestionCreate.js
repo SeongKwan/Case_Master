@@ -3,9 +3,10 @@ import classNames from 'classnames/bind';
 import styles from './QuestionCreate.module.scss';
 import { observer, inject } from 'mobx-react';
 import Layout from '../Layout';
+
 const cx = classNames.bind(styles);
 
-@inject('sidebarStore', 'questionStore')
+@inject('sidebarStore', 'questionStore', 'swiperStore')
 @observer
 class QuestionCreate extends Component {
     componentWillUnmount() {
@@ -19,9 +20,14 @@ class QuestionCreate extends Component {
         const { params: { caseid }  } = this.props.match;
         const questioner_id = window.localStorage.getItem('userid');
         const questioner_name = window.localStorage.getItem('username');
+        const { content } = this.props.questionStore;
+        if (content === '') {
+            return alert('질문 내용을 작성하여 주세요');
+        }
         if (window.confirm('작성하신 질문을 전송하시겠습니까?'))
         this.props.questionStore.createQuestion({case_id: caseid, questioner_id, questioner_name})
         .then((res) => {
+            this.props.swiperStore.setCurrentSlide(2);
             return this.props.history.goBack();
         })
         .catch((error) => {

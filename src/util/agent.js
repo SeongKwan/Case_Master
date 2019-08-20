@@ -63,11 +63,11 @@ class Agent {
 
 /* ------------------------ */
     // ClouDoc - Case
-    loadCases({lastCaseId}) {
+    loadCases({lastCaseId, filter}) {
         if (lastCaseId === '') {
-            return this.get(`/case/search/init`);
+            return this.get(`/case/search/${filter}/init`);
         }
-        return this.get(`/case/search/${lastCaseId}`);
+        return this.get(`/case/search/${filter}/${lastCaseId}`);
     }
 
     loadCase({caseid}) {
@@ -108,17 +108,28 @@ class Agent {
         return this.get(`/case/user/${userid}/myquestion`);
     }
 
+    loadQuestion({questionid}) {
+        return this.get(`/question/${questionid}`);
+    }
+
     createQuestion(newQuestion) {
         return this.post(`/question`, newQuestion);
     }
     
+    answerQuestion({questionid, content}) {
+        return this.patch(`/question/${questionid}/answer`, {content})
+    }
+
+    deleteQuestion({questionid}) {
+        return this.delete(`/question/${questionid}`);
+    }
     /**
      * 
      * Search API
      */
 
-    searchCases({keywords, filter}) {
-        return this.get(`/case/search/${filter}`, {keywords})
+    searchCases({lastCaseId, keyword, filter}) {
+        return this.get(`/case/keywordSearch/${filter}/${lastCaseId}`, {keyword})
     }
 
     // postCase(newCase) {

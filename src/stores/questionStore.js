@@ -1,11 +1,16 @@
 import { observable, action, computed } from 'mobx';
 import momentHelper from '../util/momentHelper';
 import agent from '../util/agent';
+import swiperStore from './swiperStore';
 
 class questionStore {
     @observable content = '';
     @observable registry = [];
     @observable isLoading = false;
+    @observable currentQuestion = {};
+    @observable initQuestion = {};
+    @observable answering = false;
+    @observable answerContent = '';
 
     @action handleChangeContent(value) {
         this.content = value;
@@ -36,6 +41,18 @@ class questionStore {
             }))
     }
 
+    @action loadQuestion({questionid}) {
+        this.isLoading = true;
+        return agent.loadQuestion({questionid})
+            .then(action((response) => {
+                this.isLoading = false;
+                this.currentQuestion = response.data;
+            }))
+            .catch(action((error) => {
+                throw error;
+            }))
+    }
+
     @action createQuestion({case_id, questioner_id, questioner_name}) {
         this.isLoading = true;
         let newQuestion = {
@@ -49,7 +66,6 @@ class questionStore {
         return agent.createQuestion(newQuestion)
         .then(action((response) => {
             this.isLoading = false;
-            console.log(response);
             return response;
         }))
         .catch(action((error) => {
@@ -57,22 +73,51 @@ class questionStore {
         }))
     }
 
-    @action deleteQuestion({question_id}) {
+    @action answerQuestion({questionid}) {
         this.isLoading = true;
-        return agent.deleteQuestion({question_id})
+        return agent.answerQuestion({questionid, content: this.answerContent})
+            .then(action((response) => {
+                this.isLoading = false;
+                this.currentQuestion = response.data.updatedQuestion;
+                alert('답변이 완료되었습니다');
+            }))
+            .catch(action((error) => {
+                throw error;
+            }))
+    }
+
+    @action deleteQuestion({questionid}) {
+        this.isLoading = true;
+        return agent.deleteQuestion({questionid})
         .then(action((response) => {
             this.isLoading = false;
-            console.log(response);
+            swiperStore.setCurrentSlide(2);
         }))
         .catch(action((error) => {
             throw error;
         }))
     }
 
-    @action clear() {
-        this.content = '';
+    @action toggleAnswering() {
+        this.answering = !this.answering;
     }
 
+    @action changeAnswer(value) {
+        this.answerContent = value;
+    }
+
+    @action clear() {
+        this.content = '';
+        this.currentQuestion = {};
+        this.initQuestion = {};
+        this.answerContent = '';
+        this.registry = [];
+        this.answering = false;
+    }
+
+    @action clearAnswer() {
+        this.answerContent = '';
+    }
 
 }
 

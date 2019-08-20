@@ -1358,6 +1358,7 @@
 	width: 0.1em;
 	box-shadow: -0.2em -0.2em 0 0.1em currentcolor, -0.2em -0.2em 0 0.1em currentcolor, -0.2em -0.2em 0 0.1em currentcolor, -0.2em -0.2em 0 0.1em currentcolor;
 	animation: loader-38 6s infinite;
+	color: $brand-quaternary;
 }
 
 @keyframes loader-38 {

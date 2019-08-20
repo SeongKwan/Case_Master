@@ -6,8 +6,20 @@
     min-height: 12em;
     max-height: 16em;
     background-color: $brand-primary;
-    color: white;
-    margin-bottom: 1em;
+    color: $brand-quaternary;
+    margin-bottom: 3rem;
+    .cloudoc-logo {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 0.5rem;
+        img {
+            width: 5rem;
+        }
+        span {
+            font-size: 1rem;
+            font-weight: 100;
+        }
+    }
     h1 {
         font-size: 4em;
         a {

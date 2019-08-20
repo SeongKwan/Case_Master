@@ -1,4 +1,15 @@
 .MyCase {
     width: 100%;
     min-height: 50vh;
+    .empty-case-list {
+        margin-top: 2rem;
+        background-color: $brand-secondary;
+        width: 100%;
+        padding: 6rem 1rem;
+        color: $brand-quaternary;
+        p {
+            letter-spacing: 1px;
+            line-height: 1.8rem;
+        }
+    }
 }

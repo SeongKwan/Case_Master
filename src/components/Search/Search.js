@@ -4,10 +4,10 @@ import styles from './Search.module.scss';
 import { observer, inject } from 'mobx-react';
 import SearchCaseList from './components/SearchCaseList';
 import Layout from '../Layout';
-
+import { FaCaretDown } from 'react-icons/fa';
 const cx = classNames.bind(styles);
 
-@inject('searchStore')
+@inject('searchStore', 'caseStore')
 @observer
 class Search extends Component {
     componentDidMount() {
@@ -19,7 +19,9 @@ class Search extends Component {
         const { dataset } = e.target
         if (filter !== dataset.filter) {
             this.props.searchStore.setFilter(dataset.filter);
-            this.props.searchStore.searchCases();
+            this.props.caseStore.clearRegistry();
+            // this.props.searchStore.searchCases();
+            this.props.caseStore.loadCases({lastCaseId: ''});
         }
     }
     
@@ -31,9 +33,9 @@ class Search extends Component {
                     <div className={cx('sort')}>
                         <ul>
                             <li onClick={this.handleClickOnFilter} data-filter="date" className={cx('sort-item',
-                            {active: filter === 'date'})}>등록일<span data-filter="date">&darr;</span></li>
-                            <li onClick={this.handleClickOnFilter} data-filter="view" className={cx('sort-item', {active: filter === 'view'})}>조회수<span data-filter="view">&darr;</span></li>
-                            <li onClick={this.handleClickOnFilter} data-filter="comment" className={cx('sort-item', {active: filter === 'comment'})}>처방수<span data-filter="comment">&darr;</span></li>
+                            {active: filter === 'date'})}>등록일<span data-filter="date"><FaCaretDown/></span></li>
+                            <li onClick={this.handleClickOnFilter} data-filter="view" className={cx('sort-item', {active: filter === 'view'})}>조회수<span data-filter="view"><FaCaretDown/></span></li>
+                            <li onClick={this.handleClickOnFilter} data-filter="comment" className={cx('sort-item', {active: filter === 'comment'})}>처방수<span data-filter="comment"><FaCaretDown/></span></li>
                         </ul>
                     </div>
                     <SearchCaseList />

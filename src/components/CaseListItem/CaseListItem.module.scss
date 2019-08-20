@@ -1,8 +1,8 @@
 .CaseListItem {
-    margin-top: 4rem;
+    margin-top: 3rem;
     z-index: $basic-z-index;
     &:first-child {
-        margin-top: 4rem;
+        margin-top: 2rem;
     }
     & > div.list-item-container {
         position: relative;
@@ -19,27 +19,32 @@
             font-size: 0.8em;
             position: absolute;
             padding: 0.5rem;
-            top: -18px;
-            left: 5px;
+            // top: -12px;
+            // left: 5px;
+            bottom: 0;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            background-color: $oc-gray-4;
+            justify-content: flex-end;
+            background-color: $brand-secondary;
+            color: $brand-quaternary;
+            font-weight: 100;
             z-index: $status-bar-z-index;
             div {
                 display: flex;
                 align-items: center;
-                padding: 0 0.5rem;
+                padding: 0 0.8rem;
                 span {
                     display: flex;
                     align-items: center;
-                    margin-right: 0.2rem;
+                    margin-right: 0.5rem;
                 }
             }
         }
         .basic-info,
         .symptom {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1rem 2rem;
             font-weight: 300;
+            background-color: $brand-tertiary;
         }
         .basic-info {
             min-height: 90px;
@@ -51,8 +56,7 @@
             font-size: 1.4em;
             padding-left: 0;
             padding-right: 0;
-            background-color: $oc-gray-9;
-            color: white;
+            color: $brand-quaternary;
             .gender,
             .age {
                 flex: 1;
@@ -61,32 +65,29 @@
                 align-items: center;
             }
             .divider-vertical {
-                // position: absolute;
-                // left: 50%;
                 width: 1px;
                 height: 50%;
-                background-color: $oc-gray-7;
+                background-color: $brand-quaternary;
 
             }
         }
         .symptom {
-            background-color: $brand-primary;
             flex: 1.5;
             position: relative;
             .title {
                 position: absolute;
-                top: -18px;
+                top: -12px;
                 right: 5px;
                 padding: 0.5rem;
-                color: white;
+                color: $brand-quaternary;
                 background-color: $oc-red-5;
                 font-size: 0.9em;
                 font-weight: 500;
             }
             .symptom-list {
-                color: white;
+                color: $brand-quaternary;
                 width: 100%;
-                padding: 0 1rem;
+                padding: 0.8rem 0.5rem;
                 display: flex;
                 flex-wrap: wrap;
                 li {
@@ -104,11 +105,22 @@
         margin-top: 0.5rem;
         .question {
             font-weight: 300;
+            &:not(:last-child) {
+                .question-content {
+                    border-bottom: none;
+                }
+            }
+            .question-status,
+            .question-content {
+                background-color: $brand-secondary;
+                border: 1px solid $brand-tertiary;
+                border-right: none;
+                border-left: none;
+            }
             .question-status {
                 display: flex;
-                background-color: $oc-gray-9;
                 font-size: 0.8em;
-                color: white;
+                color: $brand-quaternary;
                 .status {
                     color: $oc-red-9;
                     font-weight: 700;
@@ -118,7 +130,6 @@
                     font-weight: 300;
                 }
                 div {
-                    border: 1px solid $oc-gray-7;
                     padding: 0.5rem 1rem;
                 }
                 div:nth-child(2),
@@ -146,36 +157,40 @@
                 }
             }
             .question-content {
-                padding: 1.5rem 1rem 1.5rem 2.5rem;
-                background-color: $oc-gray-9;
+                padding: 1rem 1rem 1rem 2.5rem;
                 font-size: 0.8em;
-                color: white;
+                color: $brand-quaternary;
                 font-weight: 700;
+                border-top: none;
             }
         }
     }
     .myComment-drug {
-        margin-top: 0.5rem;
+        // margin-top: 0.5rem;
         display: flex;
-        background-color: $oc-gray-9;
+        // background-color: $oc-gray-9;
+        background-color: $brand-secondary;
         padding: 1rem 0;
         font-size: 0.8em;
-        color: white;
+        color: $brand-quaternary;
         border-top: 1px solid $oc-gray-7;
         .drug-name {
-            flex: 2;
+            flex: 1.5;
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
             padding: 0.5rem 0;
+            .name {
+                padding: 0 1rem;
+            }
             .icon {
                 margin-bottom: 0.3rem;
                 font-size: 2em;
             }
         }
         .drug-formula {
-            flex: 3;
+            flex: 3.5;
             border-left: 1px solid $oc-gray-7;
             border-right: 1px solid $oc-gray-7;
             display: flex;

@@ -12,39 +12,39 @@
             position: relative;
             .count-title-box {
                 padding: 0 1rem;
-                background-color: white;
+                background-color: $brand-primary;
                 z-index: 100;
                 .step-title {
-                    color: $oc-gray-5;
+                    color: $brand-secondary;
                 }
                 .step-count {
-                    color: $oc-gray-5;
+                    color: $brand-secondary;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     width: 20px;
                     height: 20px;
-                    border: 1px solid $oc-gray-5;
+                    border: 1px solid $brand-secondary;
                     border-radius: 100%;
                     margin-bottom: 4px;
                 }
                 &.active {
                     .step-title {
-                        color: black;
+                        color: $brand-quaternary;
                     }
                     .step-count {
-                        border-color: black;
-                        color: black;
+                        border-color: $brand-quaternary;
+                        color: $brand-quaternary;
                     }
                 }
                 &.done, &.complete {
-                    color: green;
+                    color: $brand-quaternary;
                     .step-title {
-                        color: green;
+                        color: $brand-quaternary;
                     }
                     .step-count {
-                        color: green;
-                        border-color: green;
+                        color: $brand-quaternary;
+                        border-color: $brand-quaternary;
                     }
                 }
             }   
@@ -59,14 +59,14 @@
         .progress-bar {
             position: absolute;
             width: 0%;
-            height: 4px;
+            height: 2px;
             &.frame {
                 width: 100%;
-                background-color: $oc-gray-5;
+                background-color: $brand-secondary;
             }
             
             &.active {
-                background-color: green;
+                background-color: $brand-quaternary;
             }
         }
     }

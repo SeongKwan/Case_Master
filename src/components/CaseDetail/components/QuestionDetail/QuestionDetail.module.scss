@@ -1,0 +1,123 @@
+.QuestionDetail {
+    position: relative;
+    padding: 3rem 1rem 1rem;
+    .close-modal {
+        cursor: pointer;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        img {
+            width: 16px;
+        }
+    }
+    h6 {
+        font-size: 1.5em;
+        position: relative;
+        margin-top: 1rem;
+        margin-bottom: 4rem;
+        span {
+            position: relative;
+            background-color: $brand-quaternary;
+            z-index: 1001;
+            padding: 0 0.8rem;
+            font-weight: 700;
+        }
+        .divider-horizontal {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: $brand-primary;
+            z-index: 100;
+            top: 50%;
+        }
+    }
+    .detail-item-box {
+        font-size: 1.1em;
+        padding: 2.5rem 1rem 1rem;
+        position: relative;
+        background-color: $brand-primary;
+        margin-bottom: 3rem;
+        letter-spacing: 2px;
+        line-height: 1.8rem;
+        .answer-button {
+            font-size: 1.3em;
+            position: absolute;
+            top: -14px;
+            right: 5px;
+            display: flex;
+            align-items: center;
+            .answer,
+            .cancel,
+            .submit {
+                cursor: pointer;
+                padding: 0.5rem 1rem;
+                background-color: transparent;
+                color: $brand-quaternary;
+            }
+            .answer {
+                background-color: $oc-yellow-8;
+                // color: $brand-primary;
+            }
+            .cancel {
+                background-color: $oc-red-8;
+            }
+            .submit {
+                background-color: $oc-teal-8;
+            }
+        }
+        p {
+            line-height: 1.5em;
+        }
+        li {
+            display: flex;
+            color: $brand-quaternary;
+            padding: 0.75rem 0;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            align-items: center;
+            .title {
+                flex: 3;
+            }
+            .content {
+                flex: 10;
+                &.question-content {
+                    word-break: break-all;
+                }
+            }
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+        .main-title {
+            font-size: 1.5em;
+            position: absolute;
+            top: -30px;
+            left: 5px;
+            background-color: $brand-tertiary;
+            color: $brand-quaternary;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+    }
+        input,
+        textarea {
+            min-width: 100%;
+            background-color: $brand-quaternary;
+            padding: 0.5rem;
+            border: none;
+            font-size: 1em;
+            font-weight: 100;
+            &.question-content {
+                min-width: unset;
+            }
+        }
+        input {
+            margin-bottom: 3px;
+        }
+        textarea:focus {
+            outline: none;
+            box-shadow: none;
+            border: none;
+        }
+
+}

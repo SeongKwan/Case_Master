@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 
 class SwiperStore {
     @observable activeTab = 0;
+    @observable previousTab = 0;
 
     @action setCurrentSlide(index) {
         this.activeTab = Number(index);

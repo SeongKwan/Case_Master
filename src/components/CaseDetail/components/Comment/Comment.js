@@ -22,7 +22,6 @@ class Comment extends Component {
             return <CommentCard myComment={true} comment={comments[myCommentIndex]} />
         }
         return <div className={cx('comment-item', 'my-comment-item', 'no-comment')}>
-            <p>등록하신 처방이 없습니다</p>
             <p>당신의 소중한 의견을 남겨주세요</p>
         </div>
     }
@@ -31,6 +30,11 @@ class Comment extends Component {
         let myCommentIndex = cms.findIndex(comment => 
             loggedUserId === comment.commenter_id
         )
+        if (cms.length === 0) {
+            return <div className={cx('empty-comment')}>
+                <p>현재 등록된 다른 분들의 처방이 없습니다</p>
+            </div>
+        }
         return cms.map((comment, i) => {
             if (myCommentIndex === i) {
                 return false;

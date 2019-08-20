@@ -1,17 +1,17 @@
 .CommentCard {
     .comment-item {
-        background-color: $brand-primary;
+        background-color: $brand-secondary;
         position: relative;
-        font-size: 1.3em;
+        font-size: 1.1em;
         padding: 1.5rem 1rem 1rem;
         margin-bottom: 7rem;
         .like {
             display: flex;
             align-items: center;
             position: absolute;
-            top: -18px;
+            top: -12px;
             left: 5px;
-            background-color: $oc-yellow-6;
+            background-color: $brand-quaternary;
             padding: 0.5rem 1rem;
             .icon,
             .count {
@@ -24,13 +24,13 @@
         }
         .edit-delete {
             position: absolute;
-            top: -18px;
+            top: -12px;
             display: flex;
             right: 5px;
-            background-color: $gray-2;
+            background-color: $brand-quaternary;
             font-weight: 300;
             button {
-                background-color: $gray-2;
+                background-color: $brand-quaternary;
                 padding: 0.5rem 1rem;
                 cursor: pointer;
                 @include transEase;
@@ -46,11 +46,11 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: $oc-gray-4;
-            color: black;
+            background-color: $brand-tertiary;
+            color: $brand-quaternary;
             padding: 0.8rem 0rem;
             letter-spacing: 2px;
-            font-weight: 300;
+            font-weight: 500;
             @include transEase;
             &:hover {
                 opacity: 0.7;
@@ -60,8 +60,10 @@
         .prescription {
             display: flex;
             font-weight: 300;
-            background-color: white;
             padding: 0.75rem 0;
+            line-height: 1.8rem;
+            letter-spacing: 2px;
+            color: $brand-quaternary;
             .title {
                 min-width: 10rem;
                 padding-right: 2rem;
@@ -80,7 +82,7 @@
         margin-top: 4rem;
     }
     .no_comment {
-        color: white;
+        color: $brand-quaternary;
         font-weight: 300;
         padding: 2rem 1rem;
         p {

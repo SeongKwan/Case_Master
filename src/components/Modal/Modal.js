@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './Modal.module.scss';
 import { observer, inject } from 'mobx-react';
 import CommentDetail from '../CaseDetail/components/CommentDetail';
+import QuestionDetail from '../CaseDetail/components/QuestionDetail';
+import QuestionAnswer from '../CaseDetail/components/QuestionAnswer';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +19,10 @@ class Modal extends Component {
             return <CommentDetail comment={data} />
         } else if (content === 'commentDetailEdit') {
             return <CommentDetail comment={data} isEditing />
+        } else if (content === 'questionDetail') {
+            return <QuestionDetail question={data} />
+        } else if (content === 'questionAnswer') {
+            return <QuestionAnswer />
         } else if(content === '') {
             return <div></div>;  
         } else return false;

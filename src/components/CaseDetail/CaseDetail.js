@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import BasicInfo from './components/BasicInfo';
 import Comment from './components/Comment';
+import Question from './components/Question';
 import Layout from '../Layout';
-import { TiEye } from "react-icons/ti";
-// import { FiHash } from "react-icons/fi";
+import { FaEye, FaClock } from "react-icons/fa";
 import { FaNotesMedical } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
 import { MdQuestionAnswer } from "react-icons/md";
@@ -15,6 +15,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import Swiper from 'react-id-swiper';
 import $ from 'jquery';
 import Loader from '../Loader';
+import mommentHelper from '../../util/momentHelper';
 
 const cx = classNames.bind(styles);
 
@@ -24,6 +25,7 @@ const cx = classNames.bind(styles);
 class CaseDetail extends Component {
     componentDidMount() {
         const { params: { caseid }  } = this.props.match;
+        const { fromWhere } = this.props.caseStore;
         $(window).on('scroll', () => {
             if ( $( window ).scrollTop() > 200 ) {
                 $( '#scrollToTop_case' ).fadeIn();
@@ -31,7 +33,11 @@ class CaseDetail extends Component {
                 $( '#scrollToTop_case' ).fadeOut();
             }
         })
-        window.scrollTo(0, 0);
+        if (fromWhere === 'questionCreate') {
+            
+        } else if (fromWhere === '') {
+            window.scrollTo(0, 0);
+        }
         this.props.caseStore.loadCase({caseid});
     }
     
@@ -39,6 +45,7 @@ class CaseDetail extends Component {
         this.props.caseStore.clear();
         this.props.swiperStore.clear();
     }
+
     handleClickOnAddComment = () => {
         const { params: { caseid }  } = this.props.match;
         const userId = window.localStorage.getItem('userid');
@@ -49,22 +56,27 @@ class CaseDetail extends Component {
         }
         window.alert('이미 작성하신 처방이 있습니다.');
     }
+
     handleClickOnAddQuestion = () => {
         const { myCaseOrNot } = this.props.caseStore;
         const { params: { caseid }  } = this.props.match;
         if (!myCaseOrNot) return this.props.history.push(`/create/question/${caseid}`);
     }
+
     handleClickOnScrollToTop = () => {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         return false;
     }
+
     setCurrentSlideIndex = (event) => {
         const { dataset } = event.target;
         this.props.swiperStore.setCurrentSlide(dataset.id);
     }
+    
     render() {
+        // Slide Header
         const params1 = {
-            slidesPerView: 2,
+            slidesPerView: 3,
             paginationClickable: true,
             freeMode: false,
             loop: false,
@@ -87,6 +99,7 @@ class CaseDetail extends Component {
             }
         };
         
+        // Slide Contents
         const params2 = {
             slidesPerView: 1,
             loop: false,
@@ -94,23 +107,23 @@ class CaseDetail extends Component {
             autoHeight: true,
             spaceBetween: 30,
             on: {
-                slideChangeTransitionEnd: () => {
+                slideChangeTransitionEnd: (e) => {
                     var thisComponent = this.props;
                     let changeSlide = function(index) {
                         return thisComponent.swiperStore.setCurrentSlide(index);
                     }
-                    if (this.swiper2 !== undefined) {
-                        var n = this.swiper2.activeIndex;
-                        changeSlide(n);
-                        this.swiper1.slideTo(n, 500, false);
-                        $( 'html, body' ).animate( { scrollTop : 0 }, 200 );
-                    }
+                    var n = this.swiper2.activeIndex;
+                    changeSlide(n);
+                    $( 'html, body' ).animate( { scrollTop : 0 }, 200 );
+                    // if (this.swiper2 !== undefined) {
+                    //     this.swiper1.slideTo(n, 500, false);
+                    // }
                 }
             }
         };
         
         const { activeTab } = this.props.swiperStore;
-        const { theCase, isLoading, comments, myCaseOrNot } = this.props.caseStore;
+        const { theCase, isLoading, comments, myCaseOrNot, questions } = this.props.caseStore;
         const item = JSON.parse(JSON.stringify(theCase));
 
         if ( theCase.comments === undefined || isLoading) {
@@ -126,11 +139,11 @@ class CaseDetail extends Component {
             <Layout>
                 <div className={cx('CaseDetail')} role="main">
                     <div className={cx('status-bar')}>
-                        {/* <div className={cx('case-id')}>
-                            <span><FiHash /></span>1234
-                        </div> */}
+                        <div className={cx('created-date')}>
+                            <span><FaClock /></span>{mommentHelper.getLocaleDateWithYYYY(theCase.createdDate) || 0}
+                        </div>
                         <div className={cx('view-count')}>
-                            <span><TiEye /></span>{theCase.views || 0}
+                            <span><FaEye /></span>{theCase.views || 0}
                         </div>
                         <div className={cx('comment-count')}>
                             <span><FaNotesMedical /></span>{countComments || 0}
@@ -152,13 +165,25 @@ class CaseDetail extends Component {
                             >
                                 진단처방
                             </li>
+                            <li 
+                                data-id='2'
+                                className={cx('tab-header-item', {active: activeTab === 2})}
+                                onClick={this.setCurrentSlideIndex}
+                            >
+                                질의응답
+                            </li>
                         </Swiper>
-                        <Swiper {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}}>
-                            <div><BasicInfo Case={item.case} isLoading={isLoading} /></div>
-                            <div><Comment comments={comments} isLoading={isLoading} /></div>
+                        <Swiper {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}} activeSlideKey={activeTab.toString()}>
+                            <div key='0'><BasicInfo Case={item.case} isLoading={isLoading} /></div>
+                            <div key='1'><Comment comments={comments} isLoading={isLoading} /></div>
+                            <div key='2'><Question questions={questions} isLoading={isLoading} /></div>
                         </Swiper>
                     </div>
                 </div>
+
+                {/*****************/}
+                {/**** Buttons ****/}
+                {/*****************/}
                 <div className={cx('requestInfo-addComment')}>
                     {
                         !myCaseOrNot &&

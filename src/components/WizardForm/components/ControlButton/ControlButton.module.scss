@@ -10,7 +10,9 @@
     button {
         cursor: pointer;
         padding: 1rem 2rem;
-        background-color: aquamarine;
+        background-color: $brand-quaternary;
+        color: $brand-primary;
+        letter-spacing: 2px;
         &:disabled {
             background-color: $oc-gray-1;
             color: $oc-gray-6;

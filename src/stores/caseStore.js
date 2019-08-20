@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import agent from '../util/agent';
+import searchStore from './searchStore';
 
 class CaseStore {
     @observable isLoading = false;
@@ -9,14 +10,20 @@ class CaseStore {
     @observable myComments = [];
     @observable theCase = {};
     @observable comments = [{}];
-    @observable hasMore = false;
+    @observable questions = [{}];
+    @observable hasMore = true;
     @observable error = '';
     @observable lastCaseId = '';
     @observable myCaseOrNot = false;
+    @observable fromWhere = '';
 
-    @action loadCases(lastCaseId) {
+    @action setFromWhere(pageName) {
+        this.fromWhere = pageName;
+    }
+
+    @action loadCases({lastCaseId}) {
         this.isLoading = true;
-        return agent.loadCases({lastCaseId})
+        return agent.loadCases({lastCaseId, filter: searchStore.filter})
             .then(action((response) => {
                 this.isLoading = false;
                 this.registry = [...this.registry, ...response.data.cases];
@@ -76,6 +83,7 @@ class CaseStore {
                 this.isLoading = false;
                 this.theCase = response.data;
                 this.comments = response.data.comments;
+                this.questions = response.data.questions;
             }))
             .catch(error => {
                 throw error;
@@ -91,6 +99,7 @@ class CaseStore {
     }
     @action clearRegistry() {
         this.registry = [];
+        this.hasMore = true;
     }
     @action clearLastCaseId() {
         this.lastCaseId = '';

@@ -87,8 +87,8 @@ class CommentCard extends Component {
                     {
                         authControlTool &&
                         <div className={cx('edit-delete')}>
-                            <button className={cx('delete')} onClick={this.handleClickOnDelete}>삭제</button>
                             <button className={cx('edit')} onClick={() => {this.handleClickOnEdit(this.props.comment)}}>수정</button>
+                            <button className={cx('delete')} onClick={this.handleClickOnDelete}>삭제</button>
                         </div>
                     }
                     <div className={cx('more-view')} onClick={() => {this.handleClick(this.props.comment)}}>상세보기</div>

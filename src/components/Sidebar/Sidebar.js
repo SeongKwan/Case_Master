@@ -27,7 +27,7 @@ class Sidebar extends Component {
     }
     render() {
         const { isOpen } = this.props;
-        const user_email = window.localStorage.getItem('email');
+        const user_name = window.localStorage.getItem('username');
         return (
             <aside id='Sidebar' className={cx('Sidebar', { isOpen: isOpen })}>
                 <span 
@@ -42,7 +42,7 @@ class Sidebar extends Component {
                             Case Master
                         </li>
                         <li className={cx('user')}>
-                            <span className={cx('username')}>{user_email}</span>
+                            <span className={cx('username')}>{user_name}</span>
                             <span className={cx('title')}>&nbsp;님, 안녕하세요.</span>
                         </li>
                     </ul>

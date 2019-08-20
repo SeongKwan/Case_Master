@@ -3,16 +3,27 @@
     font-size: 1rem;
 
     li {
-        padding: 1rem;
-        background-color: $oc-gray-2;
+        cursor: pointer;
+        // padding: 1rem;
+        background-color: $brand-secondary;
+        color: $brand-quaternary;
+        font-weight: 100;
         &:not(:last-child) {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        &:hover {
+            opacity: 0.8;
         }
     }
     .question-list-item-top {
-        background-color: $oc-gray-5;
         padding: 0.5rem;
         display: flex;
+        border-top: 1px solid $brand-tertiary;
+        border-bottom: 1px solid $brand-tertiary;
+        .request-type {
+            display: flex;
+            align-items: center;
+        }
         span {
             flex: 1;
         }
@@ -22,8 +33,15 @@
         span:last-child {
             flex: 0.5;
         }
+        .answer {
+            color: $oc-green-8;
+        }
+        .unanswer {
+            color: $oc-red-8;
+        }
     }
     .question-list-item-bottom {
+        border-bottom: 1px solid $brand-tertiary;
         p {
             padding: 1rem;
         }

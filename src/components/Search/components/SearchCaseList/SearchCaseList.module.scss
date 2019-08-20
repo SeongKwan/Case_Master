@@ -4,4 +4,11 @@
     &.loading {
         margin-top: 3rem;
     }
+    .no-more-load {
+        padding: 2rem 0;
+        letter-spacing: 2px;
+        line-height: 1.8rem;
+        color: $brand-quaternary;
+        text-align: center;
+    }
 }

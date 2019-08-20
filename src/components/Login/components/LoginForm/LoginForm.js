@@ -85,7 +85,7 @@ class LoginForm extends Component {
                         onChange={this._handleChange}
                         onKeyDown={this._handleKeyDown}
                     />
-                    <a href="/login">비밀번호찾기<span>&nbsp;</span></a>
+                    <a href="/login">비밀번호찾기</a>
                 </div>
                 <button 
                     className={cx('login-login-button')} 
@@ -95,7 +95,7 @@ class LoginForm extends Component {
                     로그인
                 </button>
                 <div className={cx('login-signup-link')}>
-                    <p>계정이 없으신가요? <Link to="/signup">회원가입</Link><span>&nbsp;</span></p>
+                    <p>계정이 없으신가요? <Link to="/signup">회원가입</Link></p>
                 </div>
             </div>
         );

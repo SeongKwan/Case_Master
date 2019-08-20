@@ -4,15 +4,19 @@
         margin-bottom: 2rem;
         padding: 0 0.75rem;
         font-size: 1.3em;
+        letter-spacing: 2px;
+        line-height: 1.8rem;
+        color: $brand-quaternary;
     }
     button {
+        letter-spacing: 2px;
         margin-top: 1rem;
         width: 100%;
-        color: white;
+        color: $brand-quaternary;
         user-select: none;
         cursor: pointer;
         display: inline-block;
-        background-color: $oc-teal-9;
+        background-color: $brand-tertiary;
         padding: 1rem;
         font-size: 1.1em;
         &:disabled {
@@ -22,13 +26,9 @@
         }
     }
     .form-container {
-        background-color: $oc-gray-3;
-        padding: 1rem;
-
-
         div {
             input {
-                background-color: white;
+                background-color: $brand-quaternary;
                 padding: 0.5rem;
                 font-size: 1.2em;
                 &::placeholder {
@@ -37,7 +37,7 @@
                 }
             }
             textarea {
-                background-color: white;
+                background-color: $brand-quaternary;
                 padding: 0.5rem;
                 min-width: 100%;
                 width: 100%;

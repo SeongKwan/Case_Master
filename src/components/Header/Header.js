@@ -28,7 +28,6 @@ class Header extends Component {
     _handleKeyDown = (e) => {
         const { keyCode } = e;
         if (keyCode === 13) {
-            console.log('enger')
             this.props.searchStore.searchCases();
         }
     }
@@ -53,7 +52,7 @@ class Header extends Component {
             <header className={cx('Header')}>
                 <div className={cx('header-flex-box', {search: type==='search'}, {create: type === 'create-comment' || type === 'create-question'})}>
                     { 
-                        type !== 'search' && <span onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>
+                        type !== 'search' && <span className={cx('hamburger-menu-box')} onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/><span className={cx('count_unanswered')}>4</span></span>
                     }
                     { 
                         type === 'search' && <span className={cx('home-button')}><Link to='/main'><IoMdHome /></Link></span>
@@ -65,7 +64,7 @@ class Header extends Component {
                         type === 'search' &&
                         <div className={cx('search-bar')}>
                             <input value={searchKeyword} className={cx('search-bar-input')} placeholder="단어로 검색" type="text" onChange={this.handleChangeSearchKeyword} onKeyDown={this._handleKeyDown}/>
-                            <span><img src={SearchIcon} alt="Search icon search bar"/></span>
+                            <span onClick={this.handleClickForSearch}><img src={SearchIcon} alt="Search icon search bar"/></span>
                         </div>
                     }
                     { 

@@ -48,7 +48,7 @@ class App extends Component {
               <Route path="/question/board" component={QuestionBoard} />
               <Route path="/search" component={Search} />
               <Route path="/main" component={Main} />
-              <Route path="/login" component={Login} />
+              <Route path="/" component={Login} />
               <Redirect to="/main" />
             </Switch>
         </div>
@@ -59,8 +59,7 @@ class App extends Component {
         <div className={cx("App")}>
             <Switch>
               <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route exact path="/" component={Landing} />
+              <Route exact path="/" component={Login} />
               <Route component={Page404} />
             </Switch>
         </div>

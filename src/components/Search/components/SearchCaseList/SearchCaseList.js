@@ -7,16 +7,17 @@ import Loader from '../../../Loader';
 
 const cx = classNames.bind(styles);
 
-@inject('caseStore')
+@inject('caseStore', 'searchStore')
 @observer
 class SearchCaseList extends Component {
     state = {
         loadingState: false
     };
     componentDidMount() {
-        const { lastCaseId } = this.props.caseStore;
+        const { lastCaseId } = this.props.searchStore;
         if (lastCaseId === '') {
-            this.props.caseStore.loadCases('');
+            // this.props.searchStore.searchCases();
+            this.props.caseStore.loadCases({lastCaseId: ''});
         }
         window.addEventListener("scroll", this.handleScroll);
     }
@@ -27,19 +28,24 @@ class SearchCaseList extends Component {
         window.removeEventListener("scroll", this.handleScroll);
     }
 
-    handleScroll = () => {
-        const { lastCaseId } = this.props.caseStore;
+    handleScroll = async () => {
         const { innerHeight } = window;
         const { scrollHeight } = document.body;
+        const { lastCaseId, hasMore, isLoading } = this.props.caseStore;
         // IE에서는 document.documentElement 를 사용.
         const scrollTop =
         (document.documentElement && document.documentElement.scrollTop) ||
         document.body.scrollTop;
         
-        if (scrollHeight - innerHeight - scrollTop === 0) {
-            if(!this.state.loadingState) {
-                this.setState({ loadingState: true });
-                this.props.caseStore.loadCases(lastCaseId);
+        if (scrollHeight - innerHeight - scrollTop < 50) {
+            if(hasMore) {
+                if(!this.state.loadingState) {
+                    if (!isLoading) {
+                        await this.setState({ loadingState: true });
+                        await this.props.caseStore.loadCases({lastCaseId});
+                    }
+                    // this.props.searchStore.searchCases();
+                }
             }
         } else {
             if (this.state.loadingState) {
@@ -49,7 +55,7 @@ class SearchCaseList extends Component {
     }
 
     render() {
-        const { isLoading, registry } = this.props.caseStore;
+        const { isLoading, registry, hasMore } = this.props.caseStore;
         return (
             <ul className={cx('SearchCaseList')}>
                 {
@@ -61,6 +67,9 @@ class SearchCaseList extends Component {
                     isLoading && <div className={cx('SearchCaseList', 'loading')}>
                         <Loader />
                     </div>
+                }
+                {
+                    !hasMore && <div className={cx('no-more-load')}>마지막 증례입니다</div>
                 }
             </ul>
         );

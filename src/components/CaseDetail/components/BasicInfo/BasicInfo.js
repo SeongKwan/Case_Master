@@ -67,12 +67,13 @@ class BasicInfo extends Component {
                                     description
                                 } = symptom;
                                 return <li key={i}>
-                                        <div className={cx('name')}>{name}</div>
+                                        <div className={cx('name')}>{name || '-'}</div>
                                         <div className={cx('value-unit')}>
-                                            <span className={cx('value')}>{degree}</span>
-                                            <span className={cx('unit')}>&nbsp;[{unit}]</span>
+                                            <span className={cx('value')}>{degree || 
+                                                '-'}</span>
+                                            <span className={cx('unit')}>&nbsp;[{unit || '-'}]</span>
                                         </div>
-                                        <div className={cx('description')}>{description}</div>
+                                        <div className={cx('description')}>{description || '-'}</div>
                                     </li>
                                 })
                         }
@@ -90,12 +91,12 @@ class BasicInfo extends Component {
                                     state
                                 } = lab;
                                 return <li key={i}>
-                                    <div className={cx('name')}>{name}</div>
+                                    <div className={cx('name')}>{name || '-'}</div>
                                     <div className={cx('value-unit')}>
-                                        <span className={cx('value')}>{value}</span>
-                                        <span className={cx('unit')}>{unit}</span>
+                                        <span className={cx('value')}>{value || '-'}</span>
+                                        <span className={cx('unit')}>[{unit || '-'}]</span>
                                     </div>
-                                    <div className={cx('state')}>{state}</div>
+                                    <div className={cx('state')}>{state || '-'}</div>
                                 </li>
                             })
                         }
@@ -105,7 +106,9 @@ class BasicInfo extends Component {
                     <h6 className={cx('main-title')}>진찰</h6>
                     <ul>
                         {
-                            exam.map((exam, i) => {
+                            exam.length === 0 ? 
+                            <div className={cx('empty-exam')}>진찰 내용이 없습니다</div>
+                            : exam.map((exam, i) => {
                                 const {
                                     name,
                                     unit,
@@ -114,12 +117,12 @@ class BasicInfo extends Component {
                                 } = exam;
 
                                 return <li key={i}>
-                                    <div className={cx('name')}>{name}</div>
+                                    <div className={cx('name')}>{name || '-'}</div>
                                     <div className={cx('value-unit')}>
-                                        <span className={cx('value')}>{value}</span>
-                                        <span className={cx('unit')}>{unit}</span>
+                                        <span className={cx('value')}>{value || '-'}</span>
+                                        <span className={cx('unit')}>[{unit || '-'}]</span>
                                     </div>
-                                    <div className={cx('description')}>{description}</div>
+                                    <div className={cx('description')}>{description || '-'}</div>
                                 </li>
                             })
                         }

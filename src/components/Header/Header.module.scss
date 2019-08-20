@@ -1,11 +1,12 @@
 .Header {
+    min-width: 326px;
     width: 100%;
     top: 0;
     left: 0;
     position: fixed;
     height: $header-height;
     background-color: $brand-primary;
-    color: white;
+    color: $brand-quaternary;
     padding: 2em;
     display: flex;
     align-items: center;
@@ -16,6 +17,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .hamburger-menu-box {
+            position: relative;
+            .count_unanswered {
+                position: absolute;
+                border: #e2e4d9;
+                border-radius: 100%;
+                padding: 0.45rem;
+                background-color: $brand-tertiary;
+                top: -12px;
+                right: -12px;
+                font-size: 5px;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+            }
+        }
         &.search {
             justify-content: flex-start;
         }
@@ -35,6 +53,7 @@
         .logo {
             cursor: pointer;
             font-size: 1.8em;
+            color: $brand-quaternary;
         }
         img {
             cursor: pointer;
@@ -57,13 +76,13 @@
                 padding-right: 3.5rem;
                 border-bottom: 1px solid $gray-2;
                 font-weight: 300;
-                color: white;
+                color: $brand-quaternary;
             }
             & > span {
                 position: absolute;
                 padding: 0.5rem 0.5rem;
                 background-color: $brand-primary;
-                top: calc(50% + 0.5rem + 1px);
+                top: calc(50% + 0.5rem + -5.5px);
                 right: -0.5rem;
                 transform: translateY((-50%));
                 img {

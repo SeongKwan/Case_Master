@@ -28,15 +28,15 @@ class MomentHelper {
     }
 
     getLocaleDateWithYY = (_datetime) => {
-        return this.moment(_datetime).tz(this.timezone).format("YY/MM/DD")
+        return this.moment(_datetime).tz(this.timezone).format("YY.MM.DD")
     }
 
     getLocaleDateWithYYYY = (_datetime) => {
-        return this.moment(_datetime).tz(this.timezone).format("YYYY-MM-DD")
+        return this.moment(_datetime).tz(this.timezone).format("YYYY.MM.DD")
     }
 
     getLocaleFullDateWithTime = (_datetime) => {
-        return this.moment(_datetime).tz(this.timezone).format("YYYY.MM.DD HH:mm:ss")
+        return this.moment(_datetime).tz(this.timezone).format(`YYYY.MM.DD HH:mm:ss`)
     }
 
     calculateDueDateFromToday = (_datetime) => {

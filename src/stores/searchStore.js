@@ -2,10 +2,13 @@ import { observable, action } from 'mobx';
 import agent from '../util/agent';
 
 class SearchStore {
+    @observable registry = [];
     @observable keywords = [];
     @observable searchKeyword = '';
     @observable filter = 'date';
-
+    @observable hasMore = false;
+    @observable lastCaseId = '';
+    @observable error = '';
     @action changeSearchKeyword(value) {
         this.searchKeyword = value;
     }
@@ -16,10 +19,24 @@ class SearchStore {
         array = this.searchKeyword.split(' ');
         filteredArray = array.filter(arr => arr !== ''); // 검색문자배열의 공백요소 제거
         this.keywords = filteredArray;
-        let keywords = this.keywords;
+        // let keywords = this.keywords;
         this.searchKeyword = filteredArray.join(' '); // 검색문자열 재정렬
-
-        return agent.searchCases({keywords, filter: this.filter });
+        console.log(this.searchKeyword)
+        if (this.lastCaseId === '') {
+            this.lastCaseId = 'init';
+        }
+        return agent.searchCases({lastCaseId: this.lastCaseId, keyword: this.searchKeyword, filter: this.filter })
+            .then(action((response) => {
+                this.isLoading = false;
+                this.registry = [...this.registry, ...response.data.cases];
+                this.hasMore = response.data.hasMore;
+                this.lastCaseId = this.registry[this.registry.length - 1]._id;
+            }))
+            .catch(action((error) => {
+                this.isLoading = false;
+                this.error = error;
+                throw error;
+            }));
     }
 
     @action setFilter(type) {
