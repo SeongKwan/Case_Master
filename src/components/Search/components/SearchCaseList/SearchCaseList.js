@@ -14,24 +14,24 @@ class SearchCaseList extends Component {
         loadingState: false
     };
     componentDidMount() {
-        const { lastCaseId } = this.props.searchStore;
-        if (lastCaseId === '') {
-            // this.props.searchStore.searchCases();
-            this.props.caseStore.loadCases({lastCaseId: ''});
-        }
+        window.scrollTo(0, 0);
+        this.props.searchStore.searchCases();
         window.addEventListener("scroll", this.handleScroll);
     }
+    componentDidUpdate(prevProps) {
+        if (prevProps.searchStore.onSearching !== this.props.searchStore.onSearching) {
+            // this.props.searchStore.searchCases();
+        }
+    }
     componentWillUnmount() {
-        const { caseStore } = this.props;
-        caseStore.clearRegistry();
-        caseStore.clearLastCaseId();
+        this.props.searchStore.clear();
         window.removeEventListener("scroll", this.handleScroll);
     }
 
     handleScroll = async () => {
         const { innerHeight } = window;
         const { scrollHeight } = document.body;
-        const { lastCaseId, hasMore, isLoading } = this.props.caseStore;
+        const { hasMore, isLoading } = this.props.searchStore;
         // IE에서는 document.documentElement 를 사용.
         const scrollTop =
         (document.documentElement && document.documentElement.scrollTop) ||
@@ -42,9 +42,8 @@ class SearchCaseList extends Component {
                 if(!this.state.loadingState) {
                     if (!isLoading) {
                         await this.setState({ loadingState: true });
-                        await this.props.caseStore.loadCases({lastCaseId});
+                        await this.props.searchStore.searchCases();
                     }
-                    // this.props.searchStore.searchCases();
                 }
             }
         } else {
@@ -54,22 +53,45 @@ class SearchCaseList extends Component {
         }
     }
 
+    handleClickOnLoadMore = async () => {
+        const { hasMore, isLoading } = this.props.searchStore;
+        if(hasMore) {
+            if (!isLoading) {
+                await this.props.searchStore.searchCases();
+            }
+        }
+    }
+
     render() {
-        const { isLoading, registry, hasMore } = this.props.caseStore;
+        const { hasMore, isLoading, registry, searchRegistry, onSearching, noResult } = this.props.searchStore;
         return (
             <ul className={cx('SearchCaseList')}>
-                {
+                {   !onSearching && !noResult &&
                     registry.map((Case, i) => {
                         return <CaseListItem type={'search'} item={Case} key={i} />
                     })
                 }
+                {   onSearching && !noResult &&
+                    searchRegistry.map((Case, i) => {
+                        return <CaseListItem type={'search'} item={Case} key={i} />
+                    })
+                }
                 {
-                    isLoading && <div className={cx('SearchCaseList', 'loading')}>
+                    noResult && 
+                    <div className={cx('no-result')}>검색결과가 없습니다</div>
+                }
+                {
+                    (isLoading || this.props.searchStore.isLoading) && <div className={cx('SearchCaseList', 'loading')}>
                         <Loader />
                     </div>
                 }
                 {
-                    !hasMore && <div className={cx('no-more-load')}>마지막 증례입니다</div>
+                    !hasMore && !noResult &&
+                    <div className={cx('no-more-load')}>마지막 증례입니다</div>
+                }
+                {
+                    hasMore && !isLoading &&
+                    <button className={cx('load-more-button')} onClick={this.handleClickOnLoadMore}>더보기...</button>
                 }
             </ul>
         );

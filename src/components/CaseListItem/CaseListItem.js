@@ -129,7 +129,6 @@ class CaseListItem extends Component {
                                     const {
                                         createdDate,
                                         content,
-                                        status,
                                         answer,
                                         questioner_name,
                                     } = question;

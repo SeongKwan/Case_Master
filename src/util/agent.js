@@ -129,7 +129,7 @@ class Agent {
      */
 
     searchCases({lastCaseId, keyword, filter}) {
-        return this.get(`/case/keywordSearch/${filter}/${lastCaseId}`, {keyword})
+        return this.post(`/case/search/${filter}/${lastCaseId}`, {keyword})
     }
 
     // postCase(newCase) {

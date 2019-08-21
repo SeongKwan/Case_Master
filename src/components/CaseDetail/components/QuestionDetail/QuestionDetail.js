@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import styles from './QuestionDetail.module.scss';
 import Close from '../../../../styles/img/close.png';
 import { observer, inject } from 'mobx-react';
-import Loader from '../../../Loader';
 import momentHelper from '../../../../util/momentHelper';
 
 const cx = classNames.bind(styles);

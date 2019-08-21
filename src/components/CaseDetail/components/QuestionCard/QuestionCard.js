@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { withRouter } from 'react-router-dom';
 import styles from './QuestionCard.module.scss';
 import { observer, inject } from 'mobx-react';
-import Loader from '../../../Loader';
 import momentHelper from '../../../../util/momentHelper';
 
 const cx = classNames.bind(styles);

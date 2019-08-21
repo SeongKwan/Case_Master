@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { withRouter } from 'react-router-dom';
 import styles from './QuestionAnswer.module.scss';
-import Close from '../../../../styles/img/close.png';
+// import Close from '../../../../styles/img/close.png';
 import { observer, inject } from 'mobx-react';
-import Loader from '../../../Loader';
+// import Loader from '../../../Loader';
 
 const cx = classNames.bind(styles);
 

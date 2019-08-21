@@ -14,14 +14,13 @@ class Search extends Component {
         window.scrollTo(0, 0);
     }
 
-    handleClickOnFilter = (e) => {
+    handleClickOnFilter = async (e) => {
         const { filter } = this.props.searchStore;
         const { dataset } = e.target
         if (filter !== dataset.filter) {
-            this.props.searchStore.setFilter(dataset.filter);
-            this.props.caseStore.clearRegistry();
-            // this.props.searchStore.searchCases();
-            this.props.caseStore.loadCases({lastCaseId: ''});
+            await this.props.searchStore.setFilter(dataset.filter);
+            await this.props.searchStore.clearForSearch();
+            await this.props.searchStore.searchCases();
         }
     }
     

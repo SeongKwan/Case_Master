@@ -8,7 +8,7 @@ import {
   Redirect 
 } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import Landing from './components/Landing';
+// import Landing from './components/Landing';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Main from './components/Main';

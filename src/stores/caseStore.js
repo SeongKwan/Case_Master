@@ -100,6 +100,7 @@ class CaseStore {
     @action clearRegistry() {
         this.registry = [];
         this.hasMore = true;
+        this.lastCaseId = '';
     }
     @action clearLastCaseId() {
         this.lastCaseId = '';

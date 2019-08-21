@@ -21,14 +21,24 @@ class Header extends Component {
         this.props.searchStore.changeSearchKeyword(e.target.value);
     }
 
-    handleClickForSearch = () => {
-        this.props.searchStore.searchCases();
+    handleClickForSearch = async () => {
+        const { searchKeyword } = this.props.searchStore;
+        if (searchKeyword !== '') {
+            await this.props.searchStore.clearForSearch();
+            await this.props.searchStore.searching();
+            await this.props.searchStore.searchCases();
+        }
     }
 
     _handleKeyDown = (e) => {
         const { keyCode } = e;
+        const { searchKeyword } = this.props.searchStore;
         if (keyCode === 13) {
-            this.props.searchStore.searchCases();
+            if (searchKeyword !== '') {
+                this.props.searchStore.clearForSearch();
+                this.props.searchStore.searching();
+                this.props.searchStore.searchCases();
+            }
         }
     }
 
@@ -63,7 +73,14 @@ class Header extends Component {
                     {
                         type === 'search' &&
                         <div className={cx('search-bar')}>
-                            <input value={searchKeyword} className={cx('search-bar-input')} placeholder="단어로 검색" type="text" onChange={this.handleChangeSearchKeyword} onKeyDown={this._handleKeyDown}/>
+                            <input value={searchKeyword} 
+                                className={cx('search-bar-input')} 
+                                placeholder="단어로 검색" 
+                                type="text" 
+                                onChange={this.handleChangeSearchKeyword} 
+                                onKeyDown={this._handleKeyDown}
+                                autoFocus
+                            />
                             <span onClick={this.handleClickForSearch}><img src={SearchIcon} alt="Search icon search bar"/></span>
                         </div>
                     }
