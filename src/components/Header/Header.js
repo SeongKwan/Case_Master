@@ -28,6 +28,11 @@ class Header extends Component {
             await this.props.searchStore.searching();
             await this.props.searchStore.searchCases();
         }
+        if (searchKeyword === '') {
+            await this.props.searchStore.clearForSearch();
+            await this.props.searchStore.notSearching();
+            await this.props.searchStore.searchCases();
+        }
     }
 
     _handleKeyDown = (e) => {
@@ -37,6 +42,11 @@ class Header extends Component {
             if (searchKeyword !== '') {
                 this.props.searchStore.clearForSearch();
                 this.props.searchStore.searching();
+                this.props.searchStore.searchCases();
+            }
+            if (searchKeyword === '') {
+                this.props.searchStore.clearForSearch();
+                this.props.searchStore.notSearching();
                 this.props.searchStore.searchCases();
             }
         }

@@ -17,9 +17,9 @@ class SearchStore {
     constructor() {
         reaction(() => this.searchKeyword, async (v) => { 
             if (v === '') {
-                await this.notSearching();
-                await this.clearForSearch();
-                await this.searchCases();
+                // await this.notSearching();
+                // await this.clearForSearch();
+                // await this.searchCases();
             }
         });
     }
