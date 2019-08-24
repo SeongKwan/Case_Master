@@ -31,10 +31,27 @@ class Search extends Component {
                 <div role="main" className={cx('Search')}>
                     <div className={cx('sort')}>
                         <ul>
-                            <li onClick={this.handleClickOnFilter} data-filter="date" className={cx('sort-item',
-                            {active: filter === 'date'})}>등록일<span data-filter="date"><FaCaretDown/></span></li>
-                            <li onClick={this.handleClickOnFilter} data-filter="view" className={cx('sort-item', {active: filter === 'view'})}>조회수<span data-filter="view"><FaCaretDown/></span></li>
-                            <li onClick={this.handleClickOnFilter} data-filter="comment" className={cx('sort-item', {active: filter === 'comment'})}>처방수<span data-filter="comment"><FaCaretDown/></span></li>
+                            <li 
+                                onClick={this.handleClickOnFilter} 
+                                data-filter="date" 
+                                className={cx('sort-item', {active: filter === 'date'})}
+                            >
+                                등록일<span data-filter="date"><FaCaretDown/></span>
+                            </li>
+                            <li 
+                                onClick={this.handleClickOnFilter} 
+                                data-filter="view" 
+                                className={cx('sort-item', {active: filter === 'view'})}
+                            >
+                                조회수<span data-filter="view"><FaCaretDown/></span>
+                            </li>
+                            <li 
+                                onClick={this.handleClickOnFilter} 
+                                data-filter="comment" 
+                                className={cx('sort-item', {active: filter === 'comment'})}
+                            >
+                                처방수<span data-filter="comment"><FaCaretDown/></span>
+                            </li>
                         </ul>
                     </div>
                     <SearchCaseList />

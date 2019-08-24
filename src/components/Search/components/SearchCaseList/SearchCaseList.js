@@ -18,11 +18,6 @@ class SearchCaseList extends Component {
         this.props.searchStore.searchCases();
         window.addEventListener("scroll", this.handleScroll);
     }
-    componentDidUpdate(prevProps) {
-        if (prevProps.searchStore.onSearching !== this.props.searchStore.onSearching) {
-            // this.props.searchStore.searchCases();
-        }
-    }
     componentWillUnmount() {
         this.props.searchStore.clear();
         window.removeEventListener("scroll", this.handleScroll);
@@ -63,7 +58,15 @@ class SearchCaseList extends Component {
     }
 
     render() {
-        const { hasMore, isLoading, registry, searchRegistry, onSearching, noResult } = this.props.searchStore;
+        const { 
+            hasMore,
+            isLoading, 
+            registry, 
+            searchRegistry, 
+            onSearching, 
+            noResult 
+        } = this.props.searchStore;
+        
         return (
             <ul className={cx('SearchCaseList')}>
                 {   !onSearching && !noResult &&
