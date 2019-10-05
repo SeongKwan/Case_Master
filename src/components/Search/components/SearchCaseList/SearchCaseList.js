@@ -89,7 +89,7 @@ class SearchCaseList extends Component {
                     </div>
                 }
                 {
-                    !hasMore && !noResult &&
+                    !hasMore && !noResult && !isLoading &&
                     <div className={cx('no-more-load')}>마지막 증례입니다</div>
                 }
                 {

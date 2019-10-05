@@ -6,6 +6,7 @@ import { observer, inject } from 'mobx-react';
 import Close from '../../styles/img/close-white.png';
 import { FaUserTie, FaSignOutAlt } from "react-icons/fa";
 import { MdQuestionAnswer } from "react-icons/md";
+import { FiFilePlus } from "react-icons/fi";
 
 const cx = classNames.bind(styles);
 
@@ -60,6 +61,12 @@ class Sidebar extends Component {
                                 <span className={cx('sidebar-icon')}><MdQuestionAnswer /></span>
                                 <span className={cx('item-name')}>질의응답관리</span>
                             </Link>
+                        </li>
+                        <li className={cx('add-case')}>
+                            <a href="http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create" target='_blank'>
+                                <span className={cx('sidebar-icon')}><FiFilePlus /></span>
+                                <span className={cx('item-name')}>증례생성하기</span>
+                            </a>
                         </li>
                         <li className={cx('logout')} onClick={this.handleClickOnLogout}>
                             <span className={cx('sidebar-icon')}><FaSignOutAlt /></span>

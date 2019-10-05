@@ -6,7 +6,9 @@ import { observer, inject } from 'mobx-react';
 import Hamburger from '../../styles/img/hamburger-white.png';
 import SearchIcon from '../../styles/img/search-white.png';
 import Back from '../../styles/img/back-white.png';
+import brandLogo from '../../styles/img/logo_main.png';
 import { IoMdHome } from "react-icons/io";
+import { FiFilePlus } from "react-icons/fi";
 
 const cx = classNames.bind(styles);
 
@@ -64,6 +66,10 @@ class Header extends Component {
         return;
     }
 
+    _handleAddCase = () => {
+
+    }
+
     render() {
         const { back, type } = this.props;
         const { searchKeyword } = this.props.searchStore;
@@ -71,38 +77,54 @@ class Header extends Component {
         return (
             <header className={cx('Header')}>
                 <div className={cx('header-flex-box', {search: type==='search'}, {create: type === 'create-comment' || type === 'create-question'})}>
-                    { 
-                        type !== 'search' && <span className={cx('hamburger-menu-box')} onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/><span className={cx('count_unanswered')}>4</span></span>
-                    }
-                    { 
-                        type === 'search' && <span className={cx('home-button')}><Link to='/main'><IoMdHome /></Link></span>
-                    }
-                    { 
-                        !back && type !== 'search' && <Link to='/main' className={cx('logo')}>Case Master</Link> 
-                    }
-                    {
-                        type === 'search' &&
-                        <div className={cx('search-bar')}>
-                            <input value={searchKeyword} 
-                                className={cx('search-bar-input')} 
-                                placeholder="단어로 검색" 
-                                type="text" 
-                                onChange={this.handleChangeSearchKeyword} 
-                                onKeyDown={this._handleKeyDown}
-                                autoFocus
-                            />
-                            <span onClick={this.handleClickForSearch}><img src={SearchIcon} alt="Search icon search bar"/></span>
-                        </div>
-                    }
-                    { 
-                        !back && type !== 'search' && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> 
-                    }
-                    {
-                        (back && type === 'create-comment') && <h1 className={cx('create-comment-title')} >진단 및 처방 작성</h1>
-                    }
-                    {
-                        (back && type === 'create-question') && <h1 className={cx('create-question-title')} >질문 작성</h1>
-                    }
+                    <div className={cx('left')}>
+                        { 
+                            type !== 'search' && <span className={cx('hamburger-menu-box')} onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/><span className={cx('count_unanswered')}>4</span></span>
+                        }
+                        { 
+                            type === 'search' && <span className={cx('home-button')}><Link to='/main'><IoMdHome /></Link></span>
+                        }
+                    </div>
+                    <div className={cx('center')}>
+                        { 
+                            !back && type !== 'search' && <Link to='/main' className={cx('logo')}>
+                                <img
+                                    className={cx('brand-logo')}
+                                    alt="Cloudoc Logo"
+                                    src={brandLogo}
+                                />
+                                Case Master
+                            </Link> 
+                        }
+                    </div>
+                    <div className={cx('right')}>
+                        {
+                            type === 'search' &&
+                            <div className={cx('search-bar')}>
+                                <input value={searchKeyword} 
+                                    className={cx('search-bar-input')} 
+                                    placeholder="단어로 검색" 
+                                    type="text" 
+                                    onChange={this.handleChangeSearchKeyword} 
+                                    onKeyDown={this._handleKeyDown}
+                                    autoFocus
+                                />
+                                <span onClick={this.handleClickForSearch}><img src={SearchIcon} alt="Search icon search bar"/></span>
+                            </div>
+                        }
+                        {
+                            !back && <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create' target='_bla' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
+                        }
+                        { 
+                            !back && type !== 'search' && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> 
+                        }
+                        {
+                            (back && type === 'create-comment') && <h1 className={cx('create-comment-title')} >진단 및 처방 작성</h1>
+                        }
+                        {
+                            (back && type === 'create-question') && <h1 className={cx('create-question-title')} >질문 작성</h1>
+                        }
+                    </div>
                 </div>
             </header>
         );

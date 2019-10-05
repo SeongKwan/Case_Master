@@ -3,13 +3,14 @@ import classNames from 'classnames/bind';
 import styles from './CaseListItem.module.scss';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { FaNotesMedical } from "react-icons/fa";
+// import { FaNotesMedical } from "react-icons/fa";
 import { FaEye, FaRegThumbsUp, FaClock } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
 import momentHelper from '../../util/momentHelper';
 import TimeAgo from 'react-timeago';
 import koreanStrings from 'react-timeago/lib/language-strings/ko';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
+import $ from 'jquery';
 
 const formatter = buildFormatter(koreanStrings)
 const cx = classNames.bind(styles);
@@ -18,6 +19,11 @@ const cx = classNames.bind(styles);
 @inject()
 @observer
 class CaseListItem extends Component {
+    componentDidMount() {
+        let symptomBox = $(".symptom-box-size"),
+            symptomListBox = $(".symptom-list-box-size");
+        symptomListBox.css('max-width', symptomBox.outerWidth(true) - 60);
+    }
     handleClick = (_id) => {
         let caseid = _id; 
         this.props.history.push(`/caseDetail/${caseid}`);
@@ -43,30 +49,43 @@ class CaseListItem extends Component {
                 <li className={cx('CaseListItem')}>
                     <div className={cx('list-item-container')} onClick={() => {this.handleClick(_id)}}>
                         <div className={cx('status-bar')}>
-                            <div className={cx('created-date')}>
-                                <span><FaClock /></span>{momentHelper.getLocaleFullDateWithTime(Number(createdDate))}
+                            <div className={cx('top')}>
+                                <div className={cx('created-date')}>
+                                    <span><FaClock /></span><TimeAgo live date={createdDate} formatter={formatter} />
+                                </div>
+                                <div className={cx('view-count')}>
+                                    <span><FaEye /></span>{views}
+                                </div>
                             </div>
-                            <div className={cx('view-count')}>
-                                <span><FaEye /></span>{views}
-                            </div>
-                            <div className={cx('comment-count')}>
-                                <span><FaNotesMedical /></span>{count_comment}
+                            <div className={cx('bottom')}>
+                                <div className={cx('comment-count')}>
+                                    <span>처방의견</span>{count_comment}건
+                                </div>
+                                <div>모두 보기</div>
                             </div>
                         </div>
-                        <div className={cx('basic-info')}>
-                            <div className={cx('gender')}>{patient.gender}</div>
-                            <div className={cx('divider-vertical')}></div>
-                            <div className={cx('age')}>{patient.age}세</div>
-                        </div>
-                        <div className={cx('symptom')}>
-                            {/* <div className={cx('title')}>증상</div> */}
-                            <ul className={cx('symptom-list')}>
-                                {
-                                    symptom.map((symptom, i) => {
-                                        return <li key={i} className={cx('symptom-item')}>&bull;&nbsp;{symptom.name}</li>
-                                    })
-                                }
-                            </ul>
+                        <div className={cx('card-body')}>
+                            <div className={cx('basic-info')}>
+                                <div className={cx('label')}>환자</div>
+                                <div className={cx('content-box')}>
+                                    <div className={cx('gender')}>{patient.gender},&nbsp;</div>
+                                    <div className={cx('age')}>{patient.age}세</div>
+                                </div>
+                            </div>
+                            <div className={cx('symptom', 'symptom-box-size')}>
+                                <div className={cx('label')}>증상</div>
+                                <div className={cx('content-box')}>    
+                                    <ul className={cx('symptom-list','symptom-list-box-size')}>
+                                        {
+                                            symptom.map((sympt, i) => {
+                                                return <li key={i} className={cx('symptom-item')}>
+                                                    {sympt.name}{(symptom.length - 1 !== i) && <span>,&nbsp;</span>}
+                                                </li>
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -92,33 +111,43 @@ class CaseListItem extends Component {
                 <li className={cx('CaseListItem')}>
                     <div className={cx('list-item-container')} onClick={() => {this.handleClick(case_id)}}>
                         <div className={cx('status-bar')}>
-                            <div className={cx('created-date')}>
-                                <span><FaClock /></span><TimeAgo live date={createdDate} formatter={formatter} />
+                            <div className={cx('top')}>
+                                <div className={cx('created-date')}>
+                                    <span><FaClock /></span><TimeAgo live date={createdDate} formatter={formatter} />
+                                </div>
+                                <div className={cx('view-count')}>
+                                    <span><FaEye /></span>{views}
+                                </div>
                             </div>
-                            <div className={cx('view-count')}>
-                                <span><FaEye /></span>{views}
-                            </div>
-                            <div className={cx('comment-count')}>
-                                <span><FaNotesMedical /></span>{count_comment}
+                            <div className={cx('bottom')}>
+                                <div className={cx('comment-count')}>
+                                    <span>처방의견</span>{count_comment}건
+                                </div>
+                                <div>모두 보기</div>
                             </div>
                         </div>
-                        <div className={cx('basic-info')}>
-                            <div className={cx('gender')}>{patient.gender}</div>
-                            <div className={cx('divider-vertical')}></div>
-                            <div className={cx('age')}>{patient.age}세</div>
-                        </div>
-                        <div className={cx('symptom')}>
-                            {/* <div className={cx('title')}>증상</div> */}
-                            <ul className={cx('symptom-list')}>
-                                {
-                                    symptom.map((symptom, i) => {
-                                        if (true) {
-                                            return <li key={i} className={cx('symptom-item')}>&bull;&nbsp;{symptom.name}</li>
+                        <div className={cx('card-body')}>
+                            <div className={cx('basic-info')}>
+                                <div className={cx('label')}>환자</div>
+                                <div className={cx('content-box')}>
+                                    <div className={cx('gender')}>{patient.gender},&nbsp;</div>
+                                    <div className={cx('age')}>{patient.age}세</div>
+                                </div>
+                            </div>
+                            <div className={cx('symptom', 'symptom-box-size')}>
+                                <div className={cx('label')}>증상</div>
+                                <div className={cx('content-box')}>    
+                                    <ul className={cx('symptom-list','symptom-list-box-size')}>
+                                        {
+                                            symptom.map((sympt, i) => {
+                                                return <li key={i} className={cx('symptom-item')}>
+                                                    {sympt.name}{(symptom.length - 1 !== i) && <span>,&nbsp;</span>}
+                                                </li>
+                                            })
                                         }
-                                        return false;
-                                    })
-                                }
-                            </ul>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {

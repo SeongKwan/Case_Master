@@ -21,7 +21,7 @@ class Main extends Component {
             <Layout where="main">
                 <div role="main" className={cx('Main')}>
                     <section className={cx('catchphrase-box')}>
-                        <p>다양한 증례와 처방을<br/>만나보세요</p>
+                        <p>증례 Q&A, 지식과 경험을 나누세요</p>
                     </section>
                     <MainCaseList />
                 </div>

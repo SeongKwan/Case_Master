@@ -14,17 +14,29 @@
         &:hover {
             opacity: 0.8;
         }
-        
+        .top {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 1rem;
+        }
+        .bottom {
+            font-size: 1.25rem;
+            font-weight: 500;
+            div:last-child {
+                padding-left: 0;
+                margin-left: auto;
+                font-size: 1rem;
+                font-weight: 300;
+            }
+        }
         .status-bar {
             font-size: 0.8em;
             position: absolute;
-            padding: 0.5rem;
+            padding: 1rem 0rem;
             // top: -12px;
             // left: 5px;
             bottom: 0;
             width: 100%;
-            display: flex;
-            justify-content: flex-end;
             background-color: $brand-secondary;
             color: $brand-quaternary;
             font-weight: 100;
@@ -40,39 +52,52 @@
                 }
             }
         }
+        .card-body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: $brand-tertiary;
+            padding: 1.5rem 1rem 6.5rem;
+            letter-spacing: 1px;
+        }
         .basic-info,
         .symptom {
-            padding: 0.5rem 1rem 2rem;
-            font-weight: 300;
-            background-color: $brand-tertiary;
+            display: flex;
+            // padding: 0.5rem 1rem 2rem;
+            
+            .label {
+                min-width: 4rem;
+                font-weight: 700;
+                color: #eee4ac;
+            }
+            .content-box {
+                display: flex;
+                font-weight: 400;
+                flex: 4;
+                
+            }
         }
         .basic-info {
-            min-height: 90px;
             position: relative;
-            flex: 1;
+            // flex: 1;
             display: flex;
-            align-items: center;
             // justify-content: space-around;
-            font-size: 1.4em;
+            // font-size: 1.4em;
             padding-left: 0;
             padding-right: 0;
             color: $brand-quaternary;
-            .gender,
-            .age {
+            margin-bottom: 1rem;
+            .gender-age {
                 flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
             }
-            .divider-vertical {
-                width: 1px;
-                height: 50%;
-                background-color: $brand-quaternary;
-
-            }
+            // .divider-vertical {
+            //     width: 1px;
+            //     height: 50%;
+            //     background-color: $brand-quaternary;
+            // }
         }
         .symptom {
-            flex: 1.5;
+            // flex: 1.5;
             position: relative;
             .title {
                 position: absolute;
@@ -86,17 +111,23 @@
             }
             .symptom-list {
                 color: $brand-quaternary;
-                width: 100%;
-                padding: 0.8rem 0.5rem;
-                display: flex;
-                flex-wrap: wrap;
+                // padding: 0.8rem 0.5rem;
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                
+                // flex-wrap: wrap;
                 li {
-                    width: 50%;
-                    margin-bottom: 0.8rem;
+                    display: inline;
+                    word-wrap: normal;
+                    word-break: keep-all;
+                    white-space: nowrap;
+                    list-style: none;
                 }
                 li:nth-child(1),
                 li:nth-child(2) {
-                    margin-top: 0.5rem;
+                    // margin-top: 0.5rem;
                 }
             }
         }
