@@ -1,6 +1,18 @@
 .LoginForm {
     display: flex;
     flex-direction: column;
+    @include media('sm') {
+        width: 50%;
+        margin: auto;
+    }
+    @include media('md') {
+        width: 30%;
+        margin: auto;
+    }
+    @include media('xl') {
+        width: 25%;
+        margin: auto;
+    }
     &.loading {
         margin-top: 6rem;
     }

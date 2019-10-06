@@ -62,8 +62,9 @@ class Sidebar extends Component {
                                 <span className={cx('item-name')}>질의응답관리</span>
                             </Link>
                         </li>
+                        {/* <a href="http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create" target='_blank'> */}
                         <li className={cx('add-case')}>
-                            <a href="http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create" target='_blank'>
+                            <a href="http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/cloudoc/case/create" target="_blank" rel="noopener noreferrer">
                                 <span className={cx('sidebar-icon')}><FiFilePlus /></span>
                                 <span className={cx('item-name')}>증례생성하기</span>
                             </a>

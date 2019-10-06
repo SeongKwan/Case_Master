@@ -113,8 +113,9 @@ class Header extends Component {
                             </div>
                         }
                         {
-                            !back && <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create' target='_bla' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
+                            !back && <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/cloudoc/case/create' rel="noopener noreferrer" target='_bla' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
                         }
+                            {/* !back && <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create' target='_bla' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a> */}
                         { 
                             !back && type !== 'search' && <Link to='/search'><img src={SearchIcon} alt="Header Search Icon"/></Link> 
                         }
