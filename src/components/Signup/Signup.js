@@ -57,6 +57,9 @@ class Signup extends Component {
                 });
         }
     }
+    _goToSignup = () => {
+        this.props.history.push('/')
+    }
     render() {
         const { isLoading, isLogged } = this.props.authStore;
         if (isLoading || isLogged) {
@@ -71,10 +74,9 @@ class Signup extends Component {
                 <div className={cx('Signup')}>
                     <h1>회원등록</h1>
                     <div className={cx('description')}>
-                        <p>Case Editor의 계정정보를 입력하여 주세요.</p>
-                        <span>(Case Editor의 회원가입 필수)</span>
+                        <p>Case Editor에서 회원가입을 진행합니다</p>
                     </div>
-                    <div className={cx('form-box')}>
+                    {/* <div className={cx('form-box')}>
                         <input 
                             autoFocus
                             name="email" 
@@ -90,14 +92,17 @@ class Signup extends Component {
                             onChange={this._handleChange}
                             onKeyDown={this._handleKeyDown}
                         />
-                    </div>
-                    <button 
+                    </div> */}
+                    {/* http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/signup */}
+                    <a 
+                        href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/signup'
+                        target='_blank'
+                        rel="noopener noreferrer"
                         className={cx('signup-button')} 
-                        onClick={this._handleClick}
-                        onKeyDown={this._handleKeyDown}
+                        onClick={this._goToSignup}
                     >
-                        회원등록신청
-                    </button>
+                        회원가입하기
+                    </a>
                 </div>
             </Layout>
         );

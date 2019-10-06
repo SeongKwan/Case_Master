@@ -17,6 +17,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .right {
+            display: flex;
+        }
         .hamburger-menu-box {
             position: relative;
             .count_unanswered {
@@ -35,7 +38,10 @@
             }
         }
         &.search {
-            justify-content: flex-start;
+            .right {
+                flex: 1;
+                margin-left: 1rem;
+            }
         }
         &.create {
             justify-content: flex-start;
