@@ -102,7 +102,7 @@ class Header extends Component {
                     {/* <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/cloudoc/case/create' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a> */}
                     <div className={cx('right')}>
                         {
-                            type !== 'search' && !back && <a href={`http://localhost:3000/al?email=${email}&token=${token}&username=${username}&userId=${userId}`} target='_self' rel="noopener noreferrer" className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
+                            type !== 'search' && !back && <a href={`http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/al?email=${email}&token=${token}&username=${username}&userId=${userId}`} target='_self' rel="noopener noreferrer" className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
                         }
                         {
                             type === 'search' &&
