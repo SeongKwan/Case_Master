@@ -79,8 +79,9 @@ class Header extends Component {
                 <div className={cx('header-flex-box', {search: type==='search'}, {create: type === 'create-comment' || type === 'create-question'})}>
                     <div className={cx('left')}>
                         { 
-                            type !== 'search' && <span className={cx('hamburger-menu-box')} onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/><span className={cx('count_unanswered')}>4</span></span>
+                            type !== 'search' && <span className={cx('hamburger-menu-box')} onClick={this.handleClickOnMenu}><img src={switchIcon} alt="Header Menu Icon"/></span>
                         }
+                        {/* <span className={cx('count_unanswered')}>4</span> */}
                         { 
                             type === 'search' && <span className={cx('home-button')}><Link to='/main'><IoMdHome /></Link></span>
                         }
