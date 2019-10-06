@@ -29,6 +29,7 @@ class Sidebar extends Component {
     render() {
         const { isOpen } = this.props;
         const user_name = window.localStorage.getItem('username');
+        const {email, token, userId, username} = this.props.authStore.logOn;
         return (
             <aside id='Sidebar' className={cx('Sidebar', { isOpen: isOpen })}>
                 <span 
@@ -64,7 +65,7 @@ class Sidebar extends Component {
                         </li>
                         {/* <a href="http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/case/create" target='_blank'> */}
                         <li className={cx('add-case')}>
-                            <a href="http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/cloudoc/case/create" target="_blank" rel="noopener noreferrer">
+                            <a href={`http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/al?email=${email}&token=${token}&username=${username}&userId=${userId}`} target="_self" rel="noopener noreferrer">
                                 <span className={cx('sidebar-icon')}><FiFilePlus /></span>
                                 <span className={cx('item-name')}>증례생성하기</span>
                             </a>

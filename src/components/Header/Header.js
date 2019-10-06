@@ -12,7 +12,7 @@ import { FiFilePlus } from "react-icons/fi";
 
 const cx = classNames.bind(styles);
 
-@inject('sidebarStore', 'commonStore', 'searchStore')
+@inject('sidebarStore', 'commonStore', 'searchStore', 'authStore')
 @observer
 class Header extends Component {
     componentWillUnmount() {
@@ -74,6 +74,7 @@ class Header extends Component {
         const { back, type } = this.props;
         const { searchKeyword } = this.props.searchStore;
         let switchIcon = !back ? Hamburger : Back;
+        const {email, token, userId, username} = this.props.authStore.logOn;
         return (
             <header className={cx('Header')}>
                 <div className={cx('header-flex-box', {search: type==='search'}, {create: type === 'create-comment' || type === 'create-question'})}>
@@ -98,9 +99,10 @@ class Header extends Component {
                             </Link> 
                         }
                     </div>
+                    {/* <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/cloudoc/case/create' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a> */}
                     <div className={cx('right')}>
                         {
-                            type !== 'search' && !back && <a href='http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/cloudoc/case/create' rel="noopener noreferrer" target='_bla' className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
+                            type !== 'search' && !back && <a href={`http://cloudoc.net.s3-website.ap-northeast-2.amazonaws.com/al?email=${email}&token=${token}&username=${username}&userId=${userId}`} target='_self' rel="noopener noreferrer" className={cx('add-case')} onClick={this._handleAddCase}><FiFilePlus /></a>
                         }
                         {
                             type === 'search' &&
