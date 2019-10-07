@@ -11,7 +11,7 @@
             margin-bottom: 2rem;
             span {
                 position: relative;
-                background-color: $brand-primary;
+                background-color: $brand-secondary;
                 z-index: 1001;
                 padding: 0 0.8rem;
                 font-weight: 700;
@@ -101,7 +101,7 @@
             color: $brand-quaternary;
             font-weight: 300;
             padding: 1rem 1rem;
-            background-color: $brand-secondary;
+            background-color: $brand-primary;
             p {
                 padding: 0.5rem;
             }
@@ -109,7 +109,7 @@
     }
     .empty-comment {
         color: $brand-quaternary;
-        background-color: $brand-secondary;
+        background-color: $brand-primary;
         font-weight: 300;
         padding: 1rem 1rem 1rem;
         margin-bottom: 3rem;

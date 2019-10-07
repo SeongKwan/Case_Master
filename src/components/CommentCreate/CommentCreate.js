@@ -18,7 +18,8 @@ class CommentCreate extends Component {
         const commenter_id = window.localStorage.getItem('userid');
         this.props.commentStore.createComment({case_id: caseid, commenter_id})
         .then((res) => {
-            this.props.swiperStore.setCurrentSlide(1);
+            // this.props.swiperStore.setCurrentSlide(1);
+            
             return this.props.history.goBack();
         })
         .catch((error) => {

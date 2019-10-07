@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './BasicInfo.module.scss';
 import { observer, inject } from 'mobx-react';
 import Loader from '../../../Loader';
+import Comment from '../Comment';
 
 const cx = classNames.bind(styles);
 
@@ -127,6 +128,10 @@ class BasicInfo extends Component {
                             })
                         }
                     </ul>
+                </div>
+                <div className={cx('drug')}>
+                    <h6 className={cx('main-title')}>진단-처방</h6>
+                    <Comment comments={this.props.comments} isLoading={this.props.isLoading} />
                 </div>
             </div>
         );

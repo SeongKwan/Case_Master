@@ -1,6 +1,6 @@
 .CommentCard {
     .comment-item {
-        background-color: $brand-secondary;
+        background-color: $brand-primary;
         position: relative;
         font-size: 1.1em;
         padding: 1.5rem 1rem 1rem;
@@ -73,6 +73,15 @@
         }
         .diagnosis {
             margin-bottom: 0.5rem;
+            .diagnosis-list {
+                display: flex;
+                // align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            li {
+                padding: 0;
+            }
             li:not(:last-child) {
                 margin-bottom: 1rem;
             }

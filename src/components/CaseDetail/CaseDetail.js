@@ -4,7 +4,7 @@ import styles from './CaseDetail.module.scss';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import BasicInfo from './components/BasicInfo';
-import Comment from './components/Comment';
+// import Comment from './components/Comment';
 import Question from './components/Question';
 import Layout from '../Layout';
 import { FaEye, FaClock } from "react-icons/fa";
@@ -76,7 +76,7 @@ class CaseDetail extends Component {
     render() {
         // Slide Header
         const params1 = {
-            slidesPerView: 3,
+            slidesPerView: 2,
             paginationClickable: true,
             freeMode: false,
             loop: false,
@@ -158,25 +158,25 @@ class CaseDetail extends Component {
                             >
                                 기본정보
                             </li>
-                            <li 
+                            {/* <li 
                                 data-id='1'
                                 className={cx('tab-header-item', {active: activeTab === 1})}
                                 onClick={this.setCurrentSlideIndex}
                             >
                                 진단처방
-                            </li>
+                            </li> */}
                             <li 
-                                data-id='2'
-                                className={cx('tab-header-item', {active: activeTab === 2})}
+                                data-id='1'
+                                className={cx('tab-header-item', {active: activeTab === 1})}
                                 onClick={this.setCurrentSlideIndex}
                             >
                                 질의응답
                             </li>
                         </Swiper>
                         <Swiper {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}} activeSlideKey={activeTab.toString()}>
-                            <div key='0'><BasicInfo Case={item.case} isLoading={isLoading} /></div>
-                            <div key='1'><Comment comments={comments} isLoading={isLoading} /></div>
-                            <div key='2'><Question questions={questions} isLoading={isLoading} /></div>
+                            <div key='0'><BasicInfo Case={item.case} comments={comments} isLoading={isLoading} /></div>
+                            {/* <div key='1'><Comment comments={comments} isLoading={isLoading} /></div> */}
+                            <div key='1'><Question questions={questions} isLoading={isLoading} /></div>
                         </Swiper>
                     </div>
                 </div>
