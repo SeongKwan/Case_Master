@@ -9,6 +9,7 @@ import commentStore from './commentStore';
 import wizardFormStore from './wizardFormStore';
 import questionStore from './questionStore';
 import searchStore from './searchStore';
+import sortStore from './sortStore';
 
 const stores = {
     authStore,
@@ -21,7 +22,8 @@ const stores = {
     commentStore,
     wizardFormStore,
     questionStore,
-    searchStore
+    searchStore,
+    sortStore
 }
 
 export default stores;

@@ -174,7 +174,7 @@ class CaseDetail extends Component {
                             </li>
                         </Swiper>
                         <Swiper {...params2} getSwiper={(swiper) => {this.swiper2 = swiper;}} activeSlideKey={activeTab.toString()}>
-                            <div key='0'><BasicInfo Case={item.case} comments={comments} isLoading={isLoading} /></div>
+                            <div key='0'><BasicInfo Case={item.case} questions={questions} comments={comments} isLoading={isLoading} /></div>
                             {/* <div key='1'><Comment comments={comments} isLoading={isLoading} /></div> */}
                             <div key='1'><Question questions={questions} isLoading={isLoading} /></div>
                         </Swiper>

@@ -39,6 +39,10 @@ class Drug extends Component {
 
         return (
             <div className={cx('Drug')}>
+                <h6>
+                    <div className={cx('divider-horizontal')}></div>
+                    <span>처방</span>
+                </h6>
                 <div className={cx('drug-name')}>
                     <input 
                         autoComplete="off"  
@@ -105,7 +109,7 @@ class Drug extends Component {
                     }
                 </ul>
                 <button className={cx('add-formula')} onClick={this.handleClickAddButton}>
-                    <TiPlus />
+                    <TiPlus /><span>처방 추가</span>
                 </button>
 
                 <div className={cx('textarea-container')}>

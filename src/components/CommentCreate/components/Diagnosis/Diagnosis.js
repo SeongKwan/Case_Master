@@ -29,6 +29,10 @@ class Diagnosis extends Component {
         const disabledDelete = editableDiagnosis.length === 1 ? true : false;
         return (
             <div className={cx('Diagnosis')}>
+                <h6>
+                    <div className={cx('divider-horizontal')}></div>
+                    <span>진단</span>
+                </h6>
                 <ul>
                     {
                         editableDiagnosis.map((diagnosis, i) => {
@@ -85,7 +89,7 @@ class Diagnosis extends Component {
                     }
                 </ul>
                 <button className={cx('add-diagnosis')} onClick={this.handleClickAddButton}>
-                    <TiPlus />
+                    <TiPlus /><span>진단 추가</span>
                 </button>
             </div>
         );

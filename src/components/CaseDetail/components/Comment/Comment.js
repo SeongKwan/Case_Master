@@ -13,6 +13,17 @@ const cx = classNames.bind(styles);
 @inject('caseStore')
 @observer
 class Comment extends Component {
+    handleClickOnAddComment = () => {
+        const { params: { caseid }  } = this.props.match;
+        const userId = window.localStorage.getItem('userid');
+        const { comments } = this.props.caseStore;
+        let check = comments.filter(comment => comment.commenter_id === userId);
+        if (check.length <= 0) {
+            return this.props.history.push(`/create/comment/${caseid}`);
+        }
+        window.alert('이미 작성하신 처방이 있습니다.');
+    }
+
     renderMyComment(comments) {
         const loggedUserId = window.localStorage.getItem('userid');
         let myCommentIndex = comments.findIndex(comment => 
@@ -21,8 +32,9 @@ class Comment extends Component {
         if (myCommentIndex > -1) {
             return <CommentCard myComment={true} comment={comments[myCommentIndex]} />
         }
-        return <div className={cx('comment-item', 'my-comment-item', 'no-comment')}>
+        return <div className={cx('comment-item', 'my-comment-item', 'no-comment', 'leave-comment')}>
             <p>당신의 소중한 의견을 남겨주세요</p>
+            <button onClick={this.handleClickOnAddComment}>처방하기</button>
         </div>
     }
     @action renderComments(cms) {

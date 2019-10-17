@@ -20,7 +20,14 @@ class Question extends Component {
             </div>
         }
         return questions.map((question, i) => {
-            return <QuestionCard question={question} key={i} index={i} />
+            const { where } = this.props;
+            const userName = window.localStorage.getItem('username');
+            if (where === 'basicInfo') {
+                if (userName === question.questioner_name) {
+                    return <QuestionCard where={where} question={question} key={i} index={i} />
+                }
+            }
+            return <QuestionCard where={where} question={question} key={i} index={i} />
         })
     }
 
@@ -31,11 +38,34 @@ class Question extends Component {
                 <Loader />
             </div>
         }
-        return (
-            <div className={cx('Question')}>
-                {this.renderQuestions(questions)}
-            </div>
-        );
+        if (this.props.where === 'basicInfo') {
+            return (
+                <div className={cx('Question')}>
+                    <h6>
+                        <div className={cx('divider-horizontal')}></div>
+                        <span>나의 질문</span>
+                    </h6>
+                    {
+                        questions.map((question, i) => {
+                            const { where } = this.props;
+                            const userName = window.localStorage.getItem('username');
+                            if (where === 'basicInfo') {
+                                if (userName === question.questioner_name) {
+                                    return <QuestionCard where={where} question={question} key={i} index={i} />
+                                }
+                            }
+                            return false;
+                    })
+                    }
+                </div>
+            );
+        } else {
+            return (
+                <div className={cx('Question')}>
+                    {this.renderQuestions(questions)}
+                </div>
+            );
+        }
     }
 }
 

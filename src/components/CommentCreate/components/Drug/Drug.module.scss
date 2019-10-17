@@ -1,6 +1,27 @@
 .Drug {
     margin-top: 2rem;
     padding: 1rem;
+    h6 {
+        font-size: 1.5em;
+        position: relative;
+        margin-bottom: 2rem;
+        span {
+            position: relative;
+            background-color: $brand-primary;
+            z-index: 1001;
+            padding: 0 0.8rem;
+            font-weight: 700;
+            color: $brand-quaternary;
+        }
+        .divider-horizontal {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: $brand-quaternary;
+            z-index: 100;
+            top: 50%;
+        }
+    }
     input {
         width: 100%;
         background-color: $brand-quaternary;
@@ -17,6 +38,7 @@
         display: inline-block;
         background-color: $brand-tertiary;
         padding: 1rem;
+        margin-right: 0.5rem;
         &:disabled {
             cursor: no-drop;
             background-color: $oc-gray-1;
@@ -30,6 +52,10 @@
             justify-content: center;
             font-size: 1.5em;
             padding: 0.5rem;
+            span {
+                margin-left: 0.5rem;
+                font-size: 1rem;
+            }
         }
     }
     .drug-name {

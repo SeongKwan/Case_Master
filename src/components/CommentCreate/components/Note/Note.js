@@ -16,6 +16,10 @@ class Note extends Component {
         const { editableNote } = this.props.commentStore;
         return (
             <div className={cx('Note')}>
+                <h6>
+                    <div className={cx('divider-horizontal')}></div>
+                    <span>메모</span>
+                </h6>
                 <div>
                     <textarea 
                         name='note'

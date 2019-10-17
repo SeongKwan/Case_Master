@@ -7,7 +7,8 @@
     .Symptom,
     .Lab,
     .Exam,
-    .drug {
+    .drug,
+    .question {
         font-size: 1.1em;
         padding: 2.5rem 1rem 1rem;
         position: relative;
@@ -62,6 +63,12 @@
         }
     }
     .Lab {
+        .red {
+            color: rgb(240, 78, 78);
+        }
+        .blue {
+            color: rgb(105, 105, 248);
+        }
         li div {
             display: flex;
             align-items: center;
@@ -95,5 +102,20 @@
         padding: 0.5rem 1rem;
         font-weight: 500;
         color: $brand-quaternary;
+    }
+    .sorting-box {
+        font-size: 1em;
+        position: absolute;
+        top: -14px;
+        right: 10px;
+        // background-color: $brand-tertiary;
+        // padding: 0.5rem 1rem;
+        font-weight: 400;
+        color: $brand-quaternary;
+        select {
+            letter-spacing: 2px;
+            outline: none;
+            font-size: 1.2rem;
+        }
     }
 }
