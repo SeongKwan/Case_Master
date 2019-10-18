@@ -32,13 +32,14 @@ class Question extends Component {
     }
 
     render() {
+        const { myCaseOrNot } = this.props.caseStore;
         const { questions, isLoading } = this.props;
         if (isLoading || questions === undefined ) {
             return <div className={cx('Question', 'loading')}>
                 <Loader />
             </div>
         }
-        if (this.props.where === 'basicInfo') {
+        if (!myCaseOrNot && this.props.where === 'basicInfo') {
             return (
                 <div className={cx('Question')}>
                     <h6>
