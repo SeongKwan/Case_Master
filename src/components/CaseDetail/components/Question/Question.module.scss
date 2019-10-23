@@ -4,31 +4,33 @@
     &.loading {
         margin-top: 3rem;
     }
-    h6 {
-        font-size: 1.5em;
-        position: relative;
-        margin-bottom: 2rem;
-        span {
+    .my-question {
+        h6 {
+            font-size: 1.5em;
             position: relative;
-            background-color: $brand-secondary;
-            z-index: 1001;
-            padding: 0 0.8rem;
-            font-weight: 700;
-            // color: $brand-quaternary;
-        }
-        .divider-horizontal {
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background-color: $brand-quaternary;
-            z-index: 100;
-            top: 50%;
+            margin-bottom: 2rem;
+            span {
+                position: relative;
+                background-color: $brand-secondary;
+                z-index: 1001;
+                padding: 0 0.8rem;
+                font-weight: 700;
+                // color: $brand-quaternary;
+            }
+            .divider-horizontal {
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: $gray-4;
+                z-index: 100;
+                top: 50%;
+            }
         }
     }
     .empty-question {
         // color: $brand-quaternary;
         background-color: $brand-secondary;
-        font-weight: 300;
+        font-weight: 400;
         padding: 1rem 1rem 1rem;
         margin-bottom: 3rem;
         font-size: 1.3em;

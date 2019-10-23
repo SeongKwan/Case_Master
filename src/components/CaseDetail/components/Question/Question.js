@@ -42,22 +42,24 @@ class Question extends Component {
         if (!myCaseOrNot && this.props.where === 'basicInfo') {
             return (
                 <div className={cx('Question')}>
-                    <h6>
-                        <div className={cx('divider-horizontal')}></div>
-                        <span>나의 질문</span>
-                    </h6>
-                    {
-                        questions.map((question, i) => {
-                            const { where } = this.props;
-                            const userName = window.localStorage.getItem('username');
-                            if (where === 'basicInfo') {
-                                if (userName === question.questioner_name) {
-                                    return <QuestionCard where={where} question={question} key={i} index={i} />
+                    <div className={cx('my-question')}>
+                        <h6>
+                            <div className={cx('divider-horizontal')}></div>
+                            <span>나의 질문</span>
+                        </h6>
+                        {
+                            questions.map((question, i) => {
+                                const { where } = this.props;
+                                const userName = window.localStorage.getItem('username');
+                                if (where === 'basicInfo') {
+                                    if (userName === question.questioner_name) {
+                                        return <QuestionCard where={where} question={question} key={i} index={i} />
+                                    }
                                 }
-                            }
-                            return false;
-                    })
-                    }
+                                return false;
+                        })
+                        }
+                    </div>
                 </div>
             );
         } else {
