@@ -4,14 +4,49 @@ import styles from './Drug.module.scss';
 import { observer, inject } from 'mobx-react';
 import { FaTrashAlt } from "react-icons/fa";
 import { TiPlus } from "react-icons/ti";
+import $ from 'jquery';
+import ListForInput from './components/ListForInput';
 
 const cx = classNames.bind(styles);
 
-@inject('commentStore')
+@inject(
+    'commentStore',
+    'drugListForInputStore',
+    'drugListItemStore',
+)
 @observer
 class Drug extends Component {
-    handleClickAddButton = () => {
-        this.props.commentStore.addFormula();
+    componentDidMount() {
+        let store = this.props.drugListForInputStore;
+        $(function() {
+            $(window).on("scroll", () => {
+                store.clear();
+            })
+        });
+    }
+
+    _scroll = (index) => {
+        let offTop;
+        if (index <= 3 && index >= 0) {
+            offTop = 0;
+        }
+        if (index > 3) {
+            offTop = (index - 2.5) * 40;
+        }
+        $(function() {
+            let listContainer = $("div[data-form='list-container-for-drug'] ul");
+            listContainer.scrollTop(offTop);
+            listContainer.on("scroll", () => {})
+        })
+    }
+
+    _setInputValue = (value) => {
+        this.props.commentStore.handleChangeDrug("name", value);
+    }
+
+    handleClickAddButton = async () => {
+        await this.props.commentStore.addFormula();
+        await this.props.drugListItemStore.addSearchKeyword();
     }
     handleClickDeleteButton = (index) => {
         const { editableFormula } = this.props.commentStore;
@@ -28,10 +63,10 @@ class Drug extends Component {
         this.props.commentStore.handleChangeFormula(dataset.index, name, value);
     }
     render() {
+        const drugs = this.props.drugListItemStore.drugs || [];
         const { editableDrug, editableFormula } = this.props.commentStore;
         const disabledDelete = editableFormula.length === 1 ? true : false;
         const {
-            drug,
             rationale,
             reference,
             teaching
@@ -43,14 +78,99 @@ class Drug extends Component {
                     <div className={cx('divider-horizontal')}></div>
                     <span>처방</span>
                 </h6>
-                <div className={cx('drug-name')}>
+                <div id={`drug-name-input`} data-type="input-list" data-form="input-with-list-for-drug" className={cx("input-list-wrapper", "drug-name")}>
                     <input 
-                        autoComplete="off"  
-                        name='name'
-                        type='text'
-                        value={drug.name || ""}
-                        onChange={this.handleOnChangeDrug}
                         placeholder="처방명"
+                        autoComplete="off"  
+                        className={cx('input-prescription-name')} 
+                        type="text" 
+                        name="name"
+                        value={editableDrug.drug.name || ""}
+                        onChange={(e) => {
+                            this.props.drugListItemStore.setSearchKeywordForCase(e.target.value);
+                            return this.handleOnChangeDrug(e);
+                        }}
+                        onKeyDown={(e) => {
+                        const { status, selectedIndex, maxIndex } = this.props.drugListForInputStore;
+                        const drugs = this.props.drugListItemStore.drugs || [];
+                        let index;
+                        if (e.keyCode === 27) {
+                            e.preventDefault();
+                            return this.props.drugListForInputStore.clear();
+                        }
+                        if(e.keyCode === 13) {
+                            
+                            const { selectedIndex } = this.props.drugListForInputStore;
+                            if(selectedIndex > -1) {
+                                this.props.drugListForInputStore.clearForList();
+                                
+                                this.props.commentStore.autoSetDrug(drugs[selectedIndex]);
+                                this.props.drugListForInputStore.setSelectedListItem(drugs[selectedIndex].name);
+                                this._setInputValue(drugs[selectedIndex].name);
+                            }
+                            return;
+                        }
+                        if(e.keyCode === 38) {
+                            e.preventDefault();
+                            if(status === 'visible') {
+                                if (selectedIndex <= 0) {
+                                    this._scroll(0);
+                                    return;
+                                }
+                                if (selectedIndex > 0) {
+                                    index = selectedIndex - 1;
+                                    this._scroll(index);
+                                    return this.props.drugListForInputStore.setSelectedIndex(index);
+                                }
+                            }
+                            return;
+                        }
+                        if(e.keyCode === 40) {
+                            e.preventDefault();
+                            if(status === 'invisible') {
+                                const height = $(e.target).outerHeight();
+                                const width = $(e.target).outerWidth();
+                                const { top, left } = $(e.target).position();
+
+                                this.props.drugListForInputStore.clear();
+                                this.props.drugListForInputStore.setPosition({top, left, height, width});
+                                
+                                return  this.props.drugListForInputStore.setCurrentSection('symptom');
+                            }
+                            if(status === 'visible') {
+                                if (selectedIndex < 0) {
+                                    index = 0;
+                                    this._scroll(index);
+                                    return this.props.drugListForInputStore.setSelectedIndex(index);
+                                }
+                                if (selectedIndex >= 0 && selectedIndex < maxIndex) {
+                                    index = selectedIndex + 1;
+                                    this._scroll(index);
+                                    return this.props.drugListForInputStore.setSelectedIndex(index);
+                                }
+                                if (selectedIndex === maxIndex) {
+                                    this._scroll(maxIndex);
+                                    return;
+                                }
+                            }
+                        }
+                    }}
+                        onClick={(e) => {
+                            const height = $(e.target).outerHeight();
+                            const width = $(e.target).outerWidth();
+                            const { top, left } = $(e.target).position();
+                            this.props.drugListForInputStore.setPosition({top, left, height, width});
+                            
+                            this.props.drugListForInputStore.setCurrentSection('drug');
+                        }}
+                        onFocus={(e) => {
+                            const height = $(e.target).outerHeight();
+                            const width = $(e.target).outerWidth();
+                            const { top, left } = $(e.target).position();
+                            this.props.drugListForInputStore.setPosition({top, left, height, width});
+                            
+                            this.props.drugListForInputStore.setCurrentSection('drug');
+                        }}
                     />
                 </div>
                 <ul>
@@ -73,6 +193,7 @@ class Drug extends Component {
                                 </div>
                                 <div className={cx('herb')}>
                                     <input 
+                                        autoFocus
                                         autoComplete="off"  
                                         name='herb'
                                         data-index={i}
@@ -109,7 +230,7 @@ class Drug extends Component {
                     }
                 </ul>
                 <button className={cx('add-formula')} onClick={this.handleClickAddButton}>
-                    <TiPlus /><span>처방 추가</span>
+                    <TiPlus /><span>약재 추가</span>
                 </button>
 
                 <div className={cx('textarea-container')}>
@@ -139,6 +260,11 @@ class Drug extends Component {
                         placeholder="생활지도"
                     />
                 </div>
+
+                <ListForInput 
+                    items={drugs}
+                    setInputValue={this._setInputValue}
+                />
             </div>
         );
     }

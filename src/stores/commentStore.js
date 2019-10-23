@@ -5,6 +5,7 @@ import commonStore from './commonStore';
 import agent from '../util/agent';
 
 class CommentStore {
+    @observable registry = [];
     @observable testCount = 0;
     @observable isLoading = false;
     @observable currentComment = {};
@@ -44,6 +45,21 @@ class CommentStore {
         this.editableFormula = this.currentComment.prescription.drug.fomula;
         this.editableNote = this.currentComment.note;
     }
+
+    @action loadConditions() {
+        this.isLoading = true;
+        return agent.loadConditions()
+            .then(action((response) => {
+                this.registry = response.data || [];
+                this.isLoading = false;
+                console.log(response.data);
+                return response.data;
+            }))
+            .catch(action((error) => {
+                this.isLoading = false;
+                throw error;
+            }));
+    };
 
     @action loadComment({comment_id}) {
         this.isLoading = true;
@@ -151,7 +167,7 @@ class CommentStore {
         }))
     }
     
-    @action handleChangeDiagnosis(index, key, value) {
+    @action handleChangeDiagnosis(index, key, value = "") {
         this.editableDiagnosis[index][key] = value;
     }
     
@@ -245,5 +261,79 @@ class CommentStore {
         this.clearEditableDrug();
         this.clearEditableNote();
     }
+
+
+
+
+
+
+
+    @action setCategoryByAutoList(category, index) {
+        this.editableDiagnosis[index]['category'] = category;
+    }
+
+
+
+    @action autoSetDrug(drug) {
+        console.log(drug)
+        agent.loadDrug(drug._id)
+            .then(action((response) => {
+                let { 
+                    formula,
+                    name
+                } = response.data || [];
+                this.editableDrug.drug.name = name || '';
+                this.editableDrug.rationale = '';
+                this.editableDrug.reference = '';
+                this.editableDrug.teaching = '';
+
+                // formula: [{herbName: String, dose: Number}],
+                // formula = [
+                //     {herbName: 'testname1', dose: 10},
+                //     {herbName: 'testname2', dose: 20},
+                //     {herbName: 'testname3', dose: 30},
+                //     {herbName: 'testname4', dose: 40}
+                // ]
+                if (formula.length === 0 || formula === undefined) {
+                    return this.editableFormula = [];
+                }
+                if (formula.length > 0) {
+                    this.editableFormula = [];
+                    formula.forEach((formula) => { 
+                        this.editableFormula.push({
+                            herb: formula.herbName,
+                            dose: formula.dose,
+                            unit: 'g/일'
+                        }) 
+                    });
+                }
+            }))
+            .catch(action((error) => {
+                throw error;
+            }));
+    }
+
+    @observable editableDrug = {
+        drug: {
+            name: ''
+        },
+        rationale: '',
+        reference: '',
+        teaching: ''
+    };
+
+    @observable editableFormula = [
+        {
+            herb: '',
+            dose: 0,
+            unit: 'g/일'
+        }
+    ];
+
+
+
+
+
+
 }
 export default new CommentStore();

@@ -9,6 +9,7 @@
     .Exam,
     .drug,
     .question {
+        color: black;
         font-size: 1.1em;
         padding: 2.5rem 1rem 1rem;
         position: relative;
@@ -16,7 +17,6 @@
         margin-bottom: 3rem;
         li {
             display: flex;
-            color: $brand-quaternary;
             padding: 0.75rem 0;
             margin-bottom: 0.5rem;
             font-weight: 300;
@@ -64,10 +64,10 @@
     }
     .Lab {
         .red {
-            color: rgb(240, 78, 78);
+            color: rgb(241, 10, 10);
         }
         .blue {
-            color: rgb(105, 105, 248);
+            color: rgb(9, 9, 224);
         }
         li div {
             display: flex;
@@ -88,7 +88,7 @@
     }
     .Exam {
         .empty-exam {
-            color: $brand-quaternary;
+            // color: $brand-quaternary;
             padding: 1rem 0;
             font-weight: 100;
         }

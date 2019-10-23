@@ -121,7 +121,6 @@ class CaseDetail extends Component {
                 }
             }
         };
-        
         const { activeTab } = this.props.swiperStore;
         const { theCase, isLoading, comments, myCaseOrNot, questions } = this.props.caseStore;
         const item = JSON.parse(JSON.stringify(theCase));

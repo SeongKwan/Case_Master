@@ -8,7 +8,8 @@ import authStore from '../stores/authStore';
 // import errorHelper from './errorHelper';
 // const API_ROOT = `${process.env.REACT_APP_API_ENDPOINT}`;
 const API_ROOT = `http://3.113.76.136:3000`;
-const API_ROOT_EDITOR = `https://cloudoc-api.herokuapp.com`;
+// const API_ROOT_EDITOR = `https://cloudoc-api.herokuapp.com`;
+const API_ROOT_EDITOR = `http://localhost:5001`;
 
 class Agent {
     constructor(baseURL = null) {
@@ -123,6 +124,7 @@ class Agent {
     deleteQuestion({questionid}) {
         return this.delete(`/question/${questionid}`);
     }
+
     /**
      * 
      * Search API
@@ -131,6 +133,59 @@ class Agent {
     searchCases({lastCaseId, keyword, filter}) {
         return this.post(`/case/search/${filter}/${lastCaseId}`, {keyword})
     }
+
+    /**
+     * 
+     * Condition API
+     */
+    // Condition
+    loadConditions() {
+        let { logOn: {email, token} } = authStore;
+        return this.axios
+            .get(`/api/v1/conditions`, {
+                baseURL: API_ROOT_EDITOR,
+                headers: {
+                    'user-type': "ADMIN",
+                    'Authorization': `bearer ${token}`,
+                    'email': `${email}`
+                }
+            })
+            .catch(this._handleError);
+    }
+
+    /**
+     * 
+     * Drug API
+     */
+    // Drug
+    loadDrugs() {
+        let { logOn: {email, token} } = authStore;
+        return this.axios
+            .get(`/api/v1/drugs`, {
+                baseURL: API_ROOT_EDITOR,
+                headers: {
+                    'user-type': "ADMIN",
+                    'Authorization': `bearer ${token}`,
+                    'email': `${email}`
+                }
+            })
+            .catch(this._handleError);
+    }
+
+    loadDrug(drugId) {
+        let { logOn: {email, token} } = authStore;
+        return this.axios
+            .get(`/api/v1/drugs/${drugId}`, {
+                baseURL: API_ROOT_EDITOR,
+                headers: {
+                    'user-type': "ADMIN",
+                    'Authorization': `bearer ${token}`,
+                    'email': `${email}`
+                }
+            })
+            .catch(this._handleError);
+    }
+
 
     // postCase(newCase) {
     //     return this.post(`/cases`, newCase);

@@ -10,6 +10,11 @@ import wizardFormStore from './wizardFormStore';
 import questionStore from './questionStore';
 import searchStore from './searchStore';
 import sortStore from './sortStore';
+import diagnosisStore from './diagnosisStore';
+import diagnosisListItemStore from './diagnosisListItemStore';
+import diagnosisListForInputStore from './diagnosisListForInputStore';
+import drugListForInputStore from './drugListForInputStore';
+import drugListItemStore from './drugListItemStore';
 
 const stores = {
     authStore,
@@ -23,7 +28,12 @@ const stores = {
     wizardFormStore,
     questionStore,
     searchStore,
-    sortStore
+    sortStore,
+    diagnosisStore,
+    diagnosisListItemStore,
+    diagnosisListForInputStore,
+    drugListForInputStore,
+    drugListItemStore
 }
 
 export default stores;

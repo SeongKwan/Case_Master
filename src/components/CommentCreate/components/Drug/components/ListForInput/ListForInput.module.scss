@@ -1,0 +1,32 @@
+.ListForInput {
+    position: absolute;
+    top: 30%;
+    left: 43%;
+    width: 15rem;
+    background-color: $gray-1;
+    z-index: 1000;
+    transition: opacity 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    
+    ul {
+        overflow: auto;
+        position: relative;
+        margin-bottom: 0 !important;
+        max-height: 300px;
+
+    }
+
+    ul li {
+        position: relative;
+        padding: 0.2rem 1rem;
+        display: flex;
+        align-items: center;
+        // transition: all 0.2s;
+        cursor: pointer;
+        height: 40px;
+    }
+
+    ul li.active {
+        background-color: $gray-2;
+    }
+}

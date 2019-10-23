@@ -24,7 +24,7 @@
     }
     input {
         width: 100%;
-        background-color: $brand-quaternary;
+        background-color: white;
         padding: 0.5rem;
         font-size: 1.2em;
         &::placeholder {
@@ -94,7 +94,7 @@
             }
             div {
                 input {
-                    background-color: $brand-quaternary;
+                    background-color: white;
                     padding: 0.5rem;
                     font-size: 1.2em;
                     &::placeholder {
@@ -103,7 +103,7 @@
                     }
                 }
                 textarea {
-                    background-color: $brand-quaternary;
+                    background-color: white;
                     padding: 0.5rem;
                     min-width: 100%;
                     width: 100%;
@@ -140,7 +140,7 @@
             margin-top: 0.5rem;
         }
         input {
-            background-color: $brand-quaternary;
+            background-color: white;
             padding: 0.5rem;
             font-size: 1.2em;
             &::placeholder {
@@ -149,7 +149,7 @@
             }
         }
         textarea {
-            background-color: $brand-quaternary;
+            background-color: white;
             padding: 0.5rem;
             min-width: 100%;
             width: 100%;

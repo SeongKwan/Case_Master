@@ -16,6 +16,7 @@
         }
     }
     .question-list-item-top {
+        color: black;
         padding: 0.5rem;
         display: flex;
         border-top: 1px solid $brand-tertiary;
@@ -41,6 +42,7 @@
         }
     }
     .question-list-item-bottom {
+        color: black;
         border-bottom: 1px solid $brand-tertiary;
         p {
             padding: 1rem;

@@ -10,6 +10,9 @@ const cx = classNames.bind(styles);
 @inject('sortStore')
 @observer
 class BasicInfo extends Component {
+    componentWillUnmount() {
+        this.props.sortStore.clear();
+    }
     _onChange = (e) => {
         const { value } = e.target;
         this.props.sortStore.handleChange(value);

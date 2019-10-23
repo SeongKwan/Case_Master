@@ -37,8 +37,8 @@
             // left: 5px;
             bottom: 0;
             width: 100%;
-            background-color: $brand-secondary;
-            color: $brand-quaternary;
+            background-color: $gray-1;
+            color: black;
             font-weight: 100;
             z-index: $status-bar-z-index;
             div {
@@ -56,9 +56,10 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            background-color: $brand-tertiary;
+            background-color: $gray-3;
+            color: white;
             padding: 1.5rem 1rem 6.5rem;
-            letter-spacing: 1px;
+            letter-spacing: 2.5px;
         }
         .basic-info,
         .symptom {
@@ -68,7 +69,6 @@
             .label {
                 min-width: 4rem;
                 font-weight: 700;
-                color: #eee4ac;
             }
             .content-box {
                 display: flex;
@@ -85,7 +85,6 @@
             // font-size: 1.4em;
             padding-left: 0;
             padding-right: 0;
-            color: $brand-quaternary;
             margin-bottom: 1rem;
             .gender-age {
                 flex: 1;
@@ -104,13 +103,11 @@
                 top: -12px;
                 right: 5px;
                 padding: 0.5rem;
-                color: $brand-quaternary;
                 background-color: $oc-red-5;
                 font-size: 0.9em;
                 font-weight: 500;
             }
             .symptom-list {
-                color: $brand-quaternary;
                 // padding: 0.8rem 0.5rem;
                 display: inline-block;
                 white-space: nowrap;
@@ -124,10 +121,6 @@
                     word-break: keep-all;
                     white-space: nowrap;
                     list-style: none;
-                }
-                li:nth-child(1),
-                li:nth-child(2) {
-                    // margin-top: 0.5rem;
                 }
             }
         }
@@ -203,7 +196,7 @@
         background-color: $brand-secondary;
         padding: 1rem 0;
         font-size: 0.8em;
-        color: $brand-quaternary;
+        // color: $brand-quaternary;
         border-top: 1px solid $oc-gray-7;
         .drug-name {
             flex: 1.5;

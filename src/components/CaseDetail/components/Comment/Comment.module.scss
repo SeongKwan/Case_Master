@@ -15,13 +15,13 @@
                 z-index: 1001;
                 padding: 0 0.8rem;
                 font-weight: 700;
-                color: $brand-quaternary;
+                // color: $brand-quaternary;
             }
             .divider-horizontal {
                 position: absolute;
                 width: 100%;
                 height: 1px;
-                background-color: $brand-quaternary;
+                background-color: $gray-4;
                 z-index: 100;
                 top: 50%;
             }
@@ -110,18 +110,18 @@
         }
         .no-comment,
         .empty-comment {
-            color: $brand-quaternary;
+            // color: $brand-quaternary;
             font-weight: 300;
             padding: 1rem 1rem;
-            background-color: $brand-primary;
+            background-color: $brand-secondary;
             p {
                 padding: 0.5rem;
             }
         }
     }
     .empty-comment {
-        color: $brand-quaternary;
-        background-color: $brand-primary;
+        // color: $brand-quaternary;
+        background-color: $brand-secondary;
         font-weight: 300;
         padding: 1rem 1rem 1rem;
         margin-bottom: 3rem;
