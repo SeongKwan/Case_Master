@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     z-index: $header-z-index;
+    box-shadow: 0 4px 20px rgba(black, 0.2);
     .header-flex-box {
         position: relative;
         width: 100%;
