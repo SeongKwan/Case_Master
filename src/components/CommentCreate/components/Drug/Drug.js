@@ -193,7 +193,7 @@ class Drug extends Component {
                                 </div>
                                 <div className={cx('herb')}>
                                     <input 
-                                        autoFocus
+                                        
                                         autoComplete="off"  
                                         name='herb'
                                         data-index={i}

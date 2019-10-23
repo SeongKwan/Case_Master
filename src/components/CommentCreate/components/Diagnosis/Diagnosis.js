@@ -100,7 +100,7 @@ class Diagnosis extends Component {
                                 <div id={`diagnosis-name-input-${i}`} data-type="input-list" data-form="input-with-list-for-diagnosis" className={cx("input-list-wrapper")}>
                                     <input 
                                         placeholder="진단명"
-                                        autoFocus
+                                        
                                         autoComplete="off"  
                                         name='name'
                                         data-index={i}
