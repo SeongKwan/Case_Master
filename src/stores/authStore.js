@@ -1,8 +1,9 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, runInAction } from 'mobx';
 import agent from '../util/agent';
 
 class AuthStore {
     @observable errors = null;
+    @observable isRefreshing = false;
     @observable userInfo = {
         email: null,
         password: null
@@ -11,9 +12,11 @@ class AuthStore {
         email: window.localStorage.getItem('email'),
         username: window.localStorage.getItem('username'),
         userId: window.localStorage.getItem('userid'),
-        token: window.localStorage.getItem('token')
+        token: window.localStorage.getItem('token'),
+        refreshToken: window.localStorage.getItem('refreshToken')
     }
     @observable token = null;
+    @observable refreshToken = null;
     @observable isLoading = false;
     @observable isLoggedIn = false;
     @observable signupInfo = {
@@ -69,14 +72,17 @@ class AuthStore {
         .then(action((res) => {
             let { 
                 token,
+                refreshToken,
                 user,
                 message
             } = res.data;
+            console.log(res.data)
             if (res.data.success) {
                 this.token = token;
+                this.refreshToken = refreshToken;
                 this.isLoading = false;
                 this.isLoggedIn = true;
-                this.setLocalStorage(token, this.userInfo.email, user.user_id, user.name);
+                this.setLocalStorage(refreshToken, token, this.userInfo.email, user.user_id, user.name);
                 alert(message);
                 window.location.href = '/main';
                 return res.data;
@@ -118,7 +124,8 @@ class AuthStore {
         }));
     }
 
-    @action setLocalStorage(token, email, userid, username) {
+    @action setLocalStorage(refreshToken, token, email, userid, username) {
+        window.localStorage.setItem('refreshToken', refreshToken);
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('email', email);
         window.localStorage.setItem('userid', userid);
@@ -147,9 +154,36 @@ class AuthStore {
 
     @action clear() {
         this.token = null;
+        this.refreshToken = null;
         this.clearUserInfo();
         this.clearLocalStorage();
     };
+
+    @action async errorHelper(error) {
+        const { type } = error;
+        if (type === "refresh") {
+            window.localStorage.clear();
+            this.clearLocalStorage();
+            this.clearUserInfo();
+            return window.location.replace("http://localhost:3001/login");
+        }
+        if (type === "expired") {
+            this.isRefreshing = true;
+            return agent.refreshToken()
+            .then(action( async (response) => {
+                    const { token } = response.data;
+                    this.token = token;
+                    await window.localStorage.setItem('token', token);
+                    runInAction(() => {
+                        this.isRefreshing = false;
+                    })
+                    await window.location.reload(true);
+                }))
+                .catch((error) => {
+                    throw error
+                })
+        }
+    }
 }
 
 export default new AuthStore();

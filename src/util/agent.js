@@ -8,7 +8,8 @@ import authStore from '../stores/authStore';
 // import errorHelper from './errorHelper';
 // const API_ROOT = `${process.env.REACT_APP_API_ENDPOINT}`;
 const API_ROOT = `http://3.113.76.136:3000`;
-const API_ROOT_EDITOR = `https://cloudoc-api.herokuapp.com`;
+const API_ROOT_EDITOR = `http://18.176.133.8:5001`;
+// const API_ROOT_EDITOR = `https://cloudoc-api.herokuapp.com`;
 // const API_ROOT_EDITOR = `http://localhost:5001`;
 
 class Agent {
@@ -59,6 +60,20 @@ class Agent {
                 baseURL: API_ROOT_EDITOR
             })
             .catch(this._handleError);
+    }
+
+    refreshToken() {
+        let { refreshToken, userid } = authStore.logOn;
+        let user_id = userid;
+        
+        return this.axios
+                .post('/auth/token', {refreshToken, user_id}, { 
+                    baseURL: API_ROOT_EDITOR,
+                    headers: { 
+                        
+                    }
+                })
+                .catch(this._handleError);
     }
 
 
@@ -262,10 +277,7 @@ class Agent {
 
 
     _handleError(error) {
-        if (!error.response) {
-            // 서버 꺼져있을때 에러 핸들링
-            throw error;
-        }
+        authStore.errorHelper(error.response.data);
         // errorHelper.handleErrorCode(error.response);
         // console.log('handle error : ', error.response);
         // errorStore.setErrorInfo(error.response.data);
