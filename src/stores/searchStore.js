@@ -84,7 +84,9 @@ class SearchStore {
                     } else {
                         this.registry = [...this.registry, ...cases];
                     }
-                    this.lastCaseId = this.registry[this.registry.length - 1]._id;
+                    if (this.registry[this.registry.length - 1]) {
+                        this.lastCaseId = this.registry[this.registry.length - 1]._id;
+                    } else this.lastCaseId = '';
                 }
                 this.hasMore = hasMore;
             }))

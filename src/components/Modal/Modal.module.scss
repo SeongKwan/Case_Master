@@ -6,6 +6,7 @@
     background-color: $brand-quaternary;
     z-index: -1;
     overflow-y: auto;
+    overflow-x: hidden;
     // transition: all 0.1s ease;
     &.isOpenModal {
         width: 80%;

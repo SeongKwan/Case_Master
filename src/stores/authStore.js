@@ -73,17 +73,16 @@ class AuthStore {
             let { 
                 token,
                 refreshToken,
-                user,
-                message
+                user
             } = res.data;
-            console.log(res.data)
+            
             if (res.data.success) {
                 this.token = token;
                 this.refreshToken = refreshToken;
                 this.isLoading = false;
                 this.isLoggedIn = true;
                 this.setLocalStorage(refreshToken, token, this.userInfo.email, user.user_id, user.name);
-                alert(message);
+                
                 window.location.href = '/main';
                 return res.data;
             } else {

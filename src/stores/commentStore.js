@@ -275,7 +275,6 @@ class CommentStore {
 
 
     @action autoSetDrug(drug) {
-        console.log(drug)
         agent.loadDrug(drug._id)
             .then(action((response) => {
                 let { 
@@ -287,13 +286,7 @@ class CommentStore {
                 this.editableDrug.reference = '';
                 this.editableDrug.teaching = '';
 
-                // formula: [{herbName: String, dose: Number}],
-                // formula = [
-                //     {herbName: 'testname1', dose: 10},
-                //     {herbName: 'testname2', dose: 20},
-                //     {herbName: 'testname3', dose: 30},
-                //     {herbName: 'testname4', dose: 40}
-                // ]
+                
                 if (formula.length === 0 || formula === undefined) {
                     return this.editableFormula = [];
                 }

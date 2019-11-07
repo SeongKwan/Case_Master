@@ -266,11 +266,13 @@ class Agent {
             baseURL: API_ROOT,
             headers: {} 
         };
-        let { logOn: {email, token} } = authStore;
+        let { logOn: {email, token, userId} } = authStore;
+        let user_id = userId;
         requestConfig.headers['user-type'] = "ADMIN";
         
         if (token) { requestConfig.headers['Authorization'] = `bearer ${token}`; }
         if (email) { requestConfig.headers['email'] = `${email}`; }
+        if (user_id) { requestConfig.headers['user_id'] = `${user_id}`; }
 
         return requestConfig;
     }
