@@ -29,6 +29,7 @@ class CaseStore {
                 this.registry = [...this.registry, ...response.data.cases];
                 this.hasMore = response.data.hasMore;
                 this.lastCaseId = this.registry[this.registry.length - 1]._id;
+                return response.data;
             }))
             .catch(action((error) => {
                 this.isLoading = false;
@@ -43,6 +44,7 @@ class CaseStore {
         .then(action((response) => {
             this.isLoading = false;
             this.todaysCases = response.data;
+            return response.data;
         }))
         .catch(action((error) => {
             throw error;
@@ -53,6 +55,7 @@ class CaseStore {
         return agent.loadMyCases({userid})
         .then(action((response) => {
             this.myCases = response.data;
+            return response.data;
         }))
         .then(action(() => {
             this.isLoading = false;
@@ -67,6 +70,7 @@ class CaseStore {
         .then(action((response) => {
             this.isLoading = false;
             this.myComments = response.data;
+            return response.data;
         }))
         .catch(action((error) => {
             throw error;

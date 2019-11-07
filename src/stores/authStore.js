@@ -159,12 +159,17 @@ class AuthStore {
     };
 
     @action async errorHelper(error) {
+        
         const { type } = error;
         if (type === "refresh") {
-            window.localStorage.clear();
-            this.clearLocalStorage();
-            this.clearUserInfo();
-            return window.location.replace("http://localhost:3001/login");
+            alert("로그인 시간이 만료되었습니다. 다시 로그인하여 주세요.")
+            setTimeout(() => {
+                window.localStorage.clear();
+                this.clearLocalStorage();
+                this.clearUserInfo();
+                // return window.location.replace("http://localhost:3001/login");
+                window.location.replace("http://casemaster.s3-website-ap-northeast-1.amazonaws.com");
+            }, 100)
         }
         if (type === "expired") {
             this.isRefreshing = true;

@@ -21,9 +21,12 @@ const cx = classNames.bind(styles);
 class MainCaseList extends Component {
     componentDidMount() {
         const { logOn } = this.props.authStore;
-        this.props.caseStore.loadTodaysCases({userid: logOn.userId});        
-        this.props.caseStore.loadMyCases({userid: logOn.userId});        
-        this.props.caseStore.loadMyComments({userid: logOn.userId});        
+        this.props.caseStore.loadTodaysCases({userid: logOn.userId})
+        .then(async (res) => {
+            await this.props.caseStore.loadMyCases({userid: logOn.userId});        
+            await this.props.caseStore.loadMyComments({userid: logOn.userId});        
+        })
+        .catch(err => {});
     }
     componentWillUnmount() {
         this.props.swiperStore.clear();

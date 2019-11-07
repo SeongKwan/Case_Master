@@ -33,7 +33,7 @@ class LoginForm extends Component {
         return authStore.login({email, password})
             .then((res) => {
                 if(!res.error.success) {
-                    alert(res.error.message);
+                    // alert(res.error.message);
                 }
             })
             .catch(err => {
